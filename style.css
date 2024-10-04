@@ -1,0 +1,282 @@
+.selector-for-some-widget {
+    box-sizing: content-box;
+  }
+
+body {
+    padding-top: 65px;  /* Soluciona que el slider no quede debajo del navbar */
+    background-color: #2d2a32; /* Cambia el color de fondo del body */
+    color: #edf4ed;
+    font-family: 'montserrat', sans-serif;
+}
+
+h1 {   
+    padding-top: 100px; /* Agrega un margen superior al título */
+    margin-bottom: 0px; /* Elimina el margen inferior al título */
+
+    letter-spacing: 0.1em;
+}
+
+p {
+    font-family: 'Noto Serif', serif;
+    font-weight: 300;
+    letter-spacing: 0.07em;
+}
+
+.line-1{
+    position: relative;
+    top: 50%;  
+    width: 24em;
+    margin: 0 auto;
+    color:#2d2a32;
+    border-right: 2px solid #2d2a32;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 180%;
+    font-weight: bold;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);    
+}
+
+/* Animation */
+.anim-typewriter{
+  animation: typewriter 2s steps(22) 1s 1 normal both,
+             blinkTextCursor 500ms steps(22) infinite normal;
+}
+@keyframes typewriter{
+  from{width: 0;}
+  to{width: 15em;}
+}
+@keyframes blinkTextCursor{
+  from{border-right-color: #2d2a32 ;}
+  to{border-right-color: transparent;}
+}
+
+.titulo-secundario {
+    font-weight: bolder;
+}
+
+.card-title {
+    font-weight: bolder;
+}
+
+.card-text {
+    font-weight: 350;
+    letter-spacing: normal;
+}
+
+#trabajos {
+    color: #2d2a32;
+}
+
+.navbar-shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important; /* Agrega una sombra al navbar */
+}
+
+.navbar-color {
+    background-color: #ddd92a !important; /* Cambia el color del navbar */
+}
+
+.navbar-content-color {
+    color: #2d2a32 !important; /* Cambia el color del contenido del navbar */
+}
+
+.nav-item {
+    margin-left: 20px; /* Agrega un margen a la izquierda de cada elemento de la navegación */
+    margin-right: 20px; /* Agrega un margen a la derecha de cada elemento de la navegación */
+}
+
+.btn-outline-secondary:hover {
+    background-color: #bab823 !important; /* Cambia el color de fondo del botón cuando se lo pasa el cursor por encima */
+}
+
+.carousel {  
+    background-color: #edf4ed; /* Cambia el color de fondo del slider */
+}
+
+.seccion-contenedor {
+    background-color: #cbd1cb;
+    width: 100%;
+    padding: 50px 0; /* Espacio superior e inferior */
+}
+
+.container-seccion {
+    padding-left: 0; /* Para evitar el padding extra */
+    padding-right: 0;
+}
+
+.seccion-mid {
+    padding-top: 100px; /* Espacio superior */
+    padding-bottom: 100px; /* Espacio inferior */
+}
+
+
+.carousel-inner {
+    width: 75%; /* Ajusta el ancho del slider */
+    margin: auto; /* Centra el slider en la página */
+    padding-top: 90px; /* Agrega un margen superior al slider */
+    padding-bottom: 90px; /* Agrega un margen inferior al slider */
+    background-color: #edf4ed; /* Cambia el color de fondo del slider */
+}
+
+.custom-shape-divider-top-1727904526 {
+    
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1727904526 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 106px;
+}
+
+.custom-shape-divider-top-1727904526 .shape-fill {
+    fill: #edf4ed;
+}
+
+.custom-shape-divider-bottom-1727906153 {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1727906153 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 106px;
+}
+
+.custom-shape-divider-bottom-1727906153 .shape-fill {
+    fill: #cbd1cb;
+}
+
+.custom-primary-btn {
+    background-color: #ddd92a;
+    border-color: #ddd92a;
+    color: #2d2a32;
+}
+
+.custom-primary-btn:hover {
+    background-color: #bab823;
+    border-color: #bab823;
+    color: #2d2a32;
+}
+
+.custom-shape-divider-top-1727921820 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1727921820 svg {
+    position: relative;
+    display: block;
+    width: calc(113% + 1.3px);
+    height: 103px;
+}
+
+.custom-shape-divider-top-1727921820 .shape-fill {
+    fill: #edf4ed;
+    margin: 0;
+}
+
+.title-content {
+    background-color: #edf4ed;
+    margin-bottom: 0px;
+    color: #2d2a32;
+}
+
+.title-content h1 {
+    font-weight: bold;
+}
+
+.title-content p {
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+
+.custom-shape-divider-bottom-1727923235 {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+    margin-bottom: 0px;
+}
+
+.custom-shape-divider-bottom-1727923235 svg {
+    position: relative;
+    display: block;
+    width: calc(119% + 1.3px);
+    height: 66px;
+}
+
+.custom-shape-divider-bottom-1727923235 .shape-fill {
+    fill: #CBD1CB;
+}
+
+.value-content {
+    background-color: #cbd1cb;
+    margin-top: 0px;
+    color: #2d2a32;
+}
+
+.value-content h1 {
+    font-weight: bold;
+}
+
+.tvalue-content p {
+    font-weight: 500;
+    margin-bottom: 0px;
+}
+
+.container-info p{
+    margin-bottom: 500px;
+}
+
+.custom-shape-divider-top-1727923471 {
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1727923471 svg {
+    position: relative;
+    display: block;
+    width: calc(110% + 1.3px);
+    height: 66px;
+}
+
+.custom-shape-divider-top-1727923471 .shape-fill {
+    fill: #CBD1CB;
+}
+
+.team-member img{
+    border-radius: 100%;
+}
+
+.container-fluid {
+    color:#2d2a32;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.mapa {
+    width: 75%;
+}
