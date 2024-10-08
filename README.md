@@ -1,2 +1,4 @@
 # AndesCode
-Sitio web de Andes Code
+Bienvenidos al sitio web de Andes Code
+
+En breve redactaremos un readme apropiado.
