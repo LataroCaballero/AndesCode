@@ -280,3 +280,16 @@ p {
 .mapa {
     width: 75%;
 }
+
+.display-4 {
+    font-weight: bolder;
+    text-shadow: 0 0 1rem #303030;
+}
+
+.modal-content {
+    color: #2d2a32;
+}
+
+.modal-title {
+    font-weight: bold;
+}
