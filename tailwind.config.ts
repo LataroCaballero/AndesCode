@@ -12,7 +12,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        display: ["Widescreen", "sans-serif"]
+        display: ["FiraCode", "sans-serif"]
       }
     },
   },
