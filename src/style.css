@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
-@import "tailwindcss";
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@tailwindcss base;
+@tailwindcss components;
+@tailwindcss utilities;
 
 
 :root {
@@ -11,9 +11,14 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --color-primary: #4342FF;
+  --color-ink: #191919;
+  --color-accent: #CCFF3E;
+  --color-warning: #FF6829;
+
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: var(--color-ink);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -21,14 +26,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+/*a {
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
 a:hover {
   color: #535bf2;
-}
+}*/
 
 body {
   margin: 0;
@@ -51,16 +56,15 @@ h1 {
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+  /*height: 6em;
+  padding: 1.5em;*/
+  transition: transform 0.3s ease;
 }
 .logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+  transform: scale(1.05);
 }
 .logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #3178c6aa);
+  filter: drop-shadow(0 0 2em #000000aa);
 }
 
 .card {
@@ -78,28 +82,31 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 button:hover {
-  border-color: #646cff;
+  color: var(--color-white);
+  transform: scale(1.05);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto var(--color-ink);
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
+    color: var(--color-ink);
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: white;
+    background-color: var(--color-ink);
   }
 }
 
@@ -138,4 +145,54 @@ button:focus-visible {
   font-optical-sizing: auto;
   font-weight: 700;
   font-style: normal
+}
+
+/* Colores personalizados */
+
+
+/* Clases personalizadas */
+/* nav-link */
+.nav-link {
+  color: var(--color-ink);
+  font-size: medium;
+  text-decoration: none;
+  font-weight: 500;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  transform: scale(1.05);
+}
+/* Colores de texto */
+.text-primary {
+  color: var(--color-primary);
+}
+
+.text-ink {
+  color: var(--color-ink);
+}
+
+.text-accent {
+  color: var(--color-accent);
+}
+
+.text-warning {
+  color: var(--color-warning);
+}
+
+/* Colores de fondo */
+.bg-primary {
+  background-color: var(--color-primary);
+}
+
+.bg-ink {
+  background-color: var(--color-ink);
+}
+
+.bg-accent {
+  background-color: var(--color-accent);
+}
+
+.bg-warning {
+  background-color: var(--color-warning);
 }

@@ -13,7 +13,7 @@ import Hero from "../sections/Hero";
 
 function Home() {
   return (
-    <div className="w-full px-6">
+    <div className="w-full">
       <Header />
       <Hero />
     </div>
