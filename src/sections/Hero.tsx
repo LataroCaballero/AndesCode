@@ -3,7 +3,7 @@ import Typewriter from "typewriter-effect";
 
 export default function Hero() {
   return (
-    <section className="text-center py-20 px-4">
+    <section className="text-center pt-30 py-20 px-4 min-h-screen">
       <h2 className="fira-code-bold text-3xl md:text-4xl mb-4">
         Soluciones a medida para <br /> emprendedores modernos
       </h2>
@@ -37,7 +37,7 @@ export default function Hero() {
 ~ Pronto vas a tener clientes felices!`).start();
         }}
         options={{
-          delay: 30,
+          delay: 20,
           cursor: '_'
         }}
     />
