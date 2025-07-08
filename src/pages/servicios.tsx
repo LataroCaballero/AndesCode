@@ -1,9 +1,14 @@
+import Header from "../components/Header.tsx";
+import Footer from "../components/Footer.tsx";
+import ServiciosHero from "../sections/ServiciosHero.tsx";
+
 const Servicios = () => {
     return (
-      <section>
-        <h1>Servicios</h1>
-        <p>Aquí irá el contenido de servicios</p>
-      </section>
+      <div className="w-full">
+          <Header />
+          <ServiciosHero />
+          <Footer />
+      </div>
     );
   };
   
