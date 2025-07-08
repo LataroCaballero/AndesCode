@@ -88,7 +88,7 @@ button {
   transition: color 0.3s ease, transform 0.3s ease;
 }
 button:hover {
-  color: var(--color-white);
+  /*color: var(--color-white);*/
   transform: scale(1.05);
 }
 button:focus,
@@ -195,4 +195,8 @@ button:focus-visible {
 
 .bg-warning {
   background-color: var(--color-warning);
+}
+
+.bg-white {
+  background-color: var(--color-white);
 }
