@@ -1,7 +1,16 @@
 import ceo from "../assets/team/ceo.jpg"; // ajustá según tu ruta real
+import hug from "../assets/hug.png";
+import light from "../assets/bulb.png";
+import handshake from "../assets/handshake.png";
 import MouseParallaxCard from "../components/MouseParallaxCard";
 
+
 export default function NosotrosHero() {
+  const valores = [
+  { nombre: "Cercanía", tipo: "imagen", contenido: hug },
+  { nombre: "Compromiso", tipo: "imagen", contenido: handshake },
+  { nombre: "Creatividad", tipo: "imagen", contenido: light },
+];
   return (
     <main className="text-center px-4 text-ink font-sans">
 
@@ -22,10 +31,16 @@ export default function NosotrosHero() {
       <section className="py-10">
         <h2 className="fira-code-semibold text-2xl font-semibold mb-10">Valores que nos diferencian</h2>
         <div className="flex justify-center gap-12">
-          {["Cercanía", "Compromiso", "Creatividad"].map((valor, i) => (
+          {valores.map((item, i) => (
             <div key={i} className="flex flex-col items-center">
-              <div className="w-16 h-16 bg-black rounded-full mb-2"></div>
-              <span className="text-sm font-medium">{valor}</span>
+              <div className="w-16 h-16 bg-white rounded-full mb-2">
+              {item.tipo === "imagen" ? (
+                <img src={item.contenido} alt={item.nombre} className="w-full h-full object-cover" />
+              ) : (
+                item.contenido
+              )}
+              </div>
+              <span className="text-sm font-medium">{item.nombre}</span>
             </div>
           ))}
         </div>
@@ -34,7 +49,7 @@ export default function NosotrosHero() {
       {/* Testimonial */}
       <MouseParallaxCard>
         <section className="py-16">
-          <div className="max-w-lg mx-auto border p-6 rounded-md">
+          <div className="max-w-lg mx-auto border p-6 rounded-md shadow-2xl bg-white">
             <p className="italic text-lg mb-6">"Conectar ideas con impacto real, eso es AndesCode."</p>
             <div className="flex flex-col items-center">
               <img
