@@ -1,9 +1,15 @@
+import NosotrosHero from "../sections/NosotrosHero.tsx";
+import Header from "../components/Header.tsx";
+import Footer from "../components/Footer.tsx"
+
+
 const Nosotros = () => {
     return (
-      <section>
-        <h1>Nosotros</h1>
-        <p>Aquí irá el contenido de nosotros</p>
-      </section>
+      <div className="w-full">
+        <Header />
+        <NosotrosHero />
+        <Footer />
+      </div>
     );
   };
   
