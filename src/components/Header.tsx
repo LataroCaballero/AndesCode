@@ -11,9 +11,9 @@ export default function Header() {
           <Link to="/trabajos" className="nav-link">Trabajos</Link>
           <Link to="/contacto" className="nav-link">Contacto</Link>
         </nav>
-        <button className="fira-code-regular text-white px-4 py-2">
+        <Link to="/contacto" className={`inline-block bg-ink text-white fira-code-medium px-4 py-2 border border-ink rounded-md transition hover:scale-105 transform duration-200 ease-in-out dark-button`}>
         Agendá una reunión
-        </button>
+        </Link>
     </header>
   );
 }

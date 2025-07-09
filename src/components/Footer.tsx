@@ -16,11 +16,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
         {/* Navegación y marca */}
         <nav className="flex flex-wrap justify-center items-center gap-8 text-sm font-medium">
-          <a href="#servicios" className="nav-link">Servicios</a>
-          <a href="#nosotros" className="nav-link">Nosotros</a>
-          <span className="fira-code-bold text-xl logo">ANDESCODE</span>
-          <a href="#trabajos" className="nav-link">Trabajos</a>
-          <a href="#contacto" className="nav-link">Contacto</a>
+          <a href="/servicios" className="nav-link">Servicios</a>
+          <a href="/nosotros" className="nav-link">Nosotros</a>
+          <a href="/" className="fira-code-bold text-xl logo">ANDESCODE</a>
+          <a href="/trabajos" className="nav-link">Trabajos</a>
+          <a href="/contacto" className="nav-link">Contacto</a>
         </nav>
 
         {/* Línea divisoria */}

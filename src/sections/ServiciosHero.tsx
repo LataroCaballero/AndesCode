@@ -17,7 +17,7 @@ const servicios = [
   {
     titulo: 'Automatización de Procesos con IA',
     descripcion:
-      'Potenciamos tu marca con estrategias personalizadas, diseño gráfico, manejo de redes y campañas publicitarias para lograr visibilidad real.',
+      'Optimizamos tu negocio implementando soluciones inteligentes basadas en inteligencia artificial. Desde bots automatizados, flujos de trabajo inteligentes hasta sistemas que aprenden y mejoran con el tiempo, te ayudamos a reducir tareas manuales, aumentar la eficiencia y tomar decisiones basadas en datos reales.',
       id: 'ia',
   },
   {

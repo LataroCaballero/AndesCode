@@ -3,6 +3,7 @@ import hug from "../assets/hug.png";
 import light from "../assets/bulb.png";
 import handshake from "../assets/handshake.png";
 import MouseParallaxCard from "../components/MouseParallaxCard";
+import { Link } from "react-router-dom";
 
 
 export default function NosotrosHero() {
@@ -65,17 +66,22 @@ export default function NosotrosHero() {
 
       {/* Call to Action */}
       <section className="grid grid-cols-2 py-16 px-30">
-        <h2 className="fira-code-medium text-xl md:text-2xl font-semibold mb-6 text-left ">
+        <h2 className="fira-code-medium text-xl md:text-2xl font-semibold mb-2 ml-10 text-left">
           ¿Querés saber si somos el equipo <br />
-           ideal para tu proyecto?
+          ideal para tu proyecto?
         </h2>
-        <div className="grid grid-cols-2 md:flex-row gap-8 justify-center">
-          <button className="bg-black text-white px-6 py-2 rounded max-h-15">
-            Agendá una reunión
-          </button>
-          <button className="border border-black bg-white px-6 py-2 text-black rounded hover:text-ink max-h-15">
-            Conocé más sobre nosotros
-          </button>
+
+        <div className="flex gap-4 justify-center items-start">
+          <Link to="/contacto" className="w-full md:w-64">
+            <button className="w-full bg-black text-white py-2 rounded max-h-[60px]">
+              Agendá una reunión
+            </button>
+          </Link>
+          <Link to="/trabajos" className="w-full md:w-64">
+            <button className="w-full border border-black bg-white px-6 py-2 text-black rounded hover:text-ink max-h-[60px]">
+              Conocé más sobre nosotros
+            </button>
+          </Link>
         </div>
       </section>
 
