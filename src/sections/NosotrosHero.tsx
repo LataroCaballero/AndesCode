@@ -16,11 +16,11 @@ export default function NosotrosHero() {
 
       {/* Hero principal */}
       <section className="pt-30 py-20">
-        <h1 className="fira-code-bold pb-10 text-4xl md:text-5xl font-bold leading-snug">
+        <h2 className="fira-code-bold pb-10 text-4xl font-bold leading-snug">
           Tu equipo aliado para construir tecnología <br />
           con propósito
-        </h1>
-        <p className="max-w-xl mx-auto mt-6 text-gray-600 text-base md:text-lg">
+        </h2>
+        <p className="max-w-xl mx-auto mt-6 text-ink text-base md:text-lg">
           En AndesCode creemos que la tecnología es una herramienta para transformar ideas en soluciones reales.
           Nacimos para acompañar a emprendedores y empresas en el desarrollo de productos digitales,
           combinando diseño, código y visión estratégica.
