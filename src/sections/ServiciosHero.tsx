@@ -65,7 +65,7 @@ const Servicios = () => {
               </h2>
               <Link
                 onClick={() => scrollTo(servicio.id)}
-                className="text-sm fira-code-semibold text-warning hover:underline"
+                className="text-sm fira-code-semibold text-black hover:underline"
               >
                 Ver más ›
               </Link>
@@ -92,11 +92,15 @@ const Servicios = () => {
             <h3 className="text-xl font-mono font-bold mb-4">{servicio.titulo}</h3>
             <p className="mb-4">{servicio.descripcion}</p>
             <Link
-                to="/contacto"
-                className="px-4 py-2 border border-ink rounded-md hover:bg-ink hover:text-white transition"
-            >
+              to="/contacto"
+              className={`inline-block px-4 py-2 border border-ink rounded-md transition hover:scale-105 transform transition-transform duration-200 ease-in-out
+ ${
+                index % 2 === 0 ? 'bg-white' : 'bg-[#f4f4f4] '
+               }`}
+              >
                 Contactate!
-            </Link>
+              </Link>
+
             </div>
         </section>
         ))}
