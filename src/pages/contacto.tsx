@@ -1,10 +1,15 @@
 import React from "react";
+import Header from "../components/Header.tsx";
+import Footer from "../components/Footer.tsx";
+import ContactForm from "../sections/ContactForm.tsx";
+
 const Contacto = () => {
     return (
-      <section>
-        <h1>Contacto</h1>
-        <p>Aquí irá el contenido de Contacto</p>
-      </section>
+      <div className="w-full">
+        <Header />
+        <ContactForm />
+        <Footer />
+      </div>
     );
   };
   
