@@ -7,7 +7,7 @@ export default function Footer() {
     { icon: <FaXTwitter />, link: "https://twitter.com" },
     { icon: <FaInstagram />, link: "https://www.instagram.com/andescodesj/" },
     { icon: <FaWhatsapp />, link: "https://wa.me/5492644432919" },
-    { icon: <MdOutlineMail />, link: "#contacto" },/*proximamente*/
+    { icon: <MdOutlineMail />, link: "contacto" },/*proximamente*/
     { icon: <FaMapMarkerAlt />, link: "https://maps.app.goo.gl/wMh49AFx2GGWnWvD6" },
   ];
 
