@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import Typewriter from "typewriter-effect";
 
 export default function Hero() {
@@ -10,9 +10,11 @@ export default function Hero() {
       <p className="text-sm max-w-xl mx-auto mb-6">
         Llevamos tus ideas al siguiente nivel con tecnología clara y sin complicaciones.
       </p>
-      <button className="fira-code-regular text-white px-6 py-2 rounded">
-        Conocé nuestro trabajo
-      </button>
+      <Link to="/trabajos">
+        <button className="fira-code-regular text-white px-6 py-2 rounded dark-button">
+          Conocé nuestro trabajo
+        </button>
+      </Link>
 
   <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-lg mt-10 max-w-2xl mx-auto">
   {/* Barra superior estilo mac */}
