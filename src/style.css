@@ -13,6 +13,7 @@
 
   --color-primary: #4342FF;
   --color-ink: #191919;
+  --color-ink-contrast: #2A2A2A;
   --color-accent: #CCFF3E;
   --color-warning: #FF6829;
 
@@ -69,6 +70,10 @@ h1 {
 
 .card {
   padding: 2em;
+}
+
+.dark-card {
+  background-color: var(--color-ink-contrast);
 }
 
 .read-the-docs {
@@ -163,6 +168,15 @@ button:focus-visible {
 .nav-link:hover {
   transform: scale(1.05);
 }
+
+.dark-link {
+  background: white;
+  color: var(--color-ink);
+}
+
+.dark-border {
+  border-color: white;
+}
 /* Colores de texto */
 .text-primary {
   color: var(--color-primary);
@@ -180,7 +194,7 @@ button:focus-visible {
   color: var(--color-warning);
 }
 
-/* Colores de fondo */
+/* Colores de fondo 
 .bg-primary {
   background-color: var(--color-primary);
 }
@@ -201,6 +215,11 @@ button:focus-visible {
   background-color: var(--color-white);
 }
 
+.bg-dark-contrast {
+  background-color: var(--color-ink-contrast);
+}
+  */
+
 /* Dark Theme */
 @media (prefers-color-scheme: dark){
   .nav-link {
@@ -219,9 +238,9 @@ button:focus-visible {
     background: var(--color-white);
     color: var(--color-ink);
   }
-  .dark-footer{
-    background: var(--color-white);
-    color: var(--color-ink);
+  
+  .logo {
+    color: white;
   }
 }
 

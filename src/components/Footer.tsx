@@ -12,13 +12,13 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-white text-ink px-4 py-12">
+    <footer className="text-ink px-4 py-12">
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
         {/* Navegación y marca */}
         <nav className="flex flex-wrap justify-center items-center gap-8 text-sm font-medium">
           <a href="/servicios" className="nav-link">Servicios</a>
           <a href="/nosotros" className="nav-link">Nosotros</a>
-          <a href="/" className="fira-code-bold text-xl logo">ANDESCODE</a>
+          <a href="/" className="logo text-2xl fira-code-bold">ANDESCODE</a>
           <a href="/trabajos" className="nav-link">Trabajos</a>
           <a href="/contacto" className="nav-link">Contacto</a>
         </nav>
@@ -27,14 +27,14 @@ export default function Footer() {
         <hr className="w-full border border-gray-400" />
 
         {/* Íconos sociales */}
-        <div className="flex gap-6">
+        <div className="flex gap-6 dark:text-white">
           {socialIcons.map((item, i) => (
             <a
               key={i}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-12 h-12 border border-gray-400 rounded-full flex items-center justify-center hover:bg-gray-100 transition"
+              className="w-12 h-12 border border-gray-400 rounded-full flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-700 transition"
             >
               {item.icon}
             </a>
