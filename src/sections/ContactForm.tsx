@@ -2,41 +2,87 @@ import { useState, useEffect } from 'react';
 
 export default function ContactForm () {
     const [success, setSuccess] = useState(false);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
         if (success) {
           const timer = setTimeout(() => setSuccess(false), 4000);
           return () => clearTimeout(timer);
         }
-      }, [success]);
+    }, [success]);
+
+    useEffect(() => {
+        if (error) {
+          const timer = setTimeout(() => setError(false), 4000);
+          return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const form = e.target as HTMLFormElement;
         const data = new FormData(form);
 
-        const response = await fetch('https://formspree.io/f/xldnyqdq', {
-        method: 'POST',
-        body: data,
-        headers: {
-            Accept: 'application/json',
-        },
-        });
+        try {
+            const response = await fetch('https://formspree.io/f/xldnyqdq', {
+                method: 'POST',
+                body: data,
+                headers: {
+                    Accept: 'application/json',
+                },
+            });
 
-        if (response.ok) {
-        setSuccess(true);
-        form.reset();
+            if (response.ok) {
+                setSuccess(true);
+                form.reset();
+            } else {
+                setError(true);
+            }
+        } catch (error) {
+            setError(true);
         }
     };
+
     return (
         <div className="relative">
+            {/* Mensaje de éxito */}
             {success && (
-                <div className="fixed inset-0 flex items-center justify-center z-50">
-                    <div className="bg-accent text-ink fira-code-medium text-lg px-4 py-2 rounded shadow">
-                    ¡Formulario enviado con éxito!
+                <div className="fixed top-6 right-6 z-50 animate-in slide-in-from-top-2 duration-500">
+                    <div className="bg-gradient-to-r from-green-500 to-green-600 text-white px-6 py-4 rounded-lg shadow-2xl border border-green-400/20 backdrop-blur-sm">
+                        <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p className="font-medium text-sm">¡Formulario enviado con éxito!</p>
+                                <p className="text-green-100 text-xs mt-1">Te contactaremos pronto</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
+
+            {/* Mensaje de error */}
+            {error && (
+                <div className="fixed top-6 right-6 z-50 animate-in slide-in-from-top-2 duration-500">
+                    <div className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-4 rounded-lg shadow-2xl border border-red-400/20 backdrop-blur-sm">
+                        <div className="flex items-center gap-3">
+                            <div className="flex-shrink-0">
+                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p className="font-medium text-sm">Error al enviar el formulario</p>
+                                <p className="text-red-100 text-xs mt-1">Inténtalo nuevamente</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
         <section className="pt-30 py-20 px-4 min-h-screen">
             <h2 className="text-center fira-code-bold text-3xl md:text-4xl mb-4">
                 ¿Querés hablarnos de tu idea?
