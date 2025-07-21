@@ -58,7 +58,7 @@ export default function NuestroTrabajo() {
               <img
                 src={proyecto.imagen}
                 alt={proyecto.nombre}
-                className="w-16 h-16 rounded-full object-cover mb-4 mt-3 place-self-center"
+                className="w-16 h-16 rounded-full object-cover mb-4 mt-3 place-self-center border-2 border-[#191919] dark:border-white"
               />
 
               {/* Nombre y descripción */}

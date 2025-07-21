@@ -69,7 +69,7 @@ export default function NosotrosHero() {
               <img
                 src={ceo}
                 alt="Lautaro Caballero"
-                className="w-16 h-16 rounded-full object-cover mb-2"></img>
+                className="w-20 h-20 rounded-full object-cover mb-2"></img>
               <p className="text-sm font-semibold">Lautaro Caballero</p>
               <p className="text-xs text-gray-500">Fundador & CEO</p>
             </div>
