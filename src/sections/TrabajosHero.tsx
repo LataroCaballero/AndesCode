@@ -47,7 +47,7 @@ export default function NuestroTrabajo() {
           {proyectos.map((proyecto, i) => (
             <div
               key={i}
-              className="grid grid-cols-1 content-between relative border rounded-md p-6 text-center bg-white dark:bg-[#191919] hover:shadow-md transition"
+              className="grid grid-cols-1 content-between relative border rounded-md p-6 text-center bg-white dark:bg-[#2A2A2A] hover:shadow-md transition"
             >
               {/* Etiqueta categoría */}
               <span className="absolute top-0 right-0 bg-[#191919] text-white dark:bg-white dark:text-[#191919] text-xs px-3 py-1 rounded-bl-md fira-code-regular">
@@ -66,7 +66,7 @@ export default function NuestroTrabajo() {
               <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{proyecto.descripcion}</p>
 
               {/* Botón */}
-              <button className="border dark-button px-4 py-1 text-sm bg-white rounded-md hover:bg-gray-100 transition">
+              <button className="border bg-[#191919] text-white dark-button px-4 py-1 text-sm rounded-md hover:bg-gray-100 transition">
                 Ver más
               </button>
             </div>
@@ -87,7 +87,7 @@ export default function NuestroTrabajo() {
             </button>
           </Link>
           <Link to="/Nosotros" className="w-full md:w-64">
-            <button className="w-full border border-black bg-white text-black dark:text-white dark-border  px-6 py-2 rounded hover:text-ink max-h-[60px]">
+            <button className="w-full border bg-white text-[#191919] !border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
               Conocé más sobre nosotros
             </button>
           </Link>

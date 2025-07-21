@@ -91,7 +91,7 @@ export default function NosotrosHero() {
             </button>
           </Link>
           <Link to="/trabajos" className="w-full md:w-64">
-            <button className="w-full border border-black bg-white text-black dark:text-white dark-border  px-6 py-2 rounded hover:text-ink max-h-[60px]">
+            <button className="w-full border !border-black bg-white text-black dark:bg-[#191919] dark:text-white dark:!border-white  px-6 py-2 rounded hover:text-ink max-h-[60px]">
               Conocé más sobre nosotros
             </button>
           </Link>

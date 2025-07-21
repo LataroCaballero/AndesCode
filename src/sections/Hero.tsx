@@ -11,7 +11,7 @@ export default function Hero() {
         Llevamos tus ideas al siguiente nivel con tecnología clara y sin complicaciones.
       </p>
       <Link to="/trabajos">
-        <button className="fira-code-regular text-white px-6 py-2 rounded dark-button">
+        <button className="fira-code-regular bg-[#191919] text-white px-6 py-2 rounded dark-button">
           Conocé nuestro trabajo
         </button>
       </Link>

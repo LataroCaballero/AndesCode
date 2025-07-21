@@ -10,7 +10,7 @@ export default function Header() {
           <Link to="/trabajos" className="nav-link">Trabajos</Link>
           <Link to="/contacto" className="nav-link">Contacto</Link>
         </nav>
-        <Link to="/contacto" className={`inline-block bg-ink text-white fira-code-medium px-4 py-2 border border-ink rounded-md transition hover:scale-105 transform duration-200 ease-in-out dark-button`}>
+        <Link to="/contacto" className={`inline-block bg-[#191919] text-white dark:bg-white dark:text-[#191919] fira-code-medium px-4 py-2 border border-ink rounded-md transition hover:scale-105 transform duration-200 ease-in-out`}>
         Agendá una reunión
         </Link>
     </header>

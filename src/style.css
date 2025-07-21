@@ -87,7 +87,7 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--color-ink);
+  /*background-color: var(--color-ink);*/
   border-color: var(--color-ink);
   cursor: pointer;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -232,6 +232,11 @@ button:focus-visible {
   
   .nav-link:hover {
     transform: scale(1.05);
+  }
+
+  .light-button {
+    background-color: var(--color-ink);
+    color: var(--color-white)
   }
 
   .dark-button {
