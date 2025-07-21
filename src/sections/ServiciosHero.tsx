@@ -54,7 +54,7 @@ const Servicios = () => {
         {servicios.map((servicio, index) => (
           <div
             key={index}
-            className="w-64 rounded-md overflow-hidden shadow-md dark-card"
+            className="w-64 rounded-md overflow-hidden shadow-md bg-[#f4f4f4] dark:bg-[#2A2A2A]"
           >
             <div className="h-36 bg-ink flex items-center justify-center">
               <div className="w-12 h-12 rounded-md" />

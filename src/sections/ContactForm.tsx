@@ -94,7 +94,7 @@ export default function ContactForm () {
 
                 <button
                     type="submit"
-                    className="text-white dark-button py-2 px-6 rounded transition"
+                    className="bg-[#191919] text-white dark-button py-2 px-6 rounded transition"
                 >
                     Enviar
                 </button>
