@@ -40,7 +40,7 @@ const Servicios = () => {
   };
   return (
     <main className="text-ink">
-      <section className="text-center pt-30 py-16 px-4">
+      <section className="text-center pt-30 py-16 px-4 dark:text-white">
         <h2 className="fira-code-bold text-3xl md:text-4xl mb-4">
         Servicios que impulsan tu negocio
         </h2>
@@ -50,11 +50,11 @@ const Servicios = () => {
       </section>
 
       {/* Cards resumen */}
-      <section className="flex flex-wrap justify-center gap-6 px-4 pb-16">
+      <section className="flex flex-wrap justify-center gap-6 px-4 pb-16 dark:text-white">
         {servicios.map((servicio, index) => (
           <div
             key={index}
-            className="w-64 rounded-md overflow-hidden shadow-md"
+            className="w-64 rounded-md overflow-hidden shadow-md bg-[#f4f4f4] dark:bg-[#2A2A2A]"
           >
             <div className="h-36 bg-ink flex items-center justify-center">
               <div className="w-12 h-12 rounded-md" />
@@ -65,7 +65,7 @@ const Servicios = () => {
               </h2>
               <Link
                 onClick={() => scrollTo(servicio.id)}
-                className="text-sm fira-code-semibold text-black hover:underline"
+                className="text-sm fira-code-semibold hover:underline dark:text-white"
               >
                 Ver más ›
               </Link>
@@ -81,7 +81,7 @@ const Servicios = () => {
             ref={(el) => (refs.current[servicio.id] = el)}
             className={`flex flex-col md:flex-row ${
             index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-            } ${index % 2 === 0 ? 'bg-white' : 'bg-[#f4f4f4]'} 
+            } ${index % 2 === 0 ? 'bg-white dark:bg-[#191919]' : 'bg-[#f4f4f4] dark:bg-[#2A2A2A]'} 
             text-ink items-center justify-center py-20 px-6 gap-8`}
         >
             {/* Imagen placeholder */}
@@ -89,14 +89,14 @@ const Servicios = () => {
             
             {/* Texto */}
             <div className="max-w-md">
-            <h3 className="text-xl font-mono font-bold mb-4">{servicio.titulo}</h3>
-            <p className="mb-4">{servicio.descripcion}</p>
+            <h3 className="text-xl font-mono font-bold mb-4 dark:text-white">{servicio.titulo}</h3>
+            <p className="mb-4 dark:text-white">{servicio.descripcion}</p>
             <Link
               to="/contacto"
               className={`inline-block px-4 py-2 border border-ink rounded-md transition hover:scale-105 transform transition-transform duration-200 ease-in-out
  ${
-                index % 2 === 0 ? 'bg-white' : 'bg-[#f4f4f4] '
-               }`}
+                index % 2 === 0 ? 'bg-white dark:bg-[#2A2A2A]' : 'bg-[#f4f4f4] dark:bg-[#191919]'
+               }dark:text-white`}
               >
                 Contactate!
               </Link>
