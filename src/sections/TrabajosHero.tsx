@@ -58,7 +58,7 @@ export default function NuestroTrabajo() {
               <img
                 src={proyecto.imagen}
                 alt={proyecto.nombre}
-                className="w-16 h-16 rounded-full object-cover mb-4 mt-3 place-self-center"
+                className="w-16 h-16 rounded-full object-cover mb-4 mt-3 place-self-center border-2 border-[#191919] dark:border-white"
               />
 
               {/* Nombre y descripción */}
@@ -66,7 +66,7 @@ export default function NuestroTrabajo() {
               <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{proyecto.descripcion}</p>
 
               {/* Botón */}
-              <button className="border bg-[#191919] text-white dark-button px-4 py-1 text-sm rounded-md hover:bg-gray-100 transition">
+              <button className="border bg-[#191919] text-white dark-button px-4 py-1 text-sm rounded-md transition">
                 Ver más
               </button>
             </div>
@@ -87,7 +87,7 @@ export default function NuestroTrabajo() {
             </button>
           </Link>
           <Link to="/Nosotros" className="w-full md:w-64">
-            <button className="w-full border bg-white text-[#191919] !border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
+            <button className="w-full border bg-white text-[#191919] !  border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
               Conocé más sobre nosotros
             </button>
           </Link>
