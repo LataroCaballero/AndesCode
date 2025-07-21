@@ -54,35 +54,39 @@ const Servicios = () => {
         {servicios.map((servicio, index) => (
           <div
             key={index}
-            className="w-64 rounded-md overflow-hidden shadow-md bg-[#f4f4f4] dark:bg-[#2A2A2A]"
+            className="w-64 h-[300px] flex flex-col rounded-md overflow-hidden shadow-md bg-[#f4f4f4] dark:bg-[#2A2A2A]"
           >
             <div className="h-36 bg-ink flex items-center justify-center">
               <div className="w-12 h-12 rounded-md" />
             </div>
-            <div className="grid grid-cols-1 content-between h-30 p-4">
+            <div className="flex flex-col justify-between h-44 p-4">
               <h2 className="text-md fira-code-medium mb-2">
                 {servicio.titulo}
               </h2>
-              <Link
+              <button
                 onClick={() => scrollTo(servicio.id)}
-                className="text-sm fira-code-semibold hover:underline dark:text-white"
+                className="text-sm fira-code-semibold dark:text-white"
               >
                 Ver más ›
-              </Link>
+              </button>
             </div>
           </div>
         ))}
       </section>
 
       {/* Secciones ampliadas */}
-        {servicios.map((servicio, index) => (
-        <section
-            key={index}
-            ref={(el) => (refs.current[servicio.id] = el)}
-            className={`flex flex-col md:flex-row ${
+      {servicios.map((servicio, index) => (
+        <div
+          key={index}
+          ref={(el: HTMLDivElement | null) => {
+            if (el) {
+              refs.current[servicio.id] = el;
+            }
+          }}
+          className={`flex flex-col md:flex-row ${
             index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-            } ${index % 2 === 0 ? 'bg-white dark:bg-[#191919]' : 'bg-[#f4f4f4] dark:bg-[#2A2A2A]'} 
-            text-ink items-center justify-center py-20 px-6 gap-8`}
+          } ${index % 2 === 0 ? 'bg-white dark:bg-[#191919]' : 'bg-[#f4f4f4] dark:bg-[#2A2A2A]'} 
+          text-ink items-center justify-center py-20 px-6 gap-8`}
         >
             {/* Imagen placeholder */}
             <div className="w-64 h-64 bg-ink rounded-md" />
@@ -93,7 +97,7 @@ const Servicios = () => {
             <p className="mb-4 dark:text-white">{servicio.descripcion}</p>
             <Link
               to="/contacto"
-              className={`inline-block px-4 py-2 border border-ink rounded-md transition hover:scale-105 transform transition-transform duration-200 ease-in-out
+              className={`inline-block px-4 py-2 border border-ink rounded-md  hover:scale-105 transform transition-transform duration-200 ease-in-out
  ${
                 index % 2 === 0 ? 'bg-white dark:bg-[#2A2A2A]' : 'bg-[#f4f4f4] dark:bg-[#191919]'
                }dark:text-white`}
@@ -102,7 +106,7 @@ const Servicios = () => {
               </Link>
 
             </div>
-        </section>
+        </div>
         ))}
     </main>
   );
