@@ -1,6 +1,7 @@
 import { FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const socialIcons = [
@@ -16,11 +17,11 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
         {/* Navegación y marca */}
         <nav className="flex flex-wrap justify-center items-center gap-8 text-sm font-medium">
-          <a href="/servicios" className="nav-link">Servicios</a>
-          <a href="/nosotros" className="nav-link">Nosotros</a>
-          <a href="/" className="logo text-2xl fira-code-bold">ANDESCODE</a>
-          <a href="/trabajos" className="nav-link">Trabajos</a>
-          <a href="/contacto" className="nav-link">Contacto</a>
+          <Link to="/servicios" className="nav-link">Servicios</Link>
+          <Link to="/nosotros" className="nav-link">Nosotros</Link>
+          <Link to="/" className="logo text-2xl fira-code-bold">ANDESCODE</Link>
+          <Link to="/trabajos" className="nav-link">Trabajos</Link>
+          <Link to="/contacto" className="nav-link">Contacto</Link>
         </nav>
 
         {/* Línea divisoria */}
