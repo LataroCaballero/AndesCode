@@ -80,7 +80,7 @@ export default function NuestroTrabajo() {
             El cambio comienza hoy.
           </h2>
 
-          <div className="flex gap-4 justify-center items-start">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md mx-auto">
             <Link to="/contacto" className="w-full md:w-64">
               <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
                 Agendá una reunión
