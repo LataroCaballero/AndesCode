@@ -15,13 +15,27 @@ export default function Footer() {
   return (
     <footer className="text-ink px-4 py-12">
       <div className="max-w-7xl mx-auto flex flex-col items-center space-y-8">
-        {/* Navegación y marca */}
-        <nav className="flex flex-wrap justify-center items-center gap-8 text-sm font-medium">
-          <Link to="/servicios" className="nav-link">Servicios</Link>
-          <Link to="/nosotros" className="nav-link">Nosotros</Link>
-          <Link to="/" className="logo text-2xl fira-code-bold">ANDESCODE</Link>
-          <Link to="/trabajos" className="nav-link">Trabajos</Link>
-          <Link to="/contacto" className="nav-link">Contacto</Link>
+        {/* Nav */}
+        <nav className="w-full flex flex-col items-center gap-6">
+          {/* Desktop: fila única */}
+          <div className="hidden md:flex items-center justify-center gap-10 text-sm">
+            <a href="/servicios" className="nav-link">Servicios</a>
+            <a href="/nosotros" className="nav-link">Nosotros</a>
+            <span className="fira-code-bold text-xl">ANDESCODE</span>
+            <a href="/trabajos" className="nav-link">Trabajos</a>
+            <a href="/contacto" className="nav-link">Contacto</a>
+          </div>
+
+          {/* Mobile: logo + grilla 2×2 */}
+          <div className="md:hidden w-full flex flex-col items-center gap-5">
+            <span className="fira-code-bold text-xl">ANDESCODE</span>
+            <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-center text-sm">
+              <a href="/servicios" className="nav-link">Servicios</a>
+              <a href="/nosotros" className="nav-link">Nosotros</a>
+              <a href="/trabajos" className="nav-link">Trabajos</a>
+              <a href="/contacto" className="nav-link">Contacto</a>
+            </div>
+          </div>
         </nav>
 
         {/* Línea divisoria */}
