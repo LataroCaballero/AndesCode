@@ -1,7 +1,6 @@
 import { FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
-import { Link } from "react-router-dom";
 
 export default function Footer() {
   const socialIcons = [
