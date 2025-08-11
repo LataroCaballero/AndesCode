@@ -38,9 +38,9 @@ export default function NosotrosHero() {
       </section>
 
       {/* Valores que nos diferencian */}
-      <section className="py-10">
-        <h2 className="fira-code-semibold text-3xl font-semibold mb-10 dark:text-white">Valores que nos diferencian</h2>
-        <div className="flex flex-wrap justify-center gap-40">
+        <section className="py-10">
+          <h2 className="fira-code-semibold text-3xl font-semibold mb-10 dark:text-white">Valores que nos diferencian</h2>
+          <div className="flex flex-wrap justify-center gap-10 md:gap-40">
             {valores.map((item, i) => (
               <div key={i} className="flex flex-col items-center w-40">
                 <div className="w-50 h-50 flex items-center justify-center mb-4">
@@ -78,25 +78,25 @@ export default function NosotrosHero() {
       </MouseParallaxCard>
 
       {/* Call to Action */}
-      <section className="grid grid-cols-2 py-16 px-30">
-        <h2 className="fira-code-medium text-xl md:text-2xl dark:text-white font-semibold mb-2 ml-10 text-left ">
-          ¿Querés saber si somos el equipo <br />
-          ideal para tu proyecto?
-        </h2>
+        <section className="grid grid-cols-1 md:grid-cols-2 py-16 px-6 md:px-30">
+          <h2 className="fira-code-medium text-xl md:text-2xl dark:text-white font-semibold mb-2 text-center md:text-left md:ml-10">
+            ¿Querés saber si somos el equipo <br />
+            ideal para tu proyecto?
+          </h2>
 
-        <div className="flex gap-4 justify-center items-start">
-          <Link to="/contacto" className="w-full md:w-64">
-            <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
-              Agendá una reunión
-            </button>
-          </Link>
-          <Link to="/trabajos" className="w-full md:w-64">
-            <button className="w-full border !border-black bg-white text-black dark:bg-[#191919] dark:text-white dark:!border-white  px-6 py-2 rounded hover:text-ink max-h-[60px]">
-              Conocé más sobre nosotros
-            </button>
-          </Link>
-        </div>
-      </section>
+          <div className="flex gap-4 justify-center items-start">
+            <Link to="/contacto" className="w-full md:w-64">
+              <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
+                Agendá una reunión
+              </button>
+            </Link>
+            <Link to="/trabajos" className="w-full md:w-64">
+              <button className="w-full border !border-black bg-white text-black dark:bg-[#191919] dark:text-white dark:!border-white px-6 py-2 rounded hover:text-ink max-h-[60px]">
+                Conocé más sobre nosotros
+              </button>
+            </Link>
+          </div>
+        </section>
 
     </main>
   );

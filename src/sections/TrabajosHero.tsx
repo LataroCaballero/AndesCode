@@ -75,24 +75,24 @@ export default function NuestroTrabajo() {
       </section>
 
       {/* Cierre CTA */}
-      <section className="grid grid-cols-2 py-16 px-30">
-        <h2 className="fira-code-medium text-xl md:text-2xl font-semibold mb-2 ml-10 dark:text-white text-left">
-          El cambio comienza hoy.
-        </h2>
+        <section className="grid grid-cols-1 md:grid-cols-2 py-16 px-6 md:px-30">
+          <h2 className="fira-code-medium text-xl md:text-2xl font-semibold mb-2 text-center md:text-left md:ml-10 dark:text-white">
+            El cambio comienza hoy.
+          </h2>
 
-        <div className="flex gap-4 justify-center items-start">
-          <Link to="/contacto" className="w-full md:w-64">
-            <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
-              Agendá una reunión
-            </button>
-          </Link>
-          <Link to="/Nosotros" className="w-full md:w-64">
-            <button className="w-full border bg-white text-[#191919] !  border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
-              Conocé más sobre nosotros
-            </button>
-          </Link>
-        </div>
-      </section>
+          <div className="flex gap-4 justify-center items-start">
+            <Link to="/contacto" className="w-full md:w-64">
+              <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
+                Agendá una reunión
+              </button>
+            </Link>
+            <Link to="/Nosotros" className="w-full md:w-64">
+              <button className="w-full border bg-white text-[#191919] !  border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
+                Conocé más sobre nosotros
+              </button>
+            </Link>
+          </div>
+        </section>
     </main>
   );
 }
