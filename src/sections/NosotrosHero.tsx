@@ -84,9 +84,9 @@ export default function NosotrosHero() {
             ideal para tu proyecto?
           </h2>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-xl mx-auto">
             <Link to="/contacto" className="w-full md:w-64">
-              <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
+              <button className="w-full dark-button bg-black text-white px-6 py-2 rounded max-h-[60px]">
                 Agendá una reunión
               </button>
             </Link>

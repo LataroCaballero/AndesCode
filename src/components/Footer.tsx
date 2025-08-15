@@ -20,7 +20,7 @@ export default function Footer() {
           <div className="hidden md:flex items-center justify-center gap-10 text-sm">
             <a href="/servicios" className="nav-link">Servicios</a>
             <a href="/nosotros" className="nav-link">Nosotros</a>
-            <span className="fira-code-bold text-xl">ANDESCODE</span>
+            <span className="fira-code-bold dark:text-white text-xl">ANDESCODE</span>
             <a href="/trabajos" className="nav-link">Trabajos</a>
             <a href="/contacto" className="nav-link">Contacto</a>
           </div>

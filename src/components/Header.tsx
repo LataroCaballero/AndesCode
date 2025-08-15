@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="fixed backdrop-blur top-0 h-20 w-full z-50 flex justify-between items-center py-4 px-6 md:px-10 border-b border-gray-200">
       <a href="/" className="logo text-2xl fira-code-bold">ANDESCODE</a>
-      <nav className={`absolute top-20 left-0 w-full bg-white dark:bg-[#191919] flex-col items-center gap-6 py-6 md:py-0 md:static md:w-auto md:bg-transparent md:flex md:flex-row md:gap-14 text-sm ${open ? 'flex' : 'hidden'}`}>
+      <nav className={`absolute top-20 left-0 w-full  flex-col items-center gap-6 py-6 md:py-0 md:static md:w-auto md:bg-transparent md:flex md:flex-row md:gap-14 text-sm ${open ? 'flex' : 'hidden'}`}>
         <Link to="/servicios" className="nav-link" onClick={() => setOpen(false)}>Servicios</Link>
         <Link to="/nosotros" className="nav-link" onClick={() => setOpen(false)}>Nosotros</Link>
         <Link to="/trabajos" className="nav-link" onClick={() => setOpen(false)}>Trabajos</Link>
