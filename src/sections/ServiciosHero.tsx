@@ -1,30 +1,42 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
+import desarrolloweb from '../assets/servicios/desarrolloweb.png';
+import soporte from '../assets/servicios/soporte.png';
+import automatizacion from '../assets/servicios/automatizacion.png';
+import desarrolloamedida from '../assets/servicios/desarrolloamedida.png';
+import desarrollowebbig from '../assets/servicios/desarrollowebbig.png';
+import soportebig from '../assets/servicios/soportebig.png';
+import automatizacionbig from '../assets/servicios/automatizacionbig.png';
+import desarrolloamedidabig from '../assets/servicios/desarrolloamedidabig.png';
 
 const servicios = [
   {
     titulo: 'Desarrollo Web y Mobile',
-    descripcion:
-      'Diseñamos y desarrollamos sitios web y aplicaciones móviles responsivas, veloces y listas para escalar. Desde una landing hasta un sistema completo.',
-      id: 'web',
+    descripcion: 'Diseñamos y desarrollamos sitios web y aplicaciones móviles responsivas, veloces y listas para escalar. Desde una landing hasta un sistema completo.',
+    id: 'web',
+    img: desarrolloweb,
+    imgbig: desarrollowebbig
   },
   {
     titulo: 'Sistemas a Medida',
-    descripcion:
-      'Creamos plataformas únicas adaptadas a procesos específicos: desde gestión interna hasta herramientas de uso masivo, pensadas para optimizar tu negocio.',
-      id: 'sistemas',
+    descripcion: 'Creamos plataformas únicas adaptadas a procesos específicos: desde gestión interna hasta herramientas de uso masivo, pensadas para optimizar tu negocio.',
+    id: 'sistemas',
+    img: desarrolloamedida,
+    imgbig: desarrolloamedidabig
   },
   {
     titulo: 'Automatización de Procesos con IA',
-    descripcion:
-      'Optimizamos tu negocio implementando soluciones inteligentes basadas en inteligencia artificial. Desde bots automatizados, flujos de trabajo inteligentes hasta sistemas que aprenden y mejoran con el tiempo, te ayudamos a reducir tareas manuales, aumentar la eficiencia y tomar decisiones basadas en datos reales.',
-      id: 'ia',
+    descripcion: 'Optimizamos tu negocio implementando soluciones inteligentes basadas en inteligencia artificial. Desde bots automatizados, flujos de trabajo inteligentes hasta sistemas que aprenden y mejoran con el tiempo, te ayudamos a reducir tareas manuales, aumentar la eficiencia y tomar decisiones basadas en datos reales.',
+    id: 'ia',
+    img: automatizacion,
+    imgbig: automatizacionbig
   },
   {
     titulo: 'Soporte y Mantenimiento',
-    descripcion:
-      'Acompañamos a largo plazo con mejoras, corrección de errores, backups, monitoreo y asistencia técnica continua.',
+    descripcion: 'Acompañamos a largo plazo con mejoras, corrección de errores, backups, monitoreo y asistencia técnica continua.',
     id: 'soporte',
+    img: soporte,
+    imgbig: soportebig
   },
 ];
 
@@ -57,7 +69,11 @@ const Servicios = () => {
             className="w-64 h-[300px] flex flex-col rounded-md overflow-hidden shadow-md bg-[#f4f4f4] dark:bg-[#2A2A2A]"
           >
             <div className="h-36 bg-ink flex items-center justify-center">
-              <div className="w-12 h-12 rounded-md" />
+              <img
+                src={servicio.img}
+                alt={servicio.titulo}
+                className="max-h-full max-w-full object-contain"
+              />
             </div>
             <div className="flex flex-col justify-between h-44 p-4">
               <h2 className="text-md fira-code-medium mb-2">
@@ -89,7 +105,13 @@ const Servicios = () => {
           text-ink items-center justify-center py-20 px-6 gap-8`}
         >
             {/* Imagen placeholder */}
-            <div className="w-64 h-64 bg-ink rounded-md" />
+            <div className="w-64 h-64 bg-ink rounded-md">
+              <img
+                  src={servicio.imgbig}
+                  alt={servicio.titulo}
+                  className="max-h-full max-w-full object-contain rounded-2xl"
+                />
+            </div>
             
             {/* Texto */}
             <div className="max-w-md">
