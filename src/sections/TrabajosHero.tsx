@@ -3,8 +3,111 @@ import project2 from "../assets/projects/sbcuyo.jpg";
 import project3 from "../assets/projects/motivationnau.jpg";
 import project4 from "../assets/projects/cinetika.jpg";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-const proyectos = [
+import mocion from "../assets/projects/mocion.jpg"
+import sbcuyo from "../assets/projects/sbcuyo.jpg"
+import motivationnau from "../assets/projects/motivationnau.jpg"
+import cinetika from "../assets/projects/cinetika.jpg"
+
+type Proyecto = {
+  id: string;
+  titulo: string;
+  descripcion: string;
+  badge: string;
+  logo: string;        // url o import de la imagen
+  detalle: {
+    resumen: string;
+    stack?: string[];
+    entregables?: string[];
+    link?: string;     // opcional
+  };
+};
+
+const proyectos: Proyecto[] = [
+    {
+        id: "mocion",
+        titulo: "Moción NAU",
+        descripcion: "Plataforma de peticiones ciudadanas con enfoque social.",
+        badge: "App Web",
+        logo: mocion,
+        detalle: {
+          resumen:
+            "Plataforma web para crear, firmar y gestionar peticiones ciudadanas, desarrollada con enfoque social. Incluye diseño UX, desarrollo backend y frontend, autenticación de usuarios y panel de administración.",
+          stack: ["React", "Node.js", "Express", "PostgreSQL", "Tailwind CSS", "Vercel"],
+          entregables: [
+            "Diseño UX/UI adaptado a accesibilidad",
+            "Frontend responsivo",
+            "API REST segura",
+            "Sistema de firmas digitales",
+            "Panel de administración"
+          ],
+          link: "https://mocionnau.example",
+        }
+      },
+      {
+        id: "sbcuyo",
+        titulo: "SBCuyo",
+        descripcion: "Sitio institucional optimizado y mantenido por AndesCode.",
+        badge: "Mantenimiento Web",
+        logo: sbcuyo,
+        detalle: {
+          resumen:
+            "Mantenimiento web de la Sociedad Biológica de Cuyo: optimización de rendimiento, actualización de contenidos y soporte técnico continuo. Mejora de velocidad y posicionamiento SEO.",
+          stack: ["WordPress", "PHP", "MySQL", "Elementor", "SEO Tools"],
+          entregables: [
+            "Optimización de carga",
+            "Actualización de contenidos",
+            "Mejora SEO",
+            "Backups y seguridad",
+            "Soporte mensual"
+          ],
+          link: "https://sbcuyo.org.ar/"
+        }
+      },
+      {
+        id: "motivationnau",
+        titulo: "MotivationNAU",
+        descripcion: "Plataforma web de IA para videos motivacionales personalizados.",
+        badge: "SaaS IA",
+        logo: motivationnau,
+        detalle: {
+          resumen:
+            "SaaS que permite a los usuarios generar videos motivacionales personalizados usando IA. Combina fotos y descripciones de objetivos para producir visualizaciones realistas de logros futuros.",
+          stack: ["Next.js", "Node.js", "OpenAI API", "Cloudinary", "Tailwind CSS"],
+          entregables: [
+            "Generador de videos IA",
+            "Carga de fotos y voz",
+            "Sistema freemium",
+            "Dashboard de usuario",
+            "Integración con API de video"
+          ],
+          link: "https://motivationnau.example"
+        }
+      },
+      {
+        id: "cinetika",
+        titulo: "Cinetika",
+        descripcion: "Dashboard para centro de rendimiento deportivo.",
+        badge: "Sistema a Medida",
+        logo: cinetika,
+        detalle: {
+          resumen:
+            "Aplicación web para visualizar y analizar datos de mediciones deportivas y de rehabilitación. Permite comparar resultados de pacientes mediante gráficos y tablas intuitivas.",
+          stack: ["React", "Node.js", "Express", "PostgreSQL", "Chart.js", "Tailwind CSS"],
+          entregables: [
+            "Carga y procesamiento de datos",
+            "Dashboard de métricas",
+            "Comparativa entre mediciones",
+            "Visualización gráfica",
+            "Exportación de resultados"
+          ],
+          link: "https://cinetika.example"
+        }
+      }
+];
+
+const proyecto = [
   {
     nombre: "Moción NAU",
     descripcion: "Plataforma de peticiones ciudadanas, desarrollada con enfoque social. Desde diseño UX hasta desarrollo backend.",
@@ -31,7 +134,23 @@ const proyectos = [
   },
 ];
 
-export default function NuestroTrabajo() {
+export default function ProjectsGrid() {
+  const [abierto, setAbierto] = useState<Proyecto | null>(null);
+
+  // Cerrar con ESC y bloquear scroll del body
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(null);
+    if (abierto) {
+      document.addEventListener("keydown", onKey);
+      const prev = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.removeEventListener("keydown", onKey);
+        document.body.style.overflow = prev;
+      };
+    }
+  }, [abierto]);
+
   return (
     <main className="text-center px-4 text-ink">
       
@@ -44,29 +163,33 @@ export default function NuestroTrabajo() {
 
         {/* Grid de proyectos */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
-          {proyectos.map((proyecto, i) => (
+          {proyectos.map((p, i) => (
             <div
               key={i}
               className="grid grid-cols-1 content-between relative border rounded-md p-6 text-center bg-white dark:bg-[#2A2A2A] hover:shadow-md transition"
             >
               {/* Etiqueta categoría */}
               <span className="absolute top-0 right-0 bg-[#191919] text-white dark:bg-white dark:text-[#191919] text-xs px-3 py-1 rounded-bl-md fira-code-regular">
-                {proyecto.categoria}
+                {p.badge}
               </span>
 
               {/* Imagen redonda */}
               <img
-                src={proyecto.imagen}
-                alt={proyecto.nombre}
+                src={p.logo}
+                alt={p.titulo}
                 className="w-16 h-16 rounded-full object-cover mb-4 mt-3 place-self-center border-2 border-[#191919] dark:border-white"
               />
 
               {/* Nombre y descripción */}
-              <h3 className="font-semibold text-lg mb-2">{proyecto.nombre}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{proyecto.descripcion}</p>
+              <h3 className="font-semibold text-lg mb-2">{p.titulo}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{p.descripcion}</p>
 
               {/* Botón */}
-              <button className="border bg-[#191919] text-white dark-button px-4 py-1 text-sm rounded-md transition">
+              <button
+                type="button"
+                onClick={() => setAbierto(p)}
+                className="rounded-xl border border-white/20 px-5 py-2 text-sm font-medium hover:bg-white/10 active:scale-[.98] transition"
+              >
                 Ver más
               </button>
             </div>
@@ -92,6 +215,81 @@ export default function NuestroTrabajo() {
               </button>
             </Link>
           </div>
+
+        {/* MODAL */}
+        {abierto && (
+          <div
+            className="fixed inset-0 z-50"
+            aria-labelledby="dialog-title"
+            role="dialog"
+            aria-modal="true"
+          >
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-100 fade-in"
+              onClick={() => setAbierto(null)}
+            />
+            {/* Card */}
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <div className="w-full max-w-lg translate-y-0 slide-up rounded-2xl borderborder-white/15 bg-ink p-6 shadow-2xl bg-[#191919]">
+                <div className="flex items-start gap-4">
+                  <img
+                    src={abierto.logo}
+                    alt={abierto.titulo}
+                    className="h-12 w-12 rounded-lg object-contain"
+                  />
+                  <div className="flex-1">
+                    <h2 id="dialog-title" className="text-3xl font-semibold text-[#ffffff]">
+                      {abierto.titulo}
+                    </h2>
+                    <p className="mt-1 text-l text-white">{abierto.badge}</p>
+                  </div>
+                  <button
+                    onClick={() => setAbierto(null)}
+                    className="rounded-lg p-2 text-white hover:bg-white/10"
+                    aria-label="Cerrar"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <p className="mt-4 text-m leading-relaxed text-white/80">
+                  {abierto.detalle.resumen}
+                </p>
+
+                {abierto.detalle.stack && (
+                  <div className="mt-4">
+                    <h4 className="text-sm font-medium text-white">Stack</h4>
+                    <ul className="mt-2 flex flex-wrap gap-2 text-xs text-white">
+                      {abierto.detalle.stack.map((s) => (
+                        <li
+                          key={s}
+                          className="rounded-md border border-black dark:border-white/15 px-2 py-1"
+                        >
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                {abierto.detalle.entregables && (
+                  <div className="mt-4">
+                    <h4 className="text-sm font-medium text-white">Entregables</h4>
+                    <ul className="mt-2 list-disc pl-0 list-inside space-y-1 text-sm text-white/80">
+                      {abierto.detalle.entregables.map((e) => (
+                        <li key={e}>{e}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
+                
+              </div>
+            </div>
+          </div>
+        )}
+
         </section>
     </main>
   );
