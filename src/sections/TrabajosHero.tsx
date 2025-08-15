@@ -80,14 +80,14 @@ export default function NuestroTrabajo() {
             El cambio comienza hoy.
           </h2>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-md mx-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-xl mx-auto">
             <Link to="/contacto" className="w-full md:w-64">
-              <button className="w-full dark-button bg-black text-white py-2 rounded max-h-[60px]">
+              <button className="w-full dark-button bg-black text-white px-6 py-2 rounded max-h-[60px]">
                 Agendá una reunión
               </button>
             </Link>
-            <Link to="/Nosotros" className="w-full md:w-64">
-              <button className="w-full border bg-white text-[#191919] !  border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
+            <Link to="/nosotros" className="w-full md:w-64">
+              <button className="w-full border bg-white text-[#191919] !border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
                 Conocé más sobre nosotros
               </button>
             </Link>
