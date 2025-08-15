@@ -159,7 +159,7 @@ button:focus-visible {
 /* nav-link */
 .nav-link {
   color: var(--color-ink);
-  font-size: medium;
+  font-size: large;
   text-decoration: none;
   font-weight: 500;
   transition: transform 0.3s ease;
@@ -249,3 +249,21 @@ button:focus-visible {
   }
 }
 
+
+.fade-in {
+  animation: fadeIn 0.18s ease-out both;
+}
+
+.slide-up {
+  animation: slideUp 0.22s ease-out both;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
