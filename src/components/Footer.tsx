@@ -1,6 +1,7 @@
 import { FaInstagram, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { MdOutlineMail } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   const socialIcons = [
@@ -18,21 +19,21 @@ export default function Footer() {
         <nav className="w-full flex flex-col items-center gap-6">
           {/* Desktop: fila única */}
           <div className="hidden md:flex items-center justify-center gap-10 text-sm">
-            <a href="/servicios" className="nav-link">Servicios</a>
-            <a href="/nosotros" className="nav-link">Nosotros</a>
+            <Link to="/servicios" className="nav-link">Servicios</Link>
+            <Link to="/nosotros" className="nav-link">Nosotros</Link>
             <a href="/" className="fira-code-bold dark:text-white text-xl">ANDESCODE</a>
-            <a href="/trabajos" className="nav-link">Trabajos</a>
-            <a href="/contacto" className="nav-link">Contacto</a>
+            <Link to="/trabajos" className="nav-link">Trabajos</Link>
+            <Link to="/contacto" className="nav-link">Contacto</Link>
           </div>
 
           {/* Mobile: logo + grilla 2×2 */}
           <div className="md:hidden w-full flex flex-col items-center gap-5">
               <a href="/" className="fira-code-bold dark:text-white text-xl">ANDESCODE</a> 
             <div className="grid grid-cols-2 gap-x-8 gap-y-4 text-center text-sm">
-              <a href="/servicios" className="nav-link">Servicios</a>
-              <a href="/nosotros" className="nav-link">Nosotros</a>
-              <a href="/trabajos" className="nav-link">Trabajos</a>
-              <a href="/contacto" className="nav-link">Contacto</a>
+              <Link to="/servicios" className="nav-link">Servicios</Link>
+              <Link to="/nosotros" className="nav-link">Nosotros</Link>
+              <Link to="/trabajos" className="nav-link">Trabajos</Link>
+              <Link to="/contacto" className="nav-link">Contacto</Link>
             </div>
           </div>
         </nav>
