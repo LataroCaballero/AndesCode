@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./components/scroll.tsx";
 import TitleManager from "./components/TitleManager.tsx";
+
+import ParticlesBackground from './components/ParticlesBackground.tsx';
+
 import Home from './pages/home.tsx';
 import Servicios from './pages/servicios.tsx';
 import Contacto from './pages/contacto.tsx';
@@ -14,17 +17,20 @@ import './style.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
+      <ParticlesBackground />
       <TitleManager>
         <ScrollToTop>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/servicios" element={<Servicios />} />
-            <Route path="/contacto" element={<Contacto />} />
-            <Route path="/nosotros" element={<Nosotros />} />
-            <Route path="/trabajos" element={<Trabajos />} />
-            {/* podes seguir agregando mas rutas */}
-            <Route path="*" element={<h1>Pagina no encontrada</h1>} />
-          </Routes>
+          <div className="relative z-10">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/servicios" element={<Servicios />} />
+              <Route path="/contacto" element={<Contacto />} />
+              <Route path="/nosotros" element={<Nosotros />} />
+              <Route path="/trabajos" element={<Trabajos />} />
+              {/* podes seguir agregando mas rutas */}
+              <Route path="*" element={<h1>Pagina no encontrada</h1>} />
+            </Routes>
+          </div>
         </ScrollToTop>
       </TitleManager>
     </BrowserRouter>

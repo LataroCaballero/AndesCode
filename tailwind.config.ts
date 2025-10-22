@@ -19,7 +19,7 @@ const config: Config = {
       colors: {
         ink: { DEFAULT: "#191919" },
         primary: { DEFAULT: "#4342FF" },
-        accent: { DEFAULT: "#48ff3eff" },
+        accent: { DEFAULT: "#48FF3E" },
         warning: { DEFAULT: "#FF6829" },
         inkContrast: { DEFAULT: "#2A2A2A" },
       },

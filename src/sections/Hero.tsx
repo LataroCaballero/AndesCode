@@ -33,7 +33,7 @@ export default function Hero() {
         </button>
       </Link>
 
-      <div className="bg-zinc-800 rounded-lg overflow-hidden shadow-lg mt-10 max-w-2xl mx-auto">
+      <div className="bg-[#2A2A2A] rounded-lg overflow-hidden mt-10 max-w-2xl mx-auto relative shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_30px_0px_var(--tw-shadow-color)] transition-all duration-500 hover:shadow-[#4342FF]/40">
         {/* Barra superior estilo mac */}
         <div className="bg-zinc-700 h-8 flex items-center px-3 space-x-2">
           <span className="w-3 h-3 rounded-full bg-red-500"></span>

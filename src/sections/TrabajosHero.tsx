@@ -166,7 +166,7 @@ export default function ProjectsGrid() {
           {proyectos.map((p, i) => (
             <div
               key={i}
-              className="grid grid-cols-1 content-between relative border rounded-md p-6 text-center bg-white dark:bg-[#2A2A2A] hover:shadow-md transition"
+              className="grid grid-cols-1 content-between relative border rounded-md p-6 text-center bg-white dark:bg-[#2A2A2A] shadow-md transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-xl dark:border-gray-700"
             >
               {/* Etiqueta categoría */}
               <span className="absolute top-0 right-0 bg-[#191919] text-white dark:bg-white dark:text-[#191919] text-xs px-3 py-1 rounded-bl-md fira-code-regular">

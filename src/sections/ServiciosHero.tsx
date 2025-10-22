@@ -12,14 +12,38 @@ import desarrolloamedidabig from '../assets/servicios/desarrolloamedidabig.png';
 const servicios = [
   {
     titulo: 'Desarrollo Web y Mobile',
-    descripcion: 'Diseñamos y desarrollamos sitios web y aplicaciones móviles responsivas, veloces y listas para escalar. Desde una landing hasta un sistema completo.',
+    descripcion: (
+      <>
+        <p className="mb-3 dark:text-white">
+          Diseñamos y desarrollamos sitios web y apps m&oacute;viles responsivas, veloces y listas para escalar.
+        </p>
+        <ul className="list-disc list-inside text-left mb-4 space-y-2 dark:text-white">
+          <li><span className="font-semibold">Diseño UX/UI</span> centrado en el usuario.</li>
+          <li><span className="font-semibold">Optimización SEO</span> para mejor visibilidad.</li>
+          <li><span className="font-semibold">Integración</span> con E-commerce y pasarelas de pago.</li>
+          <li><span className="font-semibold">Desarrollo M&oacute;vil</span> Nativo o Híbrido.</li>
+        </ul>
+      </>
+    ),
     id: 'web',
     img: desarrolloweb,
     imgbig: desarrollowebbig
   },
   {
     titulo: 'Sistemas a Medida',
-    descripcion: 'Creamos plataformas únicas adaptadas a procesos específicos: desde gestión interna hasta herramientas de uso masivo, pensadas para optimizar tu negocio.',
+    descripcion: (
+      <>
+        <p className="mb-3 dark:text-white">
+          Creamos plataformas &uacute;nicas adaptadas a tus procesos espec&iacute;ficos para optimizar tu negocio.
+        </p>
+        <ul className="list-disc list-inside text-left mb-4 space-y-2 dark:text-white">
+          <li><span className="font-semibold">An&aacute;lisis</span> de requerimientos y flujos de trabajo.</li>
+          <li><span className="font-semibold">Dashboards</span> de gesti&oacute;n y reportes.</li>
+          <li><span className="font-semibold">Integraci&oacute;n</span> con APIs y servicios de terceros.</li>
+          <li>Soluciones <span className="font-semibold">Escalables</span> y seguras.</li>
+        </ul>
+      </>
+    ),
     id: 'sistemas',
     img: desarrolloamedida,
     imgbig: desarrolloamedidabig
@@ -63,7 +87,19 @@ const servicios = [
   },
   {
     titulo: 'Soporte y Mantenimiento',
-    descripcion: 'Acompañamos a largo plazo con mejoras, corrección de errores, backups, monitoreo y asistencia técnica continua.',
+    descripcion: (
+      <>
+        <p className="mb-3 dark:text-white">
+          Te acompa&ntilde;amos a largo plazo con mejoras, correcci&oacute;n de errores y asistencia t&eacute;cnica continua.
+        </p>
+        <ul className="list-disc list-inside text-left mb-4 space-y-2 dark:text-white">
+          <li><span className="font-semibold">Monitoreo 24/7</span> y alertas proactivas.</li>
+          <li><span className="font-semibold">Backups</span> y recuperaci&oacute;n de desastres.</li>
+          <li><span className="font-semibold">Actualizaciones</span> de seguridad y performance.</li>
+          <li><span className="font-semibold">Bolsa de horas</span> para consultor&iacute;a y mejoras.</li>
+        </ul>
+      </>
+    ),
     id: 'soporte',
     img: soporte,
     imgbig: soportebig
@@ -96,7 +132,7 @@ const Servicios = () => {
         {servicios.map((servicio, index) => (
           <div
             key={index}
-            className="w-64 h-[300px] flex flex-col rounded-md overflow-hidden shadow-md bg-[#f4f4f4] dark:bg-[#2A2A2A]"
+            className="w-64 h-[300px] flex flex-col rounded-md overflow-hidden shadow-md bg-white dark:bg-[#2A2A2A] border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-xl"
           >
             <div className="h-36 bg-ink flex items-center justify-center">
               <img
@@ -121,45 +157,56 @@ const Servicios = () => {
       </section>
 
       {/* Secciones ampliadas */}
-      {servicios.map((servicio, index) => (
-        <div
-          key={index}
-          ref={(el: HTMLDivElement | null) => {
-            if (el) {
-              refs.current[servicio.id] = el;
-            }
-          }}
-          className={`flex flex-col md:flex-row ${
-            index % 2 !== 0 ? 'md:flex-row-reverse' : ''
-          } ${index % 2 === 0 ? 'bg-white dark:bg-[#191919]' : 'bg-[#f4f4f4] dark:bg-[#2A2A2A]'} 
-          text-ink items-center justify-center py-20 px-6 gap-8`}
-        >
-            {/* Imagen placeholder */}
-            <div className="w-64 h-64 bg-ink rounded-md">
-              <img
-                  src={servicio.imgbig}
+      <section className="max-w-5xl mx-auto px-4 py-16">
+        
+        {/* 1. Cambiamos a 'grid-cols-1' para que las cards horizontales se apilen */}
+        <div className="grid grid-cols-1 gap-10"> 
+          
+          {servicios.map((servicio) => (
+            <div
+              key={servicio.id}
+              id={servicio.id} // El ID para el scroll-to
+              ref={(el: HTMLDivElement | null) => {
+                if (el) {
+                  refs.current[servicio.id] = el;
+                }
+              }}
+              // 2. Esta es la magia: 'flex-col' en móvil, 'md:flex-row' en desktop
+              className="flex flex-col md:flex-row rounded-lg overflow-hidden bg-white dark:bg-[#2A2A2A] shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-primary dark:hover:border-accent"
+            >
+              {/* 3. Columna de Imagen (1/3 de ancho en desktop) */}
+              <div className="h-48 md:h-auto md:w-1/3 bg-ink flex items-center justify-center p-4">
+                <img
+                  src={servicio.imgbig} // Usamos la imagen "big"
                   alt={servicio.titulo}
-                  className="max-h-full max-w-full object-contain rounded-2xl"
+                  className="max-h-full max-w-full md:max-h-none md:w-full h-full object-contain rounded-md"
                 />
+              </div>
+              
+              {/* 4. Columna de Contenido (2/3 de ancho en desktop) */}
+              <div className="flex-1 flex flex-col p-6 md:w-2/3">
+                <h3 className="text-2xl fira-code-semibold mb-4 dark:text-white">
+                  {servicio.titulo}
+                </h3>
+                {/* Renderiza el JSX de la descripción */}
+                <div className="text-sm text-ink dark:text-gray-300 mb-6">
+                  {servicio.descripcion}
+                </div>
+                
+                {/* 5. Botón CTA (se queda abajo) */}
+                <div className="mt-auto">
+                  <Link
+                    to="/contacto"
+                    className="fira-code-regular inline-block bg-primary text-white px-5 py-2 rounded transition hover:bg-primary/90"
+                  >
+                    Me interesa
+                  </Link>
+                </div>
+              </div>
             </div>
-            
-            {/* Texto */}
-            <div className="max-w-md">
-            <h3 className="text-xl font-mono font-bold mb-4 dark:text-white">{servicio.titulo}</h3>
-            <p className="mb-4 dark:text-white">{servicio.descripcion}</p>
-            <Link
-              to="/contacto"
-              className={`inline-block px-4 py-2 border border-ink rounded-md  hover:scale-105 transform transition-transform duration-200 ease-in-out
- ${
-                index % 2 === 0 ? 'bg-white dark:bg-[#2A2A2A]' : 'bg-[#f4f4f4] dark:bg-[#191919]'
-               }dark:text-white`}
-              >
-                Contactate!
-              </Link>
-
-            </div>
+          ))}
         </div>
-        ))}
+      </section>
     </main>
   );
 };
