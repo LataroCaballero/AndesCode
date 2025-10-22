@@ -31,7 +31,7 @@ export default function WelcomeModal({ onClose }: WelcomeModalProps) {
       />
 
       {/* Contenido del Modal */}
-      <div className="relative z-10 w-full max-w-lg p-6 rounded-lg bg-white dark:bg-[#191919] shadow-2xl animate-slideUp text-left dark:text-white">
+      <div className="relative z-10 w-full max-w-lg p-6 rounded-lg bg-white dark:bg-[#2a2a2a] animate-slideUp text-left dark:text-white  shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_30px_0px_var(--tw-shadow-color)]">
         
         <button
           onClick={onClose}

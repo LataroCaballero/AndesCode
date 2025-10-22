@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   const socialIcons = [
-    { icon: <FaXTwitter />, link: "https://twitter.com" },
     { icon: <FaInstagram />, link: "https://www.instagram.com/andescodesj/" },
     { icon: <FaWhatsapp />, link: "https://wa.me/5492644432919" },
     { icon: <MdOutlineMail />, link: "contacto" },/*proximamente*/

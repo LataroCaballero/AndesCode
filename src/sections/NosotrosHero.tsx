@@ -2,7 +2,6 @@ import ceo from "../assets/team/ceo.jpg"; // ajustá según tu ruta real
 import hug from "../assets/undraw_engineering-team_13ax.svg";
 import light from "../assets/undraw_ideas_vn7a.svg";
 import handshake from "../assets/undraw_business-deal_nx2n.svg";
-import MouseParallaxCard from "../components/MouseParallaxCard";
 import { Link } from "react-router-dom";
 
 
@@ -60,22 +59,22 @@ export default function NosotrosHero() {
           </div>
       </section>
 
-      {/* Testimonial */}
-      <MouseParallaxCard>
-        <section className="py-16">
-          <div className="max-w-lg mx-auto border p-6 rounded-md shadow-2xl dark:shadow-gray-900 bg-white dark:bg-[#2A2A2A]">
-            <p className="italic text-lg mb-6 dark:text-white">"Conectar ideas con impacto real, eso es AndesCode."</p>
-            <div className="flex flex-col items-center dark:text-white">
-              <img
-                src={ceo}
-                alt="Lautaro Caballero"
-                className="w-20 h-20 rounded-full object-cover mb-2"></img>
-              <p className="text-sm font-semibold">Lautaro Caballero</p>
-              <p className="text-xs text-gray-500">Fundador & CEO</p>
-            </div>
+      <section className="py-16 px-4">
+        <div className="max-w-xl mx-auto p-8 rounded-lg bg-white dark:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700 shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_30px_0px_var(--tw-shadow-color)] transition-all duration-300 ease-in-out hover:shadow-[#4342FF]/40">
+          <p className="italic text-lg md:text-xl text-center mb-6 dark:text-gray-300">
+            "Conectar ideas con impacto real, eso es AndesCode."
+          </p>
+          <div className="flex flex-col items-center dark:text-white">
+            <img
+              src={ceo}
+              alt="Lautaro Caballero"
+              className="w-20 h-20 rounded-full object-cover mb-4 border-2 border-primary dark:border-accent"
+            />
+            <p className="text-md font-semibold fira-code-medium">Lautaro Caballero</p>
+            <p className="text-sm text-gray-500 dark:text-gray-400">Fundador & CEO</p>
           </div>
-        </section>
-      </MouseParallaxCard>
+        </div>
+      </section>
 
       {/* Call to Action */}
         <section className="grid grid-cols-1 md:grid-cols-2 py-16 px-6 md:px-30">

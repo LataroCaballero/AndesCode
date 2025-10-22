@@ -132,7 +132,7 @@ const Servicios = () => {
         {servicios.map((servicio, index) => (
           <div
             key={index}
-            className="w-64 h-[300px] flex flex-col rounded-md overflow-hidden shadow-md bg-white dark:bg-[#2A2A2A] border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-xl"
+            className="w-64 h-[300px] flex flex-col rounded-md overflow-hidden bg-white dark:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out hover:scale-[1.03] shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_20px_0px_var(--tw-shadow-color)] hover:shadow-[#4342FF]/40"
           >
             <div className="h-36 bg-ink flex items-center justify-center">
               <img
@@ -147,7 +147,7 @@ const Servicios = () => {
               </h2>
               <button
                 onClick={() => scrollTo(servicio.id)}
-                className="text-sm fira-code-semibold dark:text-white"
+                className="text-sm fira-code-semibold dark:text-white !dark:border-white"
               >
                 Ver más ›
               </button>
@@ -172,7 +172,7 @@ const Servicios = () => {
                 }
               }}
               // 2. Esta es la magia: 'flex-col' en móvil, 'md:flex-row' en desktop
-              className="flex flex-col md:flex-row rounded-lg overflow-hidden bg-white dark:bg-[#2A2A2A] shadow-xl border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out hover:shadow-2xl hover:border-primary dark:hover:border-accent"
+              className="flex flex-col md:flex-row rounded-lg overflow-hidden bg-white dark:bg-[#2a2a2a] border border-gray-200 dark:border-gray-700 transition-all duration-300 ease-in-out hover:border-[#4342FF] dark:hover:border-[#4342FF] shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_25px_0px_var(--tw-shadow-color)] hover:shadow-[#4342FF]/40"
             >
               {/* 3. Columna de Imagen (1/3 de ancho en desktop) */}
               <div className="h-48 md:h-auto md:w-1/3 bg-ink flex items-center justify-center p-4">
@@ -189,7 +189,7 @@ const Servicios = () => {
                   {servicio.titulo}
                 </h3>
                 {/* Renderiza el JSX de la descripción */}
-                <div className="text-sm text-ink dark:text-gray-300 mb-6">
+                <div className="text-sm dark:text-gray-300 mb-6">
                   {servicio.descripcion}
                 </div>
                 
@@ -197,7 +197,7 @@ const Servicios = () => {
                 <div className="mt-auto">
                   <Link
                     to="/contacto"
-                    className="fira-code-regular inline-block bg-primary text-white px-5 py-2 rounded transition hover:bg-primary/90"
+                    className="fira-code-regular inline-block bg-primary dark:text-white px-5 py-2 rounded transition hover:bg-primary/90"
                   >
                     Me interesa
                   </Link>
