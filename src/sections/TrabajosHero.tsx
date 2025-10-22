@@ -1,7 +1,3 @@
-import project1 from "../assets/projects/mocion.jpg";
-import project2 from "../assets/projects/sbcuyo.jpg";
-import project3 from "../assets/projects/motivationnau.jpg";
-import project4 from "../assets/projects/cinetika.jpg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
@@ -105,33 +101,6 @@ const proyectos: Proyecto[] = [
           link: "https://cinetika.example"
         }
       }
-];
-
-const proyecto = [
-  {
-    nombre: "Moción NAU",
-    descripcion: "Plataforma de peticiones ciudadanas, desarrollada con enfoque social. Desde diseño UX hasta desarrollo backend.",
-    categoria: "App Web",
-    imagen: project1,
-  },
-  {
-    nombre: "SBCuyo",
-    descripcion: "Sitio institucional optimizado, mantenido y actualizado por AndesCode. Velocidad + contenido clave.",
-    categoria: "Mantenimiento Web",
-    imagen: project2,
-  },
-  {
-    nombre: "MotivationNAU",
-    descripcion: "Plataforma web de IA que permite a los usuarios videos motivacionales personalizados.",
-    categoria: "SaaS IA",
-    imagen: project3,
-  },
-  {
-    nombre: "Cinetika",
-    descripcion: "Dashboard para un centro de rendimiento deportivo. Visualización de datos de pacientes en gráficos.",
-    categoria: "Sistema a Medida",
-    imagen: project4,
-  },
 ];
 
 export default function ProjectsGrid() {
