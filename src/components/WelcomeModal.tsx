@@ -31,8 +31,8 @@ export default function WelcomeModal({ onClose }: WelcomeModalProps) {
       />
 
       {/* Contenido del Modal */}
-      <div className="relative z-10 w-full max-w-lg p-6 rounded-lg bg-white dark:bg-inkContrast shadow-2xl animate-slideUp text-left dark:text-white">
-        {/* Botón de Cerrar (X) */}
+      <div className="relative z-10 w-full max-w-lg p-6 rounded-lg bg-white dark:bg-[#191919] shadow-2xl animate-slideUp text-left dark:text-white">
+        
         <button
           onClick={onClose}
           className="absolute top-3 right-3 p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
@@ -52,7 +52,8 @@ export default function WelcomeModal({ onClose }: WelcomeModalProps) {
             />
           </svg>
         </button>
-
+        {/* ====================================================== */}
+        
         {/* Contenido del servicio */}
         <h4 className="fira-code-semibold text-lg text-primary dark:text-accent mb-2">
           Nuevo Servicio Destacado
@@ -68,7 +69,7 @@ export default function WelcomeModal({ onClose }: WelcomeModalProps) {
         
         {/* Botón de acción */}
         <Link to="/servicios" onClick={handleNavigate}>
-          <button className="fira-code-regular bg-primary text-white px-5 py-2 rounded transition hover:bg-primary/90">
+          <button className="fira-code-regular bg-primary px-5 py-2 rounded transition hover:bg-primary/90 dark:border-white">
             Conocer más
           </button>
         </Link>
