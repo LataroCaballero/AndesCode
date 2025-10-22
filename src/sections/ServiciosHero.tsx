@@ -25,8 +25,38 @@ const servicios = [
     imgbig: desarrolloamedidabig
   },
   {
-    titulo: 'Automatización de Procesos con IA',
-    descripcion: 'Optimizamos tu negocio implementando soluciones inteligentes basadas en inteligencia artificial. Desde bots automatizados, flujos de trabajo inteligentes hasta sistemas que aprenden y mejoran con el tiempo, te ayudamos a reducir tareas manuales, aumentar la eficiencia y tomar decisiones basadas en datos reales.',
+    titulo: 'Automatización con Secretario Virtual (IA)',
+    descripcion: (
+      <>
+        <p className="mb-3 dark:text-white">
+          Ahorrá 3+ horas diarias. Dejá que nuestro Secretario Virtual
+          por WhatsApp gestione tus turnos 24/7.
+        </p>
+        <ul className="list-disc list-inside text-left mb-4 space-y-2 dark:text-white">
+          <li>
+            <span className="font-semibold">Gestión Completa:</span> Reserva,
+            cancela y reprograma turnos sin tu intervención.
+          </li>
+          <li>
+            <span className="font-semibold">Reduce Ausentismo (60-70%):</span> Envía
+            recordatorios automáticos 24hs antes.
+          </li>
+          <li>
+            <span className="font-semibold">Disponibilidad 24/7:</span> Responde
+            consultas básicas (horarios, precios) e integra todo con tu
+            Google Calendar.
+          </li>
+        </ul>
+        <p className="fira-code-medium dark:text-white">
+          Implementación en 48 horas.
+        </p>
+        {/* Sección de Precios (basado en tu PDF) */}
+        <div className="mt-4 pt-4 border-t border-gray-300 dark:border-gray-600">
+          <p className="fira-code-regular text-sm dark:text-white">Plan Mensual: $30.000/mes</p>
+          <p className="fira-code-regular text-sm dark:text-white">Plan Anual: $240.000/año (Ahorrás $120.000)</p>
+        </div>
+      </>
+    ),
     id: 'ia',
     img: automatizacion,
     imgbig: automatizacionbig

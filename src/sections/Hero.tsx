@@ -1,9 +1,25 @@
 import { Link } from "react-router-dom";
 import Typewriter from "typewriter-effect";
+import { useState, useEffect } from "react";
+import WelcomeModal from "../components/WelcomeModal";
 
 export default function Hero() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const hasSeenModal = sessionStorage.getItem('andescodeModalSeen');
+    
+    if (!hasSeenModal) {
+      setIsModalOpen(true);
+      sessionStorage.setItem('andescodeModalSeen', 'true');
+    }
+  }, []);
+
   return (
     <section className="text-center pt-30 py-20 px-4 min-h-screen">
+      
+      {/* --- AÑADIR ESTA LÍNEA PARA RENDERIZAR EL MODAL --- */}
+      {isModalOpen && <WelcomeModal onClose={() => setIsModalOpen(false)} />}
       <h2 className="fira-code-bold text-3xl md:text-4xl mb-4">
         Soluciones a medida para <br /> emprendedores modernos
       </h2>

@@ -2,20 +2,28 @@ import { Link } from "react-router-dom";
 
 export default function NewService() {
   return (
-    <section className="text-center px-4 min-h-screen;">
-        <div className="bg-[#191919] dark:bg-white rounded-lg p-6 max-w-3xl">
-      <h2 className="text-white dark:text-[#191919] fira-code-bold text-3xl md:text-4xl mb-4">
-        Conocé nuestro nuevo servicio
-      </h2>
-      <p className="text-sm text-white dark:text-[#191919] max-w-xl mx-auto mb-6">
-      Automatizá la gestión de tu agenda. Nuestro bot gestiona tus turnos 24/7, envía recordatorios automáticos y se integra con tu Google Calendar. Liberá 3+ horas de tu día y reducí el ausentismo drásticamente.
-      </p>
-      <Link to="/trabajos">
-        <button className="fira-code-regular bg-[#191919] text-white px-6 py-2 rounded dark-button">
-        Conocer más sobre el Secretario Virtual
-        </button>
-      </Link>
+    <div className="max-w-2xl mx-auto mt-16 p-6 rounded-lg bg-gray-100 dark:bg-inkContrast shadow-lg text-left dark:text-white">
+        <h4 className="fira-code-semibold text-lg text-primary dark:text-accent mb-2">
+          Nuevo Servicio Destacado
+        </h4>
+        <h3 className="text-2xl font-bold mb-3">
+          Secretario Virtual por WhatsApp
+        </h3>
+        <p className="text-sm dark:text-gray-300 mb-5">
+          Automatizá tu agenda 24/7. Nuestro bot gestiona tus turnos, 
+          envía recordatorios automáticos y se integra con tu Google Calendar. 
+          Liberá 3+ horas de tu día.
+        </p>
+        <Link to="/servicios" onClick={() => {
+            // Esto navega a /servicios y scrollea hasta la sección 'ia'
+            setTimeout(() => {
+              document.getElementById('ia')?.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+          }}>
+          <button className="fira-code-regular bg-primary text-white px-5 py-2 rounded transition hover:bg-primary/90">
+            Conocer más
+          </button>
+        </Link>
       </div>
-    </section>
   );
 }
