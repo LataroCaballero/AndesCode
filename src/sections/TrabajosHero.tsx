@@ -100,7 +100,52 @@ const proyectos: Proyecto[] = [
           ],
           link: "https://cinetika.example"
         }
+      },
+      {
+        id: "galeria",
+        titulo: "Galeria Estudio",
+        descripcion: "Landing page para estudio de diseño e interiorismo .",
+        badge: "Desarrollo Web a Medida",
+        logo: cinetika,
+        detalle: {
+          resumen:
+            "Landing page para estudio de diseño e interiorismo Con diferentes secciones para mostrar las distintas propuestas del cliente.",
+          stack: ["React", "Astro", "Tailwind CSS"],
+          entregables: [
+            "Landing page responsiva",
+            "Secciones personalizadas",
+            "Optimización SEO",
+            "Integración con redes sociales",
+            "Formulario de contacto"
+          ],
+          link: "https://galeriaestudio.com.ar/"
+        }
+      },
+      {
+        id: "cinetika",
+        titulo: "Cinetika",
+        descripcion: "Dashboard para centro de rendimiento deportivo.",
+        badge: "Sistema a Medida",
+        logo: cinetika,
+        detalle: {
+          resumen:
+            "Aplicación web para visualizar y analizar datos de mediciones deportivas y de rehabilitación. Permite comparar resultados de pacientes mediante gráficos y tablas intuitivas.",
+          stack: ["React", "Node.js", "Express", "PostgreSQL", "Chart.js", "Tailwind CSS"],
+          entregables: [
+            "Carga y procesamiento de datos",
+            "Dashboard de métricas",
+            "Comparativa entre mediciones",
+            "Visualización gráfica",
+            "Exportación de resultados"
+          ],
+          link: "https://cinetika.example"
+        }
       }
+];
+
+const proyectosPlaceholder = [
+  { id: "placeholder-1" },
+  { id: "placeholder-2" },
 ];
 
 export default function ProjectsGrid() {
@@ -131,7 +176,7 @@ export default function ProjectsGrid() {
         </p>
 
         {/* Grid de proyectos */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {proyectos.map((p, i) => (
             <div
               key={i}
