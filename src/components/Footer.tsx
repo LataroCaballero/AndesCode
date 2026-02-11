@@ -58,8 +58,8 @@ export default function Footer() {
         {/* Derechos y enlaces */}
         <p className="text-sm text-gray-500 text-center">
           © {new Date().getFullYear()} AndesCode —{" "}
-          <a href="#" className="hover:text-primary">Privacy</a> —{" "}
-          <a href="#" className="hover:text-primary">Terms</a>
+          <Link to="/politica-de-privacidad" className="hover:text-primary">Política de Privacidad</Link> —{" "}
+          <Link to="/eliminacion-de-datos" className="hover:text-primary">Eliminación de Datos</Link>
         </p>
       </div>
     </footer>
