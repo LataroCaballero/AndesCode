@@ -11,6 +11,8 @@ import Servicios from './pages/servicios.tsx';
 import Contacto from './pages/contacto.tsx';
 import Nosotros from './pages/nosotros.tsx';
 import Trabajos from './pages/trabajos.tsx';
+import PoliticaPrivacidad from './pages/politica-privacidad.tsx';
+import EliminacionDatos from './pages/eliminacion-datos.tsx';
 
 import './style.css'
 
@@ -27,7 +29,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path="/contacto" element={<Contacto />} />
               <Route path="/nosotros" element={<Nosotros />} />
               <Route path="/trabajos" element={<Trabajos />} />
-              {/* podes seguir agregando mas rutas */}
+              <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
+              <Route path="/eliminacion-de-datos" element={<EliminacionDatos />} />
               <Route path="*" element={<h1>Pagina no encontrada</h1>} />
             </Routes>
           </div>

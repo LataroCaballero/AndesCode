@@ -11,9 +11,13 @@ import clinicalImg from "../assets/projects/clinical-preview.png";
 import galeriaImg from "../assets/projects/galeria-preview.png";
 import secretarioImg from "../assets/projects/secretario-preview.png";
 
+// Mockups
+import galeriaMockup from "../assets/projects/galeria-mockup.png";
+
 // Videos
 import clinicalCarousel from "../assets/projects/clinical-carousel.mp4";
 import clinicalDemo from "../assets/projects/clinical-social.mp4";
+import galeriaDemo from "../assets/projects/GaleriaEstudio.mp4";
 
 type Proyecto = {
   id: string;
@@ -69,16 +73,21 @@ const proyectos: Proyecto[] = [
     id: "galeria-estudio",
     titulo: "Galeria Estudio",
     descripcion:
-      "Landing page para estudio de diseño e interiorismo con foco en estética y experiencia de usuario.",
+      "Landing page y e-commerce para estudio de diseño e interiorismo, con panel de administración a medida para gestionar productos.",
     badge: "Desarrollo Web",
     logo: galeriaLogo,
-    imagen: galeriaImg,
+    imagen: galeriaMockup,
+    demoVideo: galeriaDemo,
     detalle: {
       resumen:
-        "Diseño y desarrollo de una landing page moderna para un estudio de diseño e interiorismo. Secciones personalizadas para mostrar proyectos, servicios y propuestas del cliente, con una experiencia visual cuidada al detalle.",
-      stack: ["React", "Astro", "Tailwind CSS"],
+        "Diseño y desarrollo de una plataforma web completa para un estudio de diseño e interiorismo. Incluye una landing page moderna con secciones de proyectos, servicios y propuestas, junto con una sección Shop con catálogo de productos. Cuenta con un panel de administración desarrollado totalmente a medida que permite subir, editar y eliminar productos con sus imágenes, gestionando todo el contenido de forma autónoma.",
+      stack: ["React", "Astro", "Tailwind CSS", "Supabase", "Cloudinary"],
       entregables: [
         "Landing page responsiva y optimizada",
+        "Sección Shop con catálogo de productos",
+        "Panel de administración a medida para gestión de productos",
+        "Carga y optimización de imágenes con Cloudinary",
+        "Base de datos y backend con Supabase",
         "Galería de proyectos con navegación fluida",
         "Optimización SEO y performance",
         "Integración con redes sociales",
@@ -236,13 +245,29 @@ export default function ProjectsGrid() {
                     {p.descripcion}
                   </p>
 
-                  <button
-                    type="button"
-                    onClick={() => setAbierto(p)}
-                    className="rounded-xl border border-[#191919] dark:border-white/20 px-5 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 active:scale-[.98] transition"
-                  >
-                    {p.demoVideo ? "Ver demo" : "Ver más"}
-                  </button>
+                  <div className="flex gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setAbierto(p)}
+                      className="rounded-xl border border-[#191919] dark:border-white/20 px-5 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 active:scale-[.98] transition"
+                    >
+                      {p.demoVideo ? "Ver demo" : "Ver más"}
+                    </button>
+
+                    {p.detalle.link && (
+                      <a
+                        href={p.detalle.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-xl bg-[#4342FF] text-white px-5 py-2 text-sm font-medium hover:bg-[#3534cc] active:scale-[.98] transition"
+                      >
+                        Visitar sitio
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 010-1.06l7.22-7.22H5.75a.75.75 0 010-1.5h8.5a.75.75 0 01.75.75v8.5a.75.75 0 01-1.5 0V6.56l-7.22 7.22a.75.75 0 01-1.06 0z" clipRule="evenodd" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             ))}
@@ -327,7 +352,7 @@ export default function ProjectsGrid() {
                 {abierto.detalle.stack && (
                   <div className="mt-4">
                     <h4 className="text-sm font-medium text-white">Stack</h4>
-                    <ul className="mt-2 flex flex-wrap gap-2 text-xs text-white">
+                    <ul className="mt-2 flex flex-wrap justify-center gap-2 text-xs text-white">
                       {abierto.detalle.stack.map((s) => (
                         <li
                           key={s}

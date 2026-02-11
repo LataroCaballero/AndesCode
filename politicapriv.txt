@@ -1,0 +1,21 @@
+Política de Privacidad
+
+Esta aplicación utiliza la API de WhatsApp Business para comunicarse con los usuarios.
+
+Datos recopilados:
+•⁠  ⁠Número de teléfono
+•⁠  ⁠Mensajes enviados por el usuario
+
+Uso de los datos:
+Los datos se utilizan únicamente para responder mensajes y brindar atención automatizada.
+
+Almacenamiento:
+Los datos pueden almacenarse temporalmente con fines operativos.
+
+Eliminación de datos:
+Los usuarios pueden solicitar la eliminación de sus datos escribiendo a:
+santinahuelmedina@hotmail.com
+
+Contacto:
+AndesCode
+Email: santinahuelmedina@hotmail.com
