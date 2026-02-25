@@ -5,9 +5,8 @@
 @tailwindcss components;
 @tailwindcss utilities;
 
-
 :root {
-  font-family: inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -17,9 +16,8 @@
   --color-accent: #CCFF3E;
   --color-warning: #FF6829;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: var(--color-ink);
+  color: var(--color-ink);
+  background-color: #ffffff;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -27,21 +25,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}*/
-
 body {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #ffffff;
 }
 
 h1 {
@@ -57,28 +47,39 @@ h1 {
 }
 
 .logo {
-  /*height: 6em;
-  padding: 1.5em;*/
   transition: transform 0.3s ease;
 }
 .logo:hover {
   transform: scale(1.05);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #000000aa);
 }
 
 .card {
   padding: 2em;
 }
 
-.dark-card {
-  background-color: var(--color-ink-contrast);
-}
-
 .read-the-docs {
   color: #888;
 }
+
+
+/* ─── Grid background utility ─── */
+
+.grid-bg {
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23e5e7eb' stroke-width='1'/%3E%3C/svg%3E");
+  background-position: top left;
+  background-repeat: repeat;
+}
+
+.grid-bg-dark {
+  background-color: #0f0f1a;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M 60 0 L 0 0 0 60' fill='none' stroke='%23ffffff10' stroke-width='1'/%3E%3C/svg%3E");
+  background-position: top left;
+  background-repeat: repeat;
+}
+
+
+/* ─── Buttons ─── */
 
 button {
   border-radius: 8px;
@@ -87,79 +88,37 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  /*background-color: var(--color-ink);*/
-  border-color: var(--color-ink);
   cursor: pointer;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-button:hover {
-  /*color: var(--color-white);*/
-  transform: scale(1.05);
+  transition: color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto var(--color-ink);
+  outline: 4px auto var(--color-primary);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--color-ink);
-    background-color: #ffffff;
-  }
-  body {
-    /* Fallback para navegadores antiguos */
-    background-color: #ffffff;
-
-    /* Gradiente "Mesh" animado para modo claro */
-    background-image:
-      /* Luz azul (30% opacidad) en la esquina superior izquierda */
-      radial-gradient(ellipse at 0% 0%, rgba(67, 66, 255, 0.30) 0%, transparent 50%),
-      /* Luz azul (30% opacidad) en la esquina inferior derecha */
-      radial-gradient(ellipse at 100% 100%, rgba(67, 66, 255, 0.30) 0%, transparent 50%),
-      /* Fondo base (un gradiente de blanco a gris muy claro) */
-      radial-gradient(ellipse at 50% 20%, #fefefe 0%, #f9f9f9 100%);
-
-    /* Fija el fondo para que no se mueva con el scroll */
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    
-    /* Animación (ahora en 30 segundos) */
-    background-size: 300% 300%; 
-    animation: moveGradient 30s ease-in-out infinite;
-  }
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: 1px solid var(--color-primary);
+  box-shadow: 0 2px 8px rgba(67, 66, 255, 0.20);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 24px rgba(67, 66, 255, 0.25);
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    color: white;
-    background-color: var#191919; /* Fallback */
-
-    /* "Mesh Gradient" sutil usando tu color primario */
-    background-image:
-      /* Luz azul en la esquina superior izquierda */
-      radial-gradient(ellipse at 0% 0%, #4342FF 0%, transparent 50%),
-      /* Luz azul en la esquina inferior derecha */
-      radial-gradient(ellipse at 100% 100%, #4342FF 0%, transparent 50%),
-      /* El fondo base (inkContrast a ink) */
-      radial-gradient(ellipse at 50% 20%, #2A2A2A 0%, #191919 100%);
-    
-    /* Fija el fondo para que no se mueva con el scroll */
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-
-    /* 1. Hacemos el fondo 3 veces más grande que la pantalla */
-    background-size: 300% 300%; 
-    
-    /* 2. Aplicamos la animación "moveGradient" que definimos.
-       - dura 40 segundos
-       - se repite infinitamente
-       - con una transición suave (ease-in-out)
-    */
-    animation: moveGradient 40s ease-in-out infinite;
-  }
+.btn-secondary {
+  background-color: #ffffff;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(67, 66, 255, 0.10);
 }
 
-/* Clases de Fuentes */
+
+/* ─── Fuentes Fira Code ─── */
 
 .fira-code-light {
   font-family: "Fira Code", monospace;
@@ -196,32 +155,9 @@ button:focus-visible {
   font-style: normal
 }
 
-/* Colores personalizados */
 
+/* ─── Colores de texto ─── */
 
-/* Clases personalizadas */
-/* nav-link */
-.nav-link {
-  color: var(--color-ink);
-  font-size: large;
-  text-decoration: none;
-  font-weight: 500;
-  transition: transform 0.3s ease;
-}
-
-.nav-link:hover {
-  transform: scale(1.05);
-}
-
-.dark-link {
-  background: white;
-  color: var(--color-ink);
-}
-
-.dark-border {
-  border-color: white;
-}
-/* Colores de texto */
 .text-primary {
   color: var(--color-primary);
 }
@@ -238,61 +174,23 @@ button:focus-visible {
   color: var(--color-warning);
 }
 
-/* Colores de fondo 
-.bg-primary {
-  background-color: var(--color-primary);
+
+/* ─── Nav link ─── */
+
+.nav-link {
+  color: #374151;
+  font-size: 0.95rem;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.bg-ink {
-  background-color: var(--color-ink);
+.nav-link:hover {
+  color: var(--color-primary);
 }
 
-.bg-accent {
-  background-color: var(--color-accent);
-}
 
-.bg-warning {
-  background-color: var(--color-warning);
-}
-
-.bg-white {
-  background-color: var(--color-white);
-}
-
-.bg-dark-contrast {
-  background-color: var(--color-ink-contrast);
-}
-  */
-
-/* Dark Theme */
-@media (prefers-color-scheme: dark){
-  .nav-link {
-    color: var(--color-white);
-    font-size: medium;
-    text-decoration: none;
-    font-weight: 500;
-    transition: transform 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    transform: scale(1.05);
-  }
-
-  .light-button {
-    background-color: var(--color-ink);
-    color: var(--color-white)
-  }
-
-  .dark-button {
-    background: var(--color-white);
-    color: var(--color-ink);
-  }
-  
-  .logo {
-    color: white;
-  }
-}
-
+/* ─── Animaciones de UI ─── */
 
 .fade-in {
   animation: fadeIn 0.18s ease-out both;
@@ -312,14 +210,20 @@ button:focus-visible {
   100% { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes moveGradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+
+/* ─── Marquee animation ─── */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
 }

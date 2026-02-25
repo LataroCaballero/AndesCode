@@ -1,7 +1,7 @@
 export default function PoliticaPrivacidad() {
   return (
     <section className="min-h-screen flex items-center justify-center px-4 py-24">
-      <div className="max-w-2xl w-full dark:text-white text-ink">
+      <div className="max-w-2xl w-full text-[#191919]">
         <h1 className="text-3xl fira-code-bold mb-8">
           Política de Privacidad
         </h1>

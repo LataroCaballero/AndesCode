@@ -4,8 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from "./components/scroll.tsx";
 import TitleManager from "./components/TitleManager.tsx";
 
-import ParticlesBackground from './components/ParticlesBackground.tsx';
-
 import Home from './pages/home.tsx';
 import Servicios from './pages/servicios.tsx';
 import Contacto from './pages/contacto.tsx';
@@ -19,29 +17,20 @@ import './style.css'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <ParticlesBackground />
       <TitleManager>
         <ScrollToTop>
-          <div className="relative z-10">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/servicios" element={<Servicios />} />
-              <Route path="/contacto" element={<Contacto />} />
-              <Route path="/nosotros" element={<Nosotros />} />
-              <Route path="/trabajos" element={<Trabajos />} />
-              <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
-              <Route path="/eliminacion-de-datos" element={<EliminacionDatos />} />
-              <Route path="*" element={<h1>Pagina no encontrada</h1>} />
-            </Routes>
-          </div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/servicios" element={<Servicios />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/nosotros" element={<Nosotros />} />
+            <Route path="/trabajos" element={<Trabajos />} />
+            <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
+            <Route path="/eliminacion-de-datos" element={<EliminacionDatos />} />
+            <Route path="*" element={<h1>Pagina no encontrada</h1>} />
+          </Routes>
         </ScrollToTop>
       </TitleManager>
     </BrowserRouter>
   </React.StrictMode>,
 );
-
-/*ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Home />
-  </React.StrictMode>,
-)*/
