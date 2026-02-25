@@ -1,18 +1,13 @@
 // src/components/WelcomeModal.tsx
 import { Link } from 'react-router-dom';
 
-// Definimos las props que recibirá el componente, incluida la función para cerrarlo
 type WelcomeModalProps = {
   onClose: () => void;
 };
 
 export default function WelcomeModal({ onClose }: WelcomeModalProps) {
-  
-  // Función para manejar el clic en el botón "Conocer más"
   const handleNavigate = () => {
-    onClose(); // Cierra el modal
-    
-    // Navega a /servicios y scrollea a la sección 'ia' después de un breve delay
+    onClose();
     setTimeout(() => {
       document.getElementById('ia')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
@@ -24,52 +19,38 @@ export default function WelcomeModal({ onClose }: WelcomeModalProps) {
       role="dialog"
       aria-modal="true"
     >
-      {/* Fondo (Backdrop) */}
+      {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-black/60 backdrop-blur-sm animate-fadeIn"
-        onClick={onClose} // Cierra el modal al hacer clic fuera
+        className="fixed inset-0 bg-black/60 backdrop-blur-sm fade-in"
+        onClick={onClose}
       />
 
-      {/* Contenido del Modal */}
-      <div className="relative z-10 w-full max-w-lg p-6 rounded-lg bg-white dark:bg-[#2a2a2a] animate-slideUp text-left dark:text-white  shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_30px_0px_var(--tw-shadow-color)]">
-        
+      {/* Modal card */}
+      <div className="relative z-10 w-full max-w-lg p-6 rounded-xl bg-white border border-gray-100 slide-up text-left shadow-[0_8px_40px_rgba(67,66,255,0.18)]">
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full"
+          className="absolute top-3 right-3 p-2 text-gray-400 hover:bg-gray-100 rounded-full border-none"
           aria-label="Cerrar"
         >
-          <svg
-            className="w-5 h-5"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M6 18L18 6M6 6l12 12"
-            />
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        {/* ====================================================== */}
-        
-        {/* Contenido del servicio */}
-        <h4 className="fira-code-semibold text-lg text-primary dark:text-accent mb-2">
+
+        <h4 className="text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-2">
           Nuevo Servicio Destacado
         </h4>
-        <h3 className="text-2xl font-bold mb-3">
+        <h3 className="text-2xl font-bold mb-3 text-[#191919]">
           Secretario Virtual por WhatsApp
         </h3>
-        <p className="text-sm dark:text-gray-300 mb-6">
+        <p className="text-sm text-gray-600 mb-6">
           Automatizá tu agenda 24/7. Nuestro bot gestiona tus turnos, envía
           recordatorios automáticos y se integra con tu Google Calendar. Liberá
           3+ horas de tu día.
         </p>
-        
-        {/* Botón de acción */}
+
         <Link to="/servicios" onClick={handleNavigate}>
-          <button className="fira-code-regular bg-primary px-5 py-2 rounded transition hover:bg-primary/90 dark:border-white">
+          <button className="btn-primary fira-code-regular px-5 py-2.5 rounded-lg text-sm transition">
             Conocer más
           </button>
         </Link>

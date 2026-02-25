@@ -8,7 +8,6 @@ import secretarioLogo from "../assets/projects/secretario-logo.png";
 
 // Screenshots / previews
 import clinicalImg from "../assets/projects/clinical-preview.png";
-import galeriaImg from "../assets/projects/galeria-preview.png";
 import secretarioImg from "../assets/projects/secretario-preview.png";
 
 // Mockups
@@ -42,7 +41,7 @@ const proyectos: Proyecto[] = [
     id: "clinical",
     titulo: "CLINICAL",
     descripcion:
-      "Sistema integral de gestión clínica diseñado para optimizar la operación diaria de consultorios y centros de salud.",
+      "Consultorios manejando turnos en papel, historias clínicas en carpetas, facturación manual. Construimos un sistema integral que centraliza pacientes, turnos, historias clínicas y facturación en un solo lugar.",
     badge: "Sistema a Medida",
     logo: clinicalLogo,
     imagen: clinicalImg,
@@ -73,7 +72,7 @@ const proyectos: Proyecto[] = [
     id: "galeria-estudio",
     titulo: "Galeria Estudio",
     descripcion:
-      "Landing page y e-commerce para estudio de diseño e interiorismo, con panel de administración a medida para gestionar productos.",
+      "Estudio de diseño sin presencia digital ni forma de mostrar ni vender su trabajo online. Desarrollamos su sitio web completo con landing, e-commerce y panel de administración a medida.",
     badge: "Desarrollo Web",
     logo: galeriaLogo,
     imagen: galeriaMockup,
@@ -100,7 +99,7 @@ const proyectos: Proyecto[] = [
     id: "secretario-virtual",
     titulo: "Secretario Virtual",
     descripcion:
-      "Bot inteligente de WhatsApp que automatiza la atención y gestión de turnos para profesionales.",
+      "Profesionales perdiendo horas gestionando turnos por WhatsApp de forma manual. Automatizamos la atención completa: reservas, recordatorios y confirmaciones sin intervención humana.",
     badge: "Automatización IA",
     logo: secretarioLogo,
     imagen: secretarioImg,
@@ -128,7 +127,6 @@ const proyectos: Proyecto[] = [
 export default function ProjectsGrid() {
   const [abierto, setAbierto] = useState<Proyecto | null>(null);
 
-  // Cerrar con ESC y bloquear scroll del body
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setAbierto(null);
     if (abierto) {
@@ -146,20 +144,23 @@ export default function ProjectsGrid() {
   const secondary = proyectos.filter((p) => !p.featured);
 
   return (
-    <main className="text-center px-4 text-ink">
-      {/* Título principal */}
-      <section className="pt-20 py-20 dark:text-white">
-        <h2 className="text-4xl font-bold fira-code-bold mb-2 mt-8">
-          Nuestro trabajo
-        </h2>
-        <p className="text-[#191919] dark:text-white mb-12 max-w-xl mx-auto mt-5">
-          Algunos de los proyectos que desarrollamos junto a nuestros clientes
+    <main className="text-center px-4 text-[#191919]">
+      {/* Header */}
+      <section className="relative grid-bg pt-36 pb-20 px-4 overflow-hidden">
+        <span className="inline-block text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-3">Nuestros trabajos</span>
+        <h1 className="text-4xl font-bold mb-4 text-[#191919]">
+          Problemas reales, soluciones reales
+        </h1>
+        <p className="text-gray-600 mb-4 max-w-xl mx-auto">
+          Cada proyecto empieza con un problema. Así es como los resolvimos.
         </p>
+      </section>
 
+      <section className="bg-white py-16 px-4">
         <div className="max-w-6xl mx-auto space-y-8">
-          {/* Featured project — hero card */}
+          {/* Featured project */}
           {featured && (
-            <div className="relative border rounded-md overflow-hidden bg-white dark:bg-[#2a2a2a] transition-all duration-300 ease-in-out hover:scale-[1.01] dark:border-gray-700 shadow-[#4342FF]/30 dark:shadow-[#4342FF]/40 shadow-[0_0_30px_2px_var(--tw-shadow-color)]">
+            <div className="relative rounded-xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:-translate-y-0.5 shadow-[0_4px_32px_rgba(67,66,255,0.10)] hover:shadow-[0_8px_48px_rgba(67,66,255,0.18)]">
               <div className="flex flex-col lg:flex-row">
                 {/* Preview */}
                 <div className="lg:w-1/2">
@@ -181,29 +182,29 @@ export default function ProjectsGrid() {
                   )}
                 </div>
 
-                {/* Contenido */}
+                {/* Content */}
                 <div className="lg:w-1/2 p-6 lg:p-10 flex flex-col justify-center text-left relative">
-                  <span className="absolute top-0 right-0 bg-[#191919] text-white dark:bg-white dark:text-[#191919] text-xs px-3 py-1 rounded-bl-md fira-code-regular">
+                  <span className="absolute top-0 right-0 bg-[#4342FF] text-white text-xs px-3 py-1 rounded-bl-lg fira-code-regular">
                     {featured.badge}
                   </span>
 
                   <img
                     src={featured.logo}
                     alt={`${featured.titulo} logo`}
-                    className="w-14 h-14 rounded-full object-cover mb-4 border-2 border-[#191919] dark:border-white"
+                    className="w-14 h-14 rounded-xl object-cover mb-4 border border-gray-200"
                   />
 
-                  <h3 className="font-bold text-3xl lg:text-4xl mb-3 fira-code-bold">
+                  <h3 className="font-bold text-3xl lg:text-4xl mb-3 fira-code-bold text-[#191919]">
                     {featured.titulo}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 text-base lg:text-lg">
+                  <p className="text-gray-600 mb-6 text-base lg:text-lg">
                     {featured.descripcion}
                   </p>
 
                   <button
                     type="button"
                     onClick={() => setAbierto(featured)}
-                    className="w-fit rounded-xl bg-[#4342FF] text-white px-6 py-2.5 text-sm font-medium hover:bg-[#3534cc] active:scale-[.98] transition"
+                    className="w-fit btn-primary rounded-xl px-6 py-2.5 text-sm font-medium transition"
                   >
                     {featured.demoVideo ? "Ver demo" : "Ver más"}
                   </button>
@@ -212,36 +213,35 @@ export default function ProjectsGrid() {
             </div>
           )}
 
-          {/* Secondary projects — 2-column grid */}
+          {/* Secondary projects */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {secondary.map((p) => (
               <div
                 key={p.id}
-                className="relative border rounded-md overflow-hidden bg-white dark:bg-[#2a2a2a] transition-all duration-300 ease-in-out hover:scale-[1.03] dark:border-gray-700 shadow-[#4342FF]/20 dark:shadow-[#4342FF]/30 shadow-[0_0_20px_0px_var(--tw-shadow-color)] text-left"
+                className="relative rounded-xl overflow-hidden bg-white border border-gray-100 transition-all duration-300 hover:-translate-y-1 shadow-[0_4px_24px_rgba(67,66,255,0.08)] hover:shadow-[0_8px_32px_rgba(67,66,255,0.16)] text-left"
               >
-                {/* Imagen */}
+                {/* Image */}
                 <div className="relative">
                   <img
                     src={p.imagen}
                     alt={p.titulo}
                     className="w-full h-48 lg:h-56 object-cover"
                   />
-                  {/* Logo superpuesto */}
                   <img
                     src={p.logo}
                     alt={`${p.titulo} logo`}
-                    className="absolute bottom-0 right-4 translate-y-1/2 w-12 h-12 rounded-full object-cover border-2 border-[#191919] dark:border-white bg-white dark:bg-[#2a2a2a]"
+                    className="absolute bottom-0 right-4 translate-y-1/2 w-12 h-12 rounded-xl object-cover border-2 border-white bg-white shadow-md"
                   />
                 </div>
 
-                {/* Contenido */}
+                {/* Content */}
                 <div className="p-6 pt-8">
-                  <span className="absolute top-0 right-0 bg-[#191919] text-white dark:bg-white dark:text-[#191919] text-xs px-3 py-1 rounded-bl-md fira-code-regular">
+                  <span className="absolute top-0 right-0 bg-[#4342FF] text-white text-xs px-3 py-1 rounded-bl-lg fira-code-regular">
                     {p.badge}
                   </span>
 
-                  <h3 className="font-semibold text-lg mb-2">{p.titulo}</h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                  <h3 className="font-semibold text-lg mb-2 text-[#191919]">{p.titulo}</h3>
+                  <p className="text-sm text-gray-600 mb-4">
                     {p.descripcion}
                   </p>
 
@@ -249,7 +249,7 @@ export default function ProjectsGrid() {
                     <button
                       type="button"
                       onClick={() => setAbierto(p)}
-                      className="rounded-xl border border-[#191919] dark:border-white/20 px-5 py-2 text-sm font-medium hover:bg-black/5 dark:hover:bg-white/10 active:scale-[.98] transition"
+                      className="btn-secondary rounded-xl px-5 py-2 text-sm font-medium transition"
                     >
                       {p.demoVideo ? "Ver demo" : "Ver más"}
                     </button>
@@ -259,7 +259,7 @@ export default function ProjectsGrid() {
                         href={p.detalle.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 rounded-xl bg-[#4342FF] text-white px-5 py-2 text-sm font-medium hover:bg-[#3534cc] active:scale-[.98] transition"
+                        className="inline-flex items-center gap-1.5 btn-primary rounded-xl px-5 py-2 text-sm font-medium transition"
                       >
                         Visitar sitio
                         <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
@@ -275,113 +275,142 @@ export default function ProjectsGrid() {
         </div>
       </section>
 
-      {/* Cierre CTA */}
-      <section className="grid grid-cols-1 md:grid-cols-2 py-16 px-6 md:px-30">
-        <h2 className="fira-code-medium text-xl md:text-2xl font-semibold mb-2 text-center md:text-left md:ml-10 dark:text-white">
-          El cambio comienza hoy.
-        </h2>
-
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full max-w-xl mx-auto">
-          <Link to="/contacto" className="w-full md:w-64">
-            <button className="w-full dark-button bg-black text-white px-6 py-2 rounded max-h-[60px]">
-              Agendá una reunión
-            </button>
-          </Link>
-          <Link to="/nosotros" className="w-full md:w-64">
-            <button className="w-full border bg-white text-[#191919] !border-black dark:bg-[#191919] dark:text-[#ffffff] dark:!border-[#ffffff] px-6 py-2 rounded hover:text-ink max-h-[60px]">
-              Conocé más sobre nosotros
-            </button>
-          </Link>
+      {/* CTA footer */}
+      <section className="grid-bg py-16 px-6 md:px-20">
+        <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <h2 className="font-semibold text-xl md:text-2xl text-[#191919] text-center md:text-left">
+            ¿Tenés un problema similar?
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xl mx-auto">
+            <Link to="/contacto" className="w-full md:w-auto">
+              <button className="w-full btn-primary px-6 py-2.5 rounded-lg text-sm">
+                Contanos tu proyecto
+              </button>
+            </Link>
+            <Link to="/servicios" className="w-full md:w-auto">
+              <button className="w-full btn-secondary px-6 py-2.5 rounded-lg text-sm">
+                Mirá nuestros servicios
+              </button>
+            </Link>
+          </div>
         </div>
+      </section>
 
-        {/* MODAL */}
-        {abierto && (
+      {/* MODAL */}
+      {abierto && (
+        <div
+          className="fixed inset-0 z-50"
+          aria-labelledby="dialog-title"
+          role="dialog"
+          aria-modal="true"
+        >
           <div
-            className="fixed inset-0 z-50"
-            aria-labelledby="dialog-title"
-            role="dialog"
-            aria-modal="true"
-          >
-            {/* Backdrop */}
-            <div
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm opacity-100 fade-in"
-              onClick={() => setAbierto(null)}
-            />
-            {/* Card */}
-            <div className="absolute inset-0 flex items-center justify-center p-4">
-              <div className={`w-full ${abierto.demoVideo ? "max-w-2xl" : "max-w-lg"} max-h-[90vh] overflow-y-auto translate-y-0 slide-up rounded-2xl border border-white/15 bg-ink p-6 shadow-2xl bg-[#191919]`}>
-                <div className="flex items-start gap-4">
+            className="absolute inset-0 bg-black/50 backdrop-blur-sm fade-in"
+            onClick={() => setAbierto(null)}
+          />
+          <div className="absolute inset-0 flex items-center justify-center p-4">
+            <div className={`w-full ${abierto.demoVideo ? "max-w-2xl" : "max-w-lg"} max-h-[90vh] overflow-y-auto slide-up rounded-2xl bg-white border border-gray-100 shadow-[0_24px_64px_rgba(67,66,255,0.16)] p-6`}>
+
+              {/* Header */}
+              <div className="flex items-start gap-4 mb-5">
+                <div className="w-12 h-12 rounded-xl border border-gray-100 shadow-sm overflow-hidden shrink-0">
                   <img
                     src={abierto.logo}
                     alt={abierto.titulo}
-                    className="h-12 w-12 rounded-lg object-contain"
+                    className="w-full h-full object-contain"
                   />
-                  <div className="flex-1">
-                    <h2
-                      id="dialog-title"
-                      className="text-3xl font-semibold text-[#ffffff]"
-                    >
-                      {abierto.titulo}
-                    </h2>
-                    <p className="mt-1 text-l text-white">{abierto.badge}</p>
-                  </div>
-                  <button
-                    onClick={() => setAbierto(null)}
-                    className="rounded-lg p-2 text-white hover:bg-white/10"
-                    aria-label="Cerrar"
-                  >
-                    ✕
-                  </button>
                 </div>
-
-                {abierto.demoVideo && (
-                  <div className="mt-4 rounded-lg overflow-hidden">
-                    <video
-                      src={abierto.demoVideo}
-                      controls
-                      playsInline
-                      className="w-full rounded-lg"
-                    />
-                  </div>
-                )}
-
-                <p className="mt-4 text-m leading-relaxed text-white/80">
-                  {abierto.detalle.resumen}
-                </p>
-
-                {abierto.detalle.stack && (
-                  <div className="mt-4">
-                    <h4 className="text-sm font-medium text-white">Stack</h4>
-                    <ul className="mt-2 flex flex-wrap justify-center gap-2 text-xs text-white">
-                      {abierto.detalle.stack.map((s) => (
-                        <li
-                          key={s}
-                          className="rounded-md border border-black dark:border-white/15 px-2 py-1"
-                        >
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {abierto.detalle.entregables && (
-                  <div className="mt-4">
-                    <h4 className="text-sm font-medium text-white">
-                      Entregables
-                    </h4>
-                    <ul className="mt-2 list-disc pl-0 list-inside space-y-1 text-sm text-white/80">
-                      {abierto.detalle.entregables.map((e) => (
-                        <li key={e}>{e}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <div className="flex-1">
+                  <span className="inline-block text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-1">
+                    {abierto.badge}
+                  </span>
+                  <h2
+                    id="dialog-title"
+                    className="text-2xl font-bold text-[#191919] leading-tight"
+                  >
+                    {abierto.titulo}
+                  </h2>
+                </div>
+                <button
+                  onClick={() => setAbierto(null)}
+                  className="rounded-lg p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 border-none transition shrink-0"
+                  aria-label="Cerrar"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
               </div>
+
+              {/* Video */}
+              {abierto.demoVideo && (
+                <div className="rounded-xl overflow-hidden border border-gray-100 mb-5">
+                  <video
+                    src={abierto.demoVideo}
+                    controls
+                    playsInline
+                    className="w-full"
+                  />
+                </div>
+              )}
+
+              {/* Resumen */}
+              <p className="text-sm text-gray-600 leading-relaxed mb-5">
+                {abierto.detalle.resumen}
+              </p>
+
+              {/* Stack */}
+              {abierto.detalle.stack && (
+                <div className="mb-5">
+                  <h4 className="text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-2">Stack</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {abierto.detalle.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-lg bg-[#4342FF]/8 border border-[#4342FF]/15 text-[#4342FF] text-xs font-medium px-3 py-1"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Entregables */}
+              {abierto.detalle.entregables && (
+                <div>
+                  <h4 className="text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-2">Entregables</h4>
+                  <ul className="space-y-1.5">
+                    {abierto.detalle.entregables.map((e) => (
+                      <li key={e} className="flex items-start gap-2 text-sm text-gray-700">
+                        <span className="mt-0.5 w-4 h-4 rounded-full bg-[#4342FF]/10 text-[#4342FF] flex items-center justify-center shrink-0 text-xs">✓</span>
+                        {e}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Link */}
+              {abierto.detalle.link && (
+                <div className="mt-6 pt-5 border-t border-gray-100">
+                  <a
+                    href={abierto.detalle.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 btn-primary rounded-xl px-5 py-2.5 text-sm font-medium transition"
+                  >
+                    Visitar sitio
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M5.22 14.78a.75.75 0 010-1.06l7.22-7.22H5.75a.75.75 0 010-1.5h8.5a.75.75 0 01.75.75v8.5a.75.75 0 01-1.5 0V6.56l-7.22 7.22a.75.75 0 01-1.06 0z" clipRule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
-        )}
-      </section>
+        </div>
+      )}
     </main>
   );
 }
