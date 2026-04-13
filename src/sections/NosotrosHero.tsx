@@ -1,4 +1,3 @@
-import ceo from "../assets/team/ceo.jpg";
 import hug from "../assets/undraw_engineering-team_13ax.svg";
 import light from "../assets/undraw_ideas_vn7a.svg";
 import handshake from "../assets/undraw_business-deal_nx2n.svg";
@@ -68,16 +67,18 @@ export default function NosotrosHero() {
 
       {/* CEO Quote */}
       <section className="grid-bg py-16 px-4">
-        <div className="max-w-xl mx-auto p-8 rounded-xl bg-white border border-gray-100 border-l-4 border-l-[#4342FF] shadow-[0_4px_24px_rgba(67,66,255,0.08)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(67,66,255,0.14)] text-left">
-          <p className="italic text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
-            "Empecé AndesCode porque vi demasiadas empresas gastando fortunas en software que no les servía. Quise hacer algo distinto: escuchar primero, construir después."
-          </p>
-          <div className="flex items-center gap-4">
+        <div className="max-w-2xl mx-auto rounded-xl bg-white border border-gray-100 border-l-4 border-l-[#4342FF] shadow-[0_4px_24px_rgba(67,66,255,0.08)] transition-all duration-300 hover:shadow-[0_8px_32px_rgba(67,66,255,0.14)] overflow-hidden flex flex-row">
+          <div className="w-48 shrink-0 relative">
             <img
-              src={ceo}
+              src="/hgfhg - Editado.png"
               alt="Lautaro Caballero"
-              className="w-14 h-14 rounded-full object-cover border-2 border-[#4342FF]"
+              className="absolute inset-0 w-full h-full object-cover object-top"
             />
+          </div>
+          <div className="p-8 flex flex-col justify-center text-left">
+            <p className="italic text-lg md:text-xl text-gray-700 mb-6 leading-relaxed">
+              "Empecé AndesCode porque vi demasiadas empresas gastando fortunas en software que no les servía. Quise hacer algo distinto: escuchar primero, construir después."
+            </p>
             <div>
               <p className="font-semibold text-[#191919] fira-code-medium">Lautaro Caballero</p>
               <p className="text-sm text-gray-500">Fundador & CEO</p>
