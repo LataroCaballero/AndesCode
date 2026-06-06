@@ -101,7 +101,7 @@
 
 ## Traceability
 
-Actualizado durante la creación del roadmap.
+Actualizado durante la creación del roadmap (4-phase coarse structure).
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
@@ -118,41 +118,41 @@ Actualizado durante la creación del roadmap.
 | AUTH-03 | Phase 2 | Pending |
 | AUTH-04 | Phase 2 | Pending |
 | AUTH-05 | Phase 2 | Pending |
-| VERIF-01 | Phase 3 | Pending |
-| VERIF-02 | Phase 3 | Pending |
-| VERIF-03 | Phase 3 | Pending |
-| VERIF-04 | Phase 3 | Pending |
-| VERIF-05 | Phase 3 | Pending |
-| VERIF-06 | Phase 3 | Pending |
-| VERIF-07 | Phase 3 | Pending |
-| VERIF-08 | Phase 3 | Pending |
-| VERIF-09 | Phase 3 | Pending |
-| ADMIN-01 | Phase 4 | Pending |
-| ADMIN-02 | Phase 4 | Pending |
-| ADMIN-03 | Phase 4 | Pending |
-| ADMIN-04 | Phase 4 | Pending |
-| ADMIN-05 | Phase 4 | Pending |
-| ADMIN-06 | Phase 4 | Pending |
-| ADMIN-07 | Phase 4 | Pending |
-| ADMIN-08 | Phase 4 | Pending |
-| ADMIN-09 | Phase 4 | Pending |
-| ADMIN-10 | Phase 4 | Pending |
-| QRPDF-01 | Phase 5 | Pending |
-| QRPDF-02 | Phase 5 | Pending |
-| QRPDF-03 | Phase 5 | Pending |
-| QRPDF-04 | Phase 5 | Pending |
-| QRPDF-05 | Phase 5 | Pending |
-| VIS-01 | Phase 6 | Pending |
-| VIS-02 | Phase 3 | Pending |
-| VIS-03 | Phase 3 | Pending |
-| VIS-04 | Phase 3 | Pending |
-| VIS-05 | Phase 3 | Pending |
+| VERIF-01 | Phase 2 | Pending |
+| VERIF-02 | Phase 2 | Pending |
+| VERIF-03 | Phase 2 | Pending |
+| VERIF-04 | Phase 2 | Pending |
+| VERIF-05 | Phase 2 | Pending |
+| VERIF-06 | Phase 2 | Pending |
+| VERIF-07 | Phase 2 | Pending |
+| VERIF-08 | Phase 2 | Pending |
+| VERIF-09 | Phase 2 | Pending |
+| VIS-02 | Phase 2 | Pending |
+| VIS-03 | Phase 2 | Pending |
+| VIS-04 | Phase 2 | Pending |
+| VIS-05 | Phase 2 | Pending |
+| ADMIN-01 | Phase 3 | Pending |
+| ADMIN-02 | Phase 3 | Pending |
+| ADMIN-03 | Phase 3 | Pending |
+| ADMIN-04 | Phase 3 | Pending |
+| ADMIN-05 | Phase 3 | Pending |
+| ADMIN-06 | Phase 3 | Pending |
+| ADMIN-07 | Phase 3 | Pending |
+| ADMIN-08 | Phase 3 | Pending |
+| ADMIN-09 | Phase 3 | Pending |
+| ADMIN-10 | Phase 3 | Pending |
+| QRPDF-01 | Phase 4 | Pending |
+| QRPDF-02 | Phase 4 | Pending |
+| QRPDF-03 | Phase 4 | Pending |
+| QRPDF-04 | Phase 4 | Pending |
+| QRPDF-05 | Phase 4 | Pending |
+| VIS-01 | Phase 4 | Pending |
 
 **Coverage:**
-- v1 requirements: 40 total
-- Mapped to phases: 40
+- v1 requirements: 42 total
+- Mapped to phases: 42
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-06-06*
-*Last updated: 2026-06-06 after initial definition*
+*Last updated: 2026-06-06 — traceability updated for 4-phase coarse roadmap*
