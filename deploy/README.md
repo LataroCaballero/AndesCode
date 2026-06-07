@@ -15,8 +15,8 @@ nginx -T 2>&1 | less
 
 From the output, note:
 
-- **Process user** — look for the `user` directive (e.g., `user www-data;` or `user ubuntu;`). Replace `__USER__` everywhere in this runbook with that username.
-- **SPA root path** — find the `location /` block and note its `root` directive (e.g., `root /var/www/andescode/dist;` or `root /home/__USER__/public_html;`). You will use this value in Step 5.
+- **Process user** — look for the `user` directive (e.g., `user www-data;` or `user ubuntu;`). Replace `root` everywhere in this runbook with that username.
+- **SPA root path** — find the `location /` block and note its `root` directive (e.g., `root /var/www/andescode/dist;` or `root /root/public_html;`). You will use this value in Step 5.
 - **Server name** — confirm `server_name andescode.com.ar` is present.
 - **SSL cert paths** — note `ssl_certificate` and `ssl_certificate_key` for reference (do not change them).
 
@@ -28,11 +28,11 @@ SSH into the VPS and run:
 
 ```bash
 # Create the pocketbase working directory (D-05)
-mkdir -p /home/__USER__/pocketbase/pb_data
-mkdir -p /home/__USER__/pocketbase/pb_migrations
+mkdir -p /root/pocketbase/pb_data
+mkdir -p /root/pocketbase/pb_migrations
 
 # Download latest stable PocketBase binary (check https://github.com/pocketbase/pocketbase/releases for current version)
-cd /home/__USER__/pocketbase
+cd /root/pocketbase
 curl -L https://github.com/pocketbase/pocketbase/releases/latest/download/pocketbase_<VERSION>_linux_amd64.zip -o pocketbase.zip
 unzip pocketbase.zip
 rm pocketbase.zip
@@ -49,23 +49,23 @@ chmod +x pocketbase
 From your local machine (or CI), copy the repo files to the VPS:
 
 ```bash
-# Copy the PM2 ecosystem config (replace __USER__ before copying)
-sed 's/__USER__/<actual-username>/g' deploy/ecosystem.config.cjs > /tmp/ecosystem.config.cjs
-scp /tmp/ecosystem.config.cjs __USER__@andescode.com.ar:/home/__USER__/pocketbase/ecosystem.config.cjs
+# Copy the PM2 ecosystem config (replace root before copying)
+sed 's/root/<actual-username>/g' deploy/ecosystem.config.cjs > /tmp/ecosystem.config.cjs
+scp /tmp/ecosystem.config.cjs root@andescode.com.ar:/root/pocketbase/ecosystem.config.cjs
 
 # Copy the migration file to the VPS migrations directory
 scp pb_migrations/1780790669_create_certificates.js \
-  __USER__@andescode.com.ar:/home/__USER__/pocketbase/pb_migrations/
+  root@andescode.com.ar:/root/pocketbase/pb_migrations/
 ```
 
 Alternatively, clone or pull the git repo on the VPS and symlink:
 
 ```bash
-# On the VPS — if the repo is cloned to /home/__USER__/repo
-ln -s /home/__USER__/repo/pb_migrations /home/__USER__/pocketbase/pb_migrations
+# On the VPS — if the repo is cloned to /root/repo
+ln -s /root/repo/pb_migrations /root/pocketbase/pb_migrations
 ```
 
-**Note on --migrationsDir (RESEARCH Pitfall 5):** PocketBase only scans `pb_migrations/` relative to its working directory by default. The `ecosystem.config.cjs` passes `--migrationsDir=/home/__USER__/pocketbase/pb_migrations` explicitly to ensure the migration is found regardless of where PM2 starts the process.
+**Note on --migrationsDir (RESEARCH Pitfall 5):** PocketBase only scans `pb_migrations/` relative to its working directory by default. The `ecosystem.config.cjs` passes `--migrationsDir=/root/pocketbase/pb_migrations` explicitly to ensure the migration is found regardless of where PM2 starts the process.
 
 ---
 
@@ -74,7 +74,7 @@ ln -s /home/__USER__/repo/pb_migrations /home/__USER__/pocketbase/pb_migrations
 On the VPS:
 
 ```bash
-cd /home/__USER__/pocketbase
+cd /root/pocketbase
 
 # Start PocketBase using the ecosystem config
 pm2 start ecosystem.config.cjs
@@ -89,7 +89,7 @@ pm2 save
 # Generate and install the systemd unit for reboot persistence
 pm2 startup
 # pm2 startup prints a command like:
-#   sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u __USER__ --hp /home/__USER__
+#   sudo env PATH=$PATH:/usr/bin pm2 startup systemd -u root --hp /root
 # Run that EXACT printed command as root (copy-paste it)
 ```
 
@@ -135,9 +135,9 @@ location /_/ {
 }
 
 # SPA — catch-all with try_files fallback for client-side routing
-# Replace /path/to/dist with the root path discovered from nginx -T audit (Step 1)
+# SPA root resolved from nginx -T audit: /var/www/andescode
 location / {
-    root /path/to/dist;
+    root /var/www/andescode;
     try_files $uri $uri/ /index.html;
 }
 ```
