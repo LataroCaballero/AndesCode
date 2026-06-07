@@ -36,7 +36,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1**
 
-- [ ] 01-01-PLAN.md — Repo artifacts: certificates migration, Vite env wiring, versioned PM2 config + deploy runbook
+- [x] 01-01-PLAN.md — Repo artifacts: certificates migration, Vite env wiring, versioned PM2 config + deploy runbook
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
