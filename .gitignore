@@ -12,6 +12,13 @@ dist
 dist-ssr
 *.local
 
+# Env
+# .env and .env.production are committed — they contain only the public VPS URL (no secrets).
+# .env.local and .env.*.local are for local developer overrides (secrets, personal config) — git-ignored.
+# The *.local rule above already covers these, but explicit rules clarify intent:
+.env.local
+.env.*.local
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
