@@ -30,7 +30,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. A test certificate record can be created in the PocketBase admin UI and retrieved via `viewRule` with no auth token
   4. Port 8090 is not reachable from the public internet (firewall blocks direct access)
   5. `VITE_POCKETBASE_URL` resolves correctly in the browser via `import.meta.env.VITE_POCKETBASE_URL`
-**Plans**: TBD
+**Plans**: 3 plans
+- [ ] 01-01-PLAN.md — Repo artifacts: certificates migration, Vite env wiring, versioned PM2 config + deploy runbook
+- [ ] 01-02-PLAN.md — VPS deploy: install PocketBase under PM2, nginx reverse proxy, firewall, superuser
+- [ ] 01-03-PLAN.md — Native daily backup (7-day retention) + full phase-gate verification
 
 ### Phase 2: Auth + Public Verification
 **Goal**: Anyone can verify a certificate instantly with no account; the admin can log in and maintain a persistent session.
@@ -80,7 +83,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Infrastructure Foundation | 0/? | Not started | - |
+| 1. Infrastructure Foundation | 0/3 | Not started | - |
 | 2. Auth + Public Verification | 0/? | Not started | - |
 | 3. Admin CRUD | 0/? | Not started | - |
 | 4. QR, PDF, and Visual Certificate | 0/? | Not started | - |
