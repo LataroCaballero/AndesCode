@@ -11,31 +11,37 @@ import { usePocketBase } from '../contexts/PocketBaseContext';
 
 export default function AdminGuard({ children }: { children: React.ReactNode }) {
   const navigate = useNavigate();
-  const { isValid } = usePocketBase();
+  usePocketBase(); // suscribirse al contexto para re-renders reactivos
   const [validated, setValidated] = useState(false);
 
   useEffect(() => {
+    let cancelled = false;
+
     const check = async () => {
       if (!pb.authStore.isValid) {
-        // Sin sesión: redirigir al login
-        navigate('/admin/login', { replace: true });
+        if (!cancelled) navigate('/admin/login', { replace: true });
         return;
       }
 
       try {
         // Revalidar el token contra el servidor (AUTH-03)
         await pb.collection('_superusers').authRefresh();
-        setValidated(true);
-      } catch {
+        if (!cancelled) setValidated(true);
+      } catch (err) {
         // Token expirado o inválido: limpiar y redirigir
-        pb.authStore.clear();
-        navigate('/admin/login', { replace: true });
+        console.error('[AdminGuard] authRefresh falló:', err);
+        if (!cancelled) {
+          pb.authStore.clear();
+          navigate('/admin/login', { replace: true });
+        }
       }
     };
 
     check();
+    return () => { cancelled = true; };
+  // Sólo corre al montar — no re-ejecutar cuando cambia isValid
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isValid]);
+  }, []);
 
   // Mientras se valida, no renderizar nada para evitar flash de contenido protegido
   if (!validated) return null;
