@@ -1,0 +1,224 @@
+# Codebase Structure
+
+**Analysis Date:** 2026-06-06
+
+## Directory Layout
+
+```
+AndesCode/
+├── .claude/                    # Claude Code integrations (GSD framework)
+├── .planning/
+│   └── codebase/              # Codebase analysis documents
+├── public/                     # Static assets served directly
+├── src/                        # Source code (TypeScript/TSX)
+│   ├── assets/                # Images organized by category
+│   │   ├── logo/              # Logo images
+│   │   ├── projects/          # Project/portfolio images
+│   │   ├── servicios/         # Service section images
+│   │   ├── team/              # Team member photos
+│   │   ├── *.png              # Icon/illustration PNGs
+│   │   └── *.svg              # SVG illustrations
+│   ├── components/            # Reusable UI components
+│   │   ├── Header.tsx         # Navigation header
+│   │   ├── Footer.tsx         # Footer with social links
+│   │   ├── ParticlesBackground.tsx  # Animated particle background
+│   │   ├── TitleManager.tsx   # Page title manager
+│   │   ├── scroll.tsx         # Scroll-to-top on navigation
+│   │   ├── WelcomeModal.tsx   # Welcome modal
+│   │   ├── MouseParallaxCard.tsx    # 3D parallax effect
+│   │   ├── GridBackground.tsx # Grid background pattern
+│   │   ├── BackgroundGradientAnimation.tsx # Gradient animation
+│   │   └── *.tsx              # Other utility components
+│   ├── contexts/              # React Context for state
+│   │   └── ThemeContext.tsx   # Light/dark theme management
+│   ├── pages/                 # Route-level page components
+│   │   ├── home.tsx           # / route
+│   │   ├── servicios.tsx      # /servicios route
+│   │   ├── contacto.tsx       # /contacto route
+│   │   ├── nosotros.tsx       # /nosotros route
+│   │   ├── trabajos.tsx       # /trabajos route
+│   │   ├── politica-privacidad.tsx    # /politica-de-privacidad route
+│   │   ├── eliminacion-datos.tsx      # /eliminacion-de-datos route
+│   │   └── *.tsx              # Other pages
+│   ├── sections/              # Page content sections
+│   │   ├── Hero.tsx           # Home page hero
+│   │   ├── ServiciosHero.tsx  # Services section
+│   │   ├── NosotrosHero.tsx   # About section
+│   │   ├── TrabajosHero.tsx   # Portfolio section
+│   │   ├── ContactForm.tsx    # Contact form with Formspree
+│   │   ├── NewService.tsx     # Service display component
+│   │   ├── PoliticaPrivacidad.tsx    # Privacy policy content
+│   │   ├── EliminacionDatos.tsx      # Data deletion content
+│   │   └── *.tsx              # Other page-specific content
+│   ├── main.tsx               # Application entry point
+│   ├── style.css              # Global styles & CSS variables
+│   └── vite-env.d.ts          # Vite type definitions
+├── dist/                      # Build output (generated)
+├── node_modules/              # Dependencies (generated)
+├── index.html                 # HTML entry point
+├── vite.config.ts             # Vite configuration
+├── tsconfig.json              # TypeScript configuration
+├── package.json               # Dependencies & scripts
+├── package-lock.json          # Dependency lock file
+├── CLAUDE.md                  # Project instructions
+└── README.md                  # Project documentation
+```
+
+## Directory Purposes
+
+**src/:**
+- Purpose: All TypeScript/TSX source code
+- Contains: Components, pages, sections, contexts, styles, assets
+- Key files: `main.tsx` (entry point), `style.css` (global styles)
+
+**src/components/:**
+- Purpose: Reusable UI building blocks used across multiple pages
+- Contains: Header, Footer, navigation, effects, wrappers, animations
+- Key files: `Header.tsx` (global nav), `Footer.tsx` (global footer), `ParticlesBackground.tsx` (animated background)
+
+**src/sections/:**
+- Purpose: Page-specific content components; typically rendered by page components
+- Contains: Hero sections, forms, policy pages, service displays
+- Key files: `Hero.tsx` (home content), `ContactForm.tsx` (contact page form), `ServiciosHero.tsx` (services page)
+
+**src/pages/:**
+- Purpose: Route-level components that compose the full page layout
+- Contains: Thin wrappers combining Header + Section + Footer
+- Key files: `home.tsx` (home page), `contacto.tsx` (contact page), `servicios.tsx` (services page)
+- Pattern: Every page follows the same structure
+
+**src/assets/:**
+- Purpose: Static images organized by usage category
+- Contains: PNG images, SVG illustrations, icons
+- Subdirectories: logo/, projects/, servicios/, team/
+- Usage: Imported in section components for display
+
+**src/contexts/:**
+- Purpose: React Context providers for global state
+- Contains: Theme context, potentially other shared state
+- Key files: `ThemeContext.tsx` (light/dark mode toggle)
+
+**public/:**
+- Purpose: Static files served at root of domain (referenced in index.html with / prefix)
+- Contains: favicon, images that don't need bundling
+- Usage: `<link rel="icon" href="/logo.png">` in index.html
+
+**dist/:**
+- Purpose: Production build output (generated by `npm run build`)
+- Contains: Minified JavaScript, CSS, bundled assets
+- Generated by: Vite build tool
+
+## Key File Locations
+
+**Entry Points:**
+- `src/main.tsx`: React app initialization, route definitions, global wrapper setup
+- `index.html`: HTML shell that mounts React app to `<div id="root">`
+
+**Configuration:**
+- `vite.config.ts`: Vite bundler config with Tailwind CSS plugin
+- `tsconfig.json`: TypeScript compiler config (strict mode enabled)
+- `package.json`: Dependencies, scripts, project metadata
+- `src/style.css`: Global styles and CSS variable definitions
+
+**Core Logic:**
+- `src/components/Header.tsx`: Navigation and site header
+- `src/components/Footer.tsx`: Footer with social links and policy navigation
+- `src/sections/ContactForm.tsx`: Contact form with Formspree integration
+- `src/contexts/ThemeContext.tsx`: Theme state management and toggle logic
+
+**Styling:**
+- `src/style.css`: CSS custom properties (--color-primary, --color-accent, etc.), Tailwind directives, grid/gradient backgrounds
+- Tailwind classes: Applied inline in component markup via className attributes
+
+**Testing:**
+- No test files present in codebase (test runner not configured)
+
+## Naming Conventions
+
+**Files:**
+- Components: PascalCase.tsx (e.g., `Header.tsx`, `ContactForm.tsx`)
+- Pages: lowercase with hyphens for multi-word routes (e.g., `politica-privacidad.tsx` for `/politica-de-privacidad` route)
+- Sections: PascalCase.tsx suffix with "Hero" (e.g., `ServiciosHero.tsx`, `NosotrosHero.tsx`)
+- Utilities: lowercase or PascalCase (e.g., `scroll.tsx`, `vite-env.d.ts`)
+
+**Directories:**
+- Feature/component groups: plural lowercase (e.g., `components/`, `sections/`, `pages/`, `assets/`)
+- Asset categories: plural lowercase (e.g., `logo/`, `projects/`, `servicios/`, `team/`)
+
+**Variables & Functions:**
+- Functions: camelCase (e.g., `handleMouseMove`, `setSuccess`, `toggleTheme`)
+- React components: PascalCase (e.g., `Header`, `ContactForm`, `MouseParallaxCard`)
+- Constants: UPPERCASE_SNAKE_CASE (e.g., `DEFAULT_TITLE`, `ROUTES`)
+- State variables: camelCase (e.g., `theme`, `loading`, `success`, `error`)
+
+**Types:**
+- Interface names: PascalCase with "Props" suffix for component props (e.g., `TitleManagerProps`)
+- Type aliases: PascalCase (e.g., `Theme`, `ISourceOptions`)
+
+**CSS Classes:**
+- Tailwind utilities: lowercase with hyphens (e.g., `flex`, `items-center`, `gap-6`, `md:hidden`)
+- Custom classes: kebab-case (e.g., `nav-link`, `btn-primary`, `grid-bg`, `fira-code-bold`)
+- Responsive prefixes: `sm:`, `md:`, `lg:` prefixes on Tailwind utilities
+
+## Where to Add New Code
+
+**New Feature (complete user-facing functionality):**
+- Primary code: `src/sections/` if it's page-specific content, `src/components/` if it's reusable
+- Tests: Not applicable (no test framework configured)
+- Related pages: Update `src/pages/` wrapper if needed to import new component
+- Styling: Use Tailwind classes in markup; add CSS custom properties to `src/style.css` if defining new tokens
+
+**New Component/Module (reusable building block):**
+- Implementation: `src/components/` for shared components, `src/sections/` for page-specific sections
+- Pattern: Functional component with TypeScript typing, destructured props, exported as default
+- Styling: Tailwind utility classes in className attribute
+- Assets: Store images in appropriate subdirectory of `src/assets/` (e.g., `src/assets/projects/` for project images)
+
+**New Page (new route):**
+- Page file: `src/pages/[routename].tsx` following existing page template
+- Section file: `src/sections/[PageName]Hero.tsx` with actual content
+- Route registration: Add to Routes in `src/main.tsx` (line 22-30)
+- Title mapping: Add entry to routeTitles Record in `src/components/TitleManager.tsx` (line 4-12)
+- Navigation: Add Link in `src/components/Header.tsx` nav if user-accessible
+- Footer: Add Link in `src/components/Footer.tsx` nav if user-accessible
+
+**Utilities (reusable helper functions):**
+- Shared utilities: Create as TypeScript files in root of `src/` (e.g., `src/utils.ts`)
+- Component utilities: Keep alongside component if only used there
+- Styling utilities: Add as CSS classes to `src/style.css` under @layer components
+
+**Global State (shared across multiple components):**
+- Theme management: Already in `src/contexts/ThemeContext.tsx`
+- New context: Create file in `src/contexts/[ContextName].tsx`, export Provider and hook
+- Usage: Wrap components that need state in Provider, use hook inside components
+
+## Special Directories
+
+**src/assets/:**
+- Purpose: Static images and SVG illustrations
+- Generated: No (manually added)
+- Committed: Yes (all image files committed to git)
+- Usage: Imported in components as `import image from '../assets/...'`
+- Organization: By usage category (logo, projects, servicios, team)
+
+**dist/:**
+- Purpose: Production bundle output
+- Generated: Yes (by `npm run build`)
+- Committed: No (in .gitignore)
+- Deletion: Safe to delete; regenerate with `npm run build`
+
+**node_modules/:**
+- Purpose: Installed npm dependencies
+- Generated: Yes (by `npm install` or `npm ci`)
+- Committed: No (in .gitignore)
+- Regeneration: Run `npm install` with package-lock.json present
+
+**public/:**
+- Purpose: Static files served at domain root
+- Generated: No (manually maintained)
+- Committed: Yes
+- Access: Files referenced with `/` prefix in HTML/CSS (e.g., `/logo.png` serves public/logo.png)
+
+---
+
+*Structure analysis: 2026-06-06*
