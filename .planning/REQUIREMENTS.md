@@ -18,23 +18,23 @@
 
 ### Autenticación
 
-- [ ] **AUTH-01**: El admin puede iniciar sesión con email + contraseña en `/admin/login`
-- [ ] **AUTH-02**: La sesión persiste al recargar la página (PocketBase `LocalAuthStore` en localStorage)
-- [ ] **AUTH-03**: Al recargar, el token se revalida contra el servidor; si expiró, se redirige al login
-- [ ] **AUTH-04**: El admin puede cerrar sesión; la sesión se limpia completamente (token + record)
-- [ ] **AUTH-05**: Todas las rutas bajo `/admin/*` redirigen a `/admin/login` si no hay sesión activa
+- [x] **AUTH-01**: El admin puede iniciar sesión con email + contraseña en `/admin/login`
+- [x] **AUTH-02**: La sesión persiste al recargar la página (PocketBase `LocalAuthStore` en localStorage)
+- [x] **AUTH-03**: Al recargar, el token se revalida contra el servidor; si expiró, se redirige al login
+- [x] **AUTH-04**: El admin puede cerrar sesión; la sesión se limpia completamente (token + record)
+- [x] **AUTH-05**: Todas las rutas bajo `/admin/*` redirigen a `/admin/login` si no hay sesión activa
 
 ### Verificación Pública
 
-- [ ] **VERIF-01**: El usuario puede ingresar un ID en `/certificados` y ver el estado del certificado correspondiente
-- [ ] **VERIF-02**: El input normaliza el ID (case-insensitive, acepta sin guiones, muestra hint de formato `AC-YYYY-NNN`)
-- [ ] **VERIF-03**: Si el ID no existe, se muestra mensaje claro "Certificado no encontrado" (distinto de "revocado")
-- [ ] **VERIF-04**: La página `/certificados/:certificateCode` carga directamente el certificado correspondiente
-- [ ] **VERIF-05**: Se muestra el estado de validez con visual prominente: ✅ "Certificado válido emitido por AndesCode" o ❌ "Certificado revocado"
-- [ ] **VERIF-06**: La página muestra: nombre completo, ID del certificado, fecha de emisión, período de la práctica, universidad/facultad, área de desempeño, descripción de la práctica, calificación, nombre del supervisor
-- [ ] **VERIF-07**: Las tecnologías/herramientas usadas se muestran como tags visuales
-- [ ] **VERIF-08**: El usuario puede copiar la URL de verificación al portapapeles con un botón
-- [ ] **VERIF-09**: La página de verificación no requiere autenticación de ningún tipo
+- [x] **VERIF-01**: El usuario puede ingresar un ID en `/certificados` y ver el estado del certificado correspondiente
+- [x] **VERIF-02**: El input normaliza el ID (case-insensitive, acepta sin guiones, muestra hint de formato `AC-YYYY-NNN`)
+- [x] **VERIF-03**: Si el ID no existe, se muestra mensaje claro "Certificado no encontrado" (distinto de "revocado")
+- [x] **VERIF-04**: La página `/certificados/:certificateCode` carga directamente el certificado correspondiente
+- [x] **VERIF-05**: Se muestra el estado de validez con visual prominente: ✅ "Certificado válido emitido por AndesCode" o ❌ "Certificado revocado"
+- [x] **VERIF-06**: La página muestra: nombre completo, ID del certificado, fecha de emisión, período de la práctica, universidad/facultad, área de desempeño, descripción de la práctica, calificación, nombre del supervisor
+- [x] **VERIF-07**: Las tecnologías/herramientas usadas se muestran como tags visuales
+- [x] **VERIF-08**: El usuario puede copiar la URL de verificación al portapapeles con un botón
+- [x] **VERIF-09**: La página de verificación no requiere autenticación de ningún tipo
 
 ### Generación de QR y PDF
 
@@ -60,10 +60,10 @@
 ### Diseño Visual
 
 - [ ] **VIS-01**: La página de verificación muestra una reproducción HTML/CSS del certificado físico (estilo del diseño de referencia)
-- [ ] **VIS-02**: El badge "Verificado por AndesCode" aparece prominente y arriba del fold en la página de certificado válido
-- [ ] **VIS-03**: La estética sigue la identidad AndesCode: paleta `#191919` / `#FFFFFF`, acento `#4342FF`, Inter, minimalista
-- [ ] **VIS-04**: La página de verificación es mobile-first (los QRs se escanean desde el teléfono)
-- [ ] **VIS-05**: El estado VÁLIDO/REVOCADO es visualmente inmediato — no requiere hacer scroll
+- [x] **VIS-02**: El badge "Verificado por AndesCode" aparece prominente y arriba del fold en la página de certificado válido
+- [x] **VIS-03**: La estética sigue la identidad AndesCode: paleta `#191919` / `#FFFFFF`, acento `#4342FF`, Inter, minimalista
+- [x] **VIS-04**: La página de verificación es mobile-first (los QRs se escanean desde el teléfono)
+- [x] **VIS-05**: El estado VÁLIDO/REVOCADO es visualmente inmediato — no requiere hacer scroll
 
 ## v2 Requirements
 
@@ -113,24 +113,24 @@ Actualizado durante la creación del roadmap (4-phase coarse structure).
 | INFRA-06 | Phase 1 | Pending |
 | INFRA-07 | Phase 1 | Pending |
 | INFRA-08 | Phase 1 | Pending |
-| AUTH-01 | Phase 2 | Pending |
-| AUTH-02 | Phase 2 | Pending |
-| AUTH-03 | Phase 2 | Pending |
-| AUTH-04 | Phase 2 | Pending |
-| AUTH-05 | Phase 2 | Pending |
-| VERIF-01 | Phase 2 | Pending |
-| VERIF-02 | Phase 2 | Pending |
-| VERIF-03 | Phase 2 | Pending |
-| VERIF-04 | Phase 2 | Pending |
-| VERIF-05 | Phase 2 | Pending |
-| VERIF-06 | Phase 2 | Pending |
-| VERIF-07 | Phase 2 | Pending |
-| VERIF-08 | Phase 2 | Pending |
-| VERIF-09 | Phase 2 | Pending |
-| VIS-02 | Phase 2 | Pending |
-| VIS-03 | Phase 2 | Pending |
-| VIS-04 | Phase 2 | Pending |
-| VIS-05 | Phase 2 | Pending |
+| AUTH-01 | Phase 2 | Complete |
+| AUTH-02 | Phase 2 | Complete |
+| AUTH-03 | Phase 2 | Complete |
+| AUTH-04 | Phase 2 | Complete |
+| AUTH-05 | Phase 2 | Complete |
+| VERIF-01 | Phase 2 | Complete |
+| VERIF-02 | Phase 2 | Complete |
+| VERIF-03 | Phase 2 | Complete |
+| VERIF-04 | Phase 2 | Complete |
+| VERIF-05 | Phase 2 | Complete |
+| VERIF-06 | Phase 2 | Complete |
+| VERIF-07 | Phase 2 | Complete |
+| VERIF-08 | Phase 2 | Complete |
+| VERIF-09 | Phase 2 | Complete |
+| VIS-02 | Phase 2 | Complete |
+| VIS-03 | Phase 2 | Complete |
+| VIS-04 | Phase 2 | Complete |
+| VIS-05 | Phase 2 | Complete |
 | ADMIN-01 | Phase 3 | Pending |
 | ADMIN-02 | Phase 3 | Pending |
 | ADMIN-03 | Phase 3 | Pending |
@@ -149,6 +149,7 @@ Actualizado durante la creación del roadmap (4-phase coarse structure).
 | VIS-01 | Phase 4 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 42 total
 - Mapped to phases: 42
 - Unmapped: 0 ✓
