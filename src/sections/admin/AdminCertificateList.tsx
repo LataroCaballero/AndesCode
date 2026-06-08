@@ -1,6 +1,7 @@
 // src/sections/admin/AdminCertificateList.tsx
 // Lista de certificados paginada, buscable y filtrable para el panel de administración.
 // Muestra una tabla con columnas: Código, Nombre del estudiante, Fecha de emisión, Estado, Acciones.
+import { useRef } from 'react';
 import {
   FiSearch,
   FiPlus,
@@ -12,6 +13,7 @@ import {
   FiChevronLeft,
   FiChevronRight,
 } from 'react-icons/fi';
+import { QRCodeSVG } from 'qrcode.react';
 import type { Certificate } from '../../types/certificate';
 
 interface AdminCertificateListProps {
@@ -29,7 +31,7 @@ interface AdminCertificateListProps {
   onCreateNew: () => void;
   onEdit: (c: Certificate) => void;
   onToggleStatus?: (c: Certificate) => void;
-  onDownloadQR?: (c: Certificate) => void;
+  // onDownloadQR removido — la descarga de QR es self-contained en CertificateRowQRDownload (Plan 03)
 }
 
 /* ─── Helper: formatear fecha DD/MM/YYYY ─── */
@@ -56,6 +58,62 @@ function SkeletonRow() {
   );
 }
 
+/* ─── Helper: descarga de QR por fila (lazy-mount, off-screen) ─── */
+
+interface CertificateRowQRDownloadProps {
+  certificateCode: string;
+}
+
+function CertificateRowQRDownload({ certificateCode }: CertificateRowQRDownloadProps) {
+  const svgRef = useRef<SVGSVGElement>(null);
+
+  // window.location.origin es el dominio de producción dentro del panel admin autenticado.
+  // En desarrollo local, el QR apuntará a localhost — esto es esperado (RESEARCH Pitfall 6).
+  const verificationUrl = `${window.location.origin}/certificados/${certificateCode}`;
+
+  const handleDownload = () => {
+    if (!svgRef.current) return;
+    const serializer = new XMLSerializer();
+    const svgString = serializer.serializeToString(svgRef.current);
+    const blob = new Blob([svgString], { type: 'image/svg+xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `QR-${certificateCode}.svg`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <>
+      {/* QR renderizado off-screen para serialización — no visible en la UI */}
+      <span
+        style={{ position: 'absolute', left: '-9999px', top: '-9999px' }}
+        aria-hidden
+      >
+        <QRCodeSVG
+          ref={svgRef}
+          value={verificationUrl}
+          size={256}
+          level="H"
+          marginSize={4}
+        />
+      </span>
+
+      {/* Botón de descarga visible en la fila */}
+      <button
+        type="button"
+        onClick={handleDownload}
+        className="min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[var(--color-primary)] transition-colors"
+        title="Descargar QR"
+        aria-label={`Descargar QR del certificado ${certificateCode}`}
+      >
+        <FiDownload size={16} />
+      </button>
+    </>
+  );
+}
+
 export default function AdminCertificateList({
   items,
   loading,
@@ -71,7 +129,6 @@ export default function AdminCertificateList({
   onCreateNew,
   onEdit,
   onToggleStatus,
-  onDownloadQR,
 }: AdminCertificateListProps) {
   const hasFilter = search.trim() !== '' || statusFilter !== 'all';
 
@@ -251,16 +308,8 @@ export default function AdminCertificateList({
                           )}
                         </button>
 
-                        {/* Descargar QR */}
-                        <button
-                          type="button"
-                          onClick={() => onDownloadQR?.(cert)}
-                          className="min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[var(--color-primary)] transition-colors"
-                          title="Descargar QR"
-                          aria-label={`Descargar QR de ${cert.certificateCode}`}
-                        >
-                          <FiDownload size={16} />
-                        </button>
+                        {/* Descargar QR — self-contained, sin callback del orquestador */}
+                        <CertificateRowQRDownload certificateCode={cert.certificateCode} />
                       </div>
                     </td>
                   </tr>
