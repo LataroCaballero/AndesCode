@@ -14,7 +14,7 @@ The certificate verification system is built in four phases. Phase 1 establishes
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Infrastructure Foundation** - PocketBase on VPS, nginx reverse proxy, SSL, certificates collection schema, backups, and env config
-- [ ] **Phase 2: Auth + Public Verification** - Admin login with session persistence and the complete public certificate verification flow
+- [x] **Phase 2: Auth + Public Verification** - Admin login with session persistence and the complete public certificate verification flow (completed 2026-06-08)
 - [ ] **Phase 3: Admin CRUD** - Certificate list, create/edit forms, revoke/reactivate actions, and QR download from admin
 - [ ] **Phase 4: QR, PDF, and Visual Certificate** - QR on verification page, PDF download, and HTML/CSS certificate preview
 
@@ -104,6 +104,6 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
-| 2. Auth + Public Verification | 0/? | Not started | - |
+| 2. Auth + Public Verification | 2/2 | Complete   | 2026-06-08 |
 | 3. Admin CRUD | 0/? | Not started | - |
 | 4. QR, PDF, and Visual Certificate | 0/? | Not started | - |
