@@ -9,6 +9,8 @@ const routeTitles: Record<string, string> = {
   "/contacto": "Contacto",
   "/politica-de-privacidad": "Política de Privacidad",
   "/eliminacion-de-datos": "Eliminación de Datos",
+  "/admin/login": "Iniciar sesión · AndesCode Admin",
+  "/admin": "Panel de administración · AndesCode",
 };
 
 const DEFAULT_TITLE = "AndesCode";
