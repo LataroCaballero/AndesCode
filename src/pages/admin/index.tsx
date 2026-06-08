@@ -97,7 +97,7 @@ export default function AdminPage() {
         perPage,
         {
           filter: filterParts.join(' && ') || undefined,
-          sort: '-created',
+          sort: '-issueDate',
         }
       );
 
