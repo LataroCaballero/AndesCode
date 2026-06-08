@@ -106,7 +106,16 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The PDF downloads correctly in production (no CORS errors) because fonts are self-hosted, not loaded from Google Fonts CDN
   4. The verification page renders an HTML/CSS reproduction of the physical certificate that is visually coherent with the AndesCode brand identity
 
-**Plans**: TBD
+**Plans**: 2 plans (2 waves)
+
+**Wave 1**
+
+- [ ] 04-01-PLAN.md — Visual certificate + embedded QR (level H): copy logos, create CertificadoVisual, refactor CertificadoVerificacion FOUND state (VIS-01, QRPDF-01, QRPDF-02)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 04-02-PLAN.md — PDF download slice: package legitimacy gate + pinned installs, self-hosted Inter fonts, usePdfGenerator hook, wire Descargar PDF button (QRPDF-03, QRPDF-04, QRPDF-05)
+
 **UI hint**: yes
 
 ## Progress
@@ -118,5 +127,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
-| 3. Admin CRUD | 3/3 | Complete   | 2026-06-08 |
-| 4. QR, PDF, and Visual Certificate | 0/? | Not started | - |
+| 3. Admin CRUD | 3/3 | Complete    | 2026-06-08 |
+| 4. QR, PDF, and Visual Certificate | 0/2 | Planned     | - |
