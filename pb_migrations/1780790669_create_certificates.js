@@ -73,6 +73,10 @@ migrate((app) => {
 
 }, (app) => {
   // down: revert migration — drop the certificates collection
-  let collection = app.findCollectionByNameOrId("certificates");
-  app.delete(collection);
+  try {
+    let collection = app.findCollectionByNameOrId("certificates");
+    app.delete(collection);
+  } catch (_) {
+    // Collection already gone — nothing to roll back
+  }
 });

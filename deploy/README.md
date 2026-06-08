@@ -27,13 +27,13 @@ From the output, note:
 SSH into the VPS and run:
 
 ```bash
-# Create the pocketbase working directory (D-05)
-mkdir -p /root/pocketbase/pb_data
-mkdir -p /root/pocketbase/pb_migrations
+# Create the pocketbase working directory matching ecosystem.config.cjs paths
+mkdir -p /home/pocketbase/pb/pb_data
+mkdir -p /home/pocketbase/pb/pb_migrations
 
-# Download latest stable PocketBase binary (check https://github.com/pocketbase/pocketbase/releases for current version)
-cd /root/pocketbase
-curl -L https://github.com/pocketbase/pocketbase/releases/latest/download/pocketbase_<VERSION>_linux_amd64.zip -o pocketbase.zip
+# Download PocketBase binary — check current release at https://github.com/pocketbase/pocketbase/releases
+cd /home/pocketbase/pb
+curl -L https://github.com/pocketbase/pocketbase/releases/download/v0.36.6/pocketbase_0.36.6_linux_amd64.zip -o pocketbase.zip
 unzip pocketbase.zip
 rm pocketbase.zip
 chmod +x pocketbase
@@ -49,23 +49,22 @@ chmod +x pocketbase
 From your local machine (or CI), copy the repo files to the VPS:
 
 ```bash
-# Copy the PM2 ecosystem config (replace root before copying)
-sed 's/root/<actual-username>/g' deploy/ecosystem.config.cjs > /tmp/ecosystem.config.cjs
-scp /tmp/ecosystem.config.cjs root@andescode.com.ar:/root/pocketbase/ecosystem.config.cjs
+# Copy the PM2 ecosystem config
+scp deploy/ecosystem.config.cjs root@andescode.com.ar:/home/pocketbase/pb/ecosystem.config.cjs
 
 # Copy the migration file to the VPS migrations directory
 scp pb_migrations/1780790669_create_certificates.js \
-  root@andescode.com.ar:/root/pocketbase/pb_migrations/
+  root@andescode.com.ar:/home/pocketbase/pb/pb_migrations/
 ```
 
 Alternatively, clone or pull the git repo on the VPS and symlink:
 
 ```bash
 # On the VPS — if the repo is cloned to /root/repo
-ln -s /root/repo/pb_migrations /root/pocketbase/pb_migrations
+ln -s /root/repo/pb_migrations /home/pocketbase/pb/pb_migrations
 ```
 
-**Note on --migrationsDir (RESEARCH Pitfall 5):** PocketBase only scans `pb_migrations/` relative to its working directory by default. The `ecosystem.config.cjs` passes `--migrationsDir=/root/pocketbase/pb_migrations` explicitly to ensure the migration is found regardless of where PM2 starts the process.
+**Note on --migrationsDir (RESEARCH Pitfall 5):** PocketBase only scans `pb_migrations/` relative to its working directory by default. The `ecosystem.config.cjs` passes `--migrationsDir=/home/pocketbase/pb/pb_migrations` explicitly to ensure the migration is found regardless of where PM2 starts the process.
 
 ---
 
@@ -74,7 +73,7 @@ ln -s /root/repo/pb_migrations /root/pocketbase/pb_migrations
 On the VPS:
 
 ```bash
-cd /root/pocketbase
+cd /home/pocketbase/pb
 
 # Start PocketBase using the ecosystem config
 pm2 start ecosystem.config.cjs
@@ -122,8 +121,11 @@ location /api/ {
     proxy_pass http://127.0.0.1:8090;
 }
 
-# PocketBase Admin UI
+# PocketBase Admin UI — rate limited (5 req/min, burst 3) to protect superuser from brute-force
+# Add the limit_req_zone directive to the http {} block in /etc/nginx/nginx.conf first:
+#   limit_req_zone $binary_remote_addr zone=pb_admin:10m rate=5r/m;
 location /_/ {
+    limit_req zone=pb_admin burst=3 nodelay;
     proxy_set_header Connection '';
     proxy_http_version 1.1;
     proxy_read_timeout 360s;
@@ -218,7 +220,7 @@ curl --connect-timeout 5 http://andescode.com.ar:8090/api/health
 
 All 5 gates must pass before Phase 1 is considered complete.
 
-**Note — Gate 2 PocketBase v0.23+ behavior:** PocketBase v0.23+ returns `200 {"items":[],...}` (empty list) instead of `403` when `listRule` is an expression that doesn't match the current auth. Security is identical (no data exposed), but the HTTP status differs from older versions. If you see 200 with 0 items, verify via sqlite3 that `listRule = '@request.auth.id != ""'` — do NOT assume this is a bug.
+**Note — Gate 2 behavior in PocketBase v0.36:** In this version, an expression-based `listRule` that doesn't match the current auth returns `200 {"items":[],...}` (empty filtered list) rather than `403`. Security is identical — no DNI data is exposed (0 items). If you see 200 with 0 items, verify via the admin UI or python3 sqlite3 that `listRule = '@request.auth.id != ""'` is set. If Gate 2 returns 200 WITH data, that is a critical misconfiguration (`listRule = ""`) and must be corrected immediately.
 
 **Note — Gate 5:** `VITE_POCKETBASE_URL` is declared in `.env.production` and typed in `vite-env.d.ts`, but only appears in the compiled bundle when a component actually references `import.meta.env.VITE_POCKETBASE_URL`. Full browser verification happens in Phase 2 when the PocketBase SDK client is implemented.
 
