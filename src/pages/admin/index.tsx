@@ -1,7 +1,7 @@
 // src/pages/admin/index.tsx
 // Orquestador del panel de administración.
 // AdminGuard (aplicado en main.tsx) garantiza que solo usuarios autenticados lleguen aquí.
-// Contiene todo el estado de la lista (paginación, búsqueda, filtro) y lo pasa a los sub-componentes.
+// Contiene todo el estado de la lista (paginación, búsqueda, filtro) y el drawer (crear/editar).
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pb } from '../../services/pb';
@@ -9,6 +9,7 @@ import { usePocketBase } from '../../contexts/PocketBaseContext';
 import type { Certificate } from '../../types/certificate';
 import AdminTopBar from '../../sections/admin/AdminTopBar';
 import AdminCertificateList from '../../sections/admin/AdminCertificateList';
+import AdminCertificateDrawer from '../../sections/admin/AdminCertificateDrawer';
 
 /* ─── Constante de paginación ─── */
 const ITEMS_PER_PAGE = 20;
@@ -29,6 +30,12 @@ export default function AdminPage() {
   const [search, setSearch] = useState('');
   const [debouncedSearch, setDebouncedSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'revoked'>('all');
+
+  /* ─── Estado del drawer (Plan 02) ─── */
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerMode, setDrawerMode] = useState<'create' | 'edit'>('create');
+  const [drawerRecord, setDrawerRecord] = useState<Certificate | null>(null);
+  const [generatedCode, setGeneratedCode] = useState('');
 
   /* ─── Logout ─── */
   const handleLogout = () => {
@@ -97,6 +104,63 @@ export default function AdminPage() {
     fetchCertificates(page, ITEMS_PER_PAGE, debouncedSearch, statusFilter);
   }, [page, debouncedSearch, statusFilter, refreshKey, fetchCertificates]);
 
+  /* ─── Scroll lock cuando el drawer está abierto (Pitfall 4) ─── */
+  useEffect(() => {
+    if (drawerOpen) {
+      document.body.style.overflow = 'hidden';
+      return () => { document.body.style.overflow = ''; };
+    }
+  }, [drawerOpen]);
+
+  /* ─── Auto-generación del código de certificado (D-05) ─── */
+  const generateNextCertificateCode = async (): Promise<string> => {
+    const year = new Date().getFullYear();
+    const yearStart = `${year}-01-01 00:00:00`;
+    const yearEnd = `${year}-12-31 23:59:59`;
+
+    const result = await pb.collection('certificates').getList(1, 1, {
+      filter: `created >= "${yearStart}" && created <= "${yearEnd}"`,
+      sort: '-certificateCode',
+      fields: 'certificateCode',
+    });
+
+    // totalItems es la cantidad de certificados del año actual
+    // El UNIQUE index en PocketBase es el resguardo contra colisiones (Pitfall 3)
+    const next = String(result.totalItems + 1).padStart(3, '0');
+    return `AC-${year}-${next}`;
+  };
+
+  /* ─── Abrir drawer ─── */
+  const openDrawer = async (mode: 'create' | 'edit', cert?: Certificate) => {
+    setDrawerMode(mode);
+    setDrawerRecord(cert ?? null);
+
+    if (mode === 'create') {
+      try {
+        const code = await generateNextCertificateCode();
+        setGeneratedCode(code);
+      } catch {
+        // Si falla la generación, el campo quedará vacío y el admin puede escribirlo
+        setGeneratedCode('');
+      }
+    } else {
+      setGeneratedCode('');
+    }
+
+    setDrawerOpen(true);
+  };
+
+  /* ─── Cerrar drawer ─── */
+  const closeDrawer = () => {
+    setDrawerOpen(false);
+  };
+
+  /* ─── Callback tras guardar: cerrar drawer + refrescar lista ─── */
+  const onSaved = () => {
+    closeDrawer();
+    setRefreshKey(k => k + 1); // Dispara re-fetch (Pitfall 5)
+  };
+
   /* ─── Handlers de controles ─── */
   const handleSearchChange = (v: string) => {
     setSearch(v);
@@ -112,15 +176,6 @@ export default function AdminPage() {
 
   const handleRetry = () => {
     setRefreshKey(k => k + 1);
-  };
-
-  /* ─── Placeholder handlers para Plans 02/03 ─── */
-  const handleCreateNew = () => {
-    // Plan 02 reemplazará este placeholder con la apertura del drawer
-  };
-
-  const handleEdit = (_cert: Certificate) => {
-    // Plan 02 reemplazará este placeholder con la apertura del drawer en modo edit
   };
 
   return (
@@ -142,11 +197,21 @@ export default function AdminPage() {
           onStatusFilterChange={handleStatusFilterChange}
           onPageChange={handlePageChange}
           onRetry={handleRetry}
-          onCreateNew={handleCreateNew}
-          onEdit={handleEdit}
-          // onToggleStatus y onDownloadQR se agregarán en Plans 02/03
+          onCreateNew={() => openDrawer('create')}
+          onEdit={(cert) => openDrawer('edit', cert)}
+          // onToggleStatus y onDownloadQR se agregarán en Plan 03
         />
       </main>
+
+      {/* Drawer de crear/editar — renderiza sobre el contenido principal */}
+      <AdminCertificateDrawer
+        open={drawerOpen}
+        mode={drawerMode}
+        record={drawerRecord}
+        initialCode={generatedCode}
+        onClose={closeDrawer}
+        onSaved={onSaved}
+      />
     </div>
   );
 }
