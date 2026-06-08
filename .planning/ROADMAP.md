@@ -13,7 +13,7 @@ The certificate verification system is built in four phases. Phase 1 establishes
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Infrastructure Foundation** - PocketBase on VPS, nginx reverse proxy, SSL, certificates collection schema, backups, and env config
+- [x] **Phase 1: Infrastructure Foundation** - PocketBase on VPS, nginx reverse proxy, SSL, certificates collection schema, backups, and env config
 - [ ] **Phase 2: Auth + Public Verification** - Admin login with session persistence and the complete public certificate verification flow
 - [ ] **Phase 3: Admin CRUD** - Certificate list, create/edit forms, revoke/reactivate actions, and QR download from admin
 - [ ] **Phase 4: QR, PDF, and Visual Certificate** - QR on verification page, PDF download, and HTML/CSS certificate preview
@@ -40,11 +40,11 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 01-02-PLAN.md — VPS deploy: install PocketBase under PM2, nginx reverse proxy, firewall, superuser
+- [x] 01-02-PLAN.md — VPS deploy: install PocketBase under PM2, nginx reverse proxy, firewall, superuser
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 01-03-PLAN.md — Native daily backup (7-day retention) + full phase-gate verification
+- [x] 01-03-PLAN.md — Native daily backup (7-day retention) + full phase-gate verification
 
 ### Phase 2: Auth + Public Verification
 
