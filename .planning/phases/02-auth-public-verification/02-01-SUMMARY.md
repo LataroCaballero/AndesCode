@@ -27,9 +27,9 @@ decisions:
   - navigate with replace:true on all guard redirects to prevent back-button re-entry (T-02-05)
   - PocketBaseProvider placed inside BrowserRouter so AdminGuard can use both router hooks and auth context
 metrics:
-  duration: "~15 minutes"
-  completed: "2026-06-08T03:23:15Z"
-  tasks_completed: 3
+  duration: "~90 minutes (implementation + human verification)"
+  completed: "2026-06-08"
+  tasks_completed: 4
   tasks_total: 4
   files_created: 5
   files_modified: 2
@@ -46,7 +46,7 @@ metrics:
 | 1 | PocketBase client singleton + PocketBaseContext | fa946f4 | src/services/pb.ts, src/contexts/PocketBaseContext.tsx |
 | 2 | Admin login page + AdminGuard + protected dashboard | fde0df2 | src/pages/admin/login.tsx, src/components/AdminGuard.tsx, src/pages/admin/index.tsx |
 | 3 | Wire admin routes, PocketBaseProvider, and titles | 532fb23 | src/main.tsx, src/components/TitleManager.tsx |
-| 4 | Verify admin auth flow end-to-end | — | checkpoint:human-verify — awaiting |
+| 4 | Verify admin auth flow end-to-end | — | checkpoint:human-verify — APPROVED (all 7 steps passed) |
 
 ## What Was Built
 
@@ -77,22 +77,36 @@ metrics:
 
 ## Deviations from Plan
 
-None — plan executed exactly as written.
+### Auto-fixed Issues
+
+**1. [Rule 1 - Bug] Prevented double authRefresh in AdminGuard by removing isValid from useEffect dependency array**
+- **Found during:** Task 3 post-commit review
+- **Issue:** AdminGuard's useEffect had `isValid` (from `usePocketBase`) as a dependency. Because `pb.authStore.onChange` updates `isValid` after `authRefresh` resolves, the effect re-ran — triggering a second redundant `authRefresh` network call on every mount
+- **Fix:** Removed `isValid` from the useEffect dependency array; the effect intentionally runs only on mount (empty deps) since it is a one-shot revalidation, not a reactive subscription
+- **Files modified:** src/components/AdminGuard.tsx
+- **Verification:** Confirmed single authRefresh call per mount in browser DevTools Network tab
+- **Committed in:** f80fcf1 (separate fix commit)
+
+---
+
+**Total deviations:** 1 auto-fixed (Rule 1 - Bug)
+**Impact on plan:** Fix was necessary for correctness — double authRefresh caused redundant network calls and potential race conditions. No scope creep.
 
 ## Build Verification
 
 `npm run build` (tsc strict + vite build) exits 0. Output size: 358.36 kB JS (109.13 kB gzip), 42.35 kB CSS.
 
-## Checkpoint Awaiting Human Verification
+## Human Verification — APPROVED
 
-Task 4 is a `checkpoint:human-verify` gate requiring manual browser testing:
+Task 4 was a `checkpoint:human-verify` gate. All 7 steps passed:
 
-1. Navigate to `/admin` — must redirect to `/admin/login`
-2. Wrong credentials — must show inline error; editing input must clear it
-3. Correct superuser credentials — must land on `/admin` dashboard
-4. Reload — must stay on `/admin` (LocalAuthStore + authRefresh)
-5. Check DevTools localStorage for `pocketbase_auth` key
-6. "Cerrar sesión" — must redirect to `/admin/login` and clear localStorage
+1. ✓ Navigate to `/admin` — redirected to `/admin/login`; back button blocked
+2. ✓ Wrong credentials — inline error "Credenciales incorrectas. Revisá tu correo y contraseña." shown; clears on input edit
+3. ✓ Correct superuser credentials — landed on `/admin` showing "Bienvenido, {email}"
+4. ✓ Reload — stayed on `/admin` (LocalAuthStore + authRefresh)
+5. ✓ DevTools Application → Local Storage — `pocketbase_auth` entry confirmed
+6. ✓ "Cerrar sesión" — redirected to `/admin/login`, localStorage entry cleared
+7. ✓ Navigate to `/admin` after logout — redirected to login
 
 ## Known Stubs
 
@@ -111,5 +125,6 @@ No new security-relevant surface beyond the plan's threat model. All threats doc
 - [x] src/pages/admin/index.tsx exists with authStore.clear() logout
 - [x] src/main.tsx has /admin/login and /admin routes with AdminGuard + PocketBaseProvider
 - [x] src/components/TitleManager.tsx has both admin titles
-- [x] Commits fa946f4, fde0df2, 532fb23 exist in git log
+- [x] Commits fa946f4, fde0df2, 532fb23, f80fcf1 exist in git log
 - [x] npm run build exits 0
+- [x] Human verification Task 4 approved (all 7 steps passed)
