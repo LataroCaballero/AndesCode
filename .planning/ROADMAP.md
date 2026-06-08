@@ -77,7 +77,19 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Revoking a certificate requires a confirmation step; after revocation, the public verification page shows REVOKED status; the admin can reactivate the certificate to restore VALID status
   5. The admin can download the QR code for any certificate as an SVG file from the admin panel
 
-**Plans**: TBD
+**Plans**: 3 plans
+
+**Wave 1**
+
+- [ ] 03-01-PLAN.md — Admin shell + read-only list: install qrcode.react, TagsInput, AdminTopBar, paginated/searchable/filterable AdminCertificateList, AdminPage orchestrator
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
+- [ ] 03-02-PLAN.md — Create/edit slice: AdminCertificateDrawer + AdminCertificateForm, auto-generated AC-YYYY-NNN code, client validation, create/update wiring
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
+- [ ] 03-03-PLAN.md — Revoke/reactivate + QR slice: ConfirmModal, per-row status toggle, per-row QR SVG download, human verification checkpoint
 **UI hint**: yes
 
 ### Phase 4: QR, PDF, and Visual Certificate
@@ -105,5 +117,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
-| 3. Admin CRUD | 0/? | Not started | - |
+| 3. Admin CRUD | 0/3 | Planned | - |
 | 4. QR, PDF, and Visual Certificate | 0/? | Not started | - |
