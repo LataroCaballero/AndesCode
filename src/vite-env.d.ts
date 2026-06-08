@@ -10,3 +10,12 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+// QRPDF-05: Declarar módulo ?url para archivos TTF para que TypeScript en modo strict
+// acepte `import fontUrl from '../assets/fonts/Inter-Regular.ttf?url'`.
+// Los tipos de vite/client cubren .png/.svg pero NO .ttf?url — debe declararse explícitamente.
+// CRÍTICO: Sin sentencias import — este es un archivo de declaración solamente.
+declare module '*.ttf?url' {
+  const url: string;
+  export default url;
+}
