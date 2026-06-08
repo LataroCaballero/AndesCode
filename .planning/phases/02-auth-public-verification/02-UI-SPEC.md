@@ -72,7 +72,7 @@ Source: existing codebase pattern (`pt-36`, `py-20`, `px-4` in Hero.tsx); 8-poin
 | Body | 14px (text-sm) | 400 (regular) | 1.5 | Inter | Certificate field values, form helper text, footer copy |
 | Label | 16px (text-base) | 400 (regular) | 1.5 | Inter | Form labels, field labels on verification page |
 | Heading | 20px (text-xl) | 600 (semibold) | 1.3 | Inter | Section headings, card titles, login form title |
-| Display | 28px (text-3xl on mobile → text-4xl on desktop) | 700 (bold) | 1.1 | Inter | Student name on verification page, page H1 |
+| Display | 28px (text-3xl on mobile → text-4xl on desktop) | 600 (semibold) | 1.1 | Inter | Student name on verification page, page H1 |
 
 Mono/code usage:
 - Certificate code (`AC-YYYY-NNN`): Fira Code Regular (fira-code-regular), 14px — same pattern as terminal in Hero.tsx
@@ -198,24 +198,24 @@ Components to CREATE in this phase:
 - Both badges span full width on mobile, max-width 480px centered on desktop
 
 **Student name (Display typography):**
-- Rendered as `<h1>`: Inter Bold, 28px mobile / 36px desktop, `text-[#191919]`
+- Rendered as `<h1>`: Inter Semibold, 28px mobile / 36px desktop, `text-[#191919]`
 - All caps: `uppercase` (matches physical certificate visual)
 - Position: immediately below the status badge
 
 **Certificate metadata grid:**
 - Displayed as a 2-column grid on mobile, 3-column on tablet+
-- Each cell: label (Inter 12px uppercase tracking-widest gray-500) + value (Inter 14px `text-[#191919]`)
+- Each cell: label (Inter 14px uppercase tracking-widest gray-500) + value (Inter 14px `text-[#191919]`)
 - Fields: ID del certificado (Fira Code Regular), Fecha de emisión, Período de la práctica (start–end), Universidad, Área de desempeño, Calificación, Supervisor
 - Certificate ID cell: Fira Code Regular 14px, `text-[var(--color-primary)]`
 
 **Description block:**
-- Label: "Descripción de la práctica" (Inter 12px uppercase tracking-widest gray-500)
+- Label: "Descripción de la práctica" (Inter 14px uppercase tracking-widest gray-500)
 - Body: Inter Regular 14px, `text-gray-700`, max-width 640px
 
 **Technology tags (VERIF-07):**
-- Each tag: `bg-[#4342FF]/10 text-[#4342FF] text-xs fira-code-regular px-3 py-1 rounded-full`
+- Each tag: `bg-[#4342FF]/10 text-[#4342FF] text-sm fira-code-regular px-3 py-1 rounded-full`
 - Layout: flex-wrap gap-2
-- Label above: "Tecnologías utilizadas" (Inter 12px uppercase tracking-widest gray-500)
+- Label above: "Tecnologías utilizadas" (Inter 14px uppercase tracking-widest gray-500)
 
 **Copy-URL button (VERIF-08):**
 - Label (default): "Copiar enlace de verificación"
