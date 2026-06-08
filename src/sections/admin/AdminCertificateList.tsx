@@ -101,15 +101,19 @@ function CertificateRowQRDownload({ certificateCode }: CertificateRowQRDownloadP
       </span>
 
       {/* Botón de descarga visible en la fila */}
-      <button
-        type="button"
-        onClick={handleDownload}
-        className="min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[var(--color-primary)] transition-colors"
-        title="Descargar QR"
-        aria-label={`Descargar QR del certificado ${certificateCode}`}
-      >
-        <FiDownload size={16} />
-      </button>
+      <div className="relative group">
+        <button
+          type="button"
+          onClick={handleDownload}
+          className="min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[var(--color-primary)] transition-colors"
+          aria-label={`Descargar QR del certificado ${certificateCode}`}
+        >
+          <FiDownload size={16} />
+        </button>
+        <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs text-white bg-gray-800 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+          Descargar QR
+        </span>
+      </div>
     </>
   );
 }
@@ -283,30 +287,38 @@ export default function AdminCertificateList({
                     <td className="px-4 py-3 w-[120px]">
                       <div className="flex items-center gap-1">
                         {/* Editar */}
-                        <button
-                          type="button"
-                          onClick={() => onEdit(cert)}
-                          className="min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[var(--color-primary)] transition-colors"
-                          title="Editar certificado"
-                          aria-label={`Editar certificado ${cert.certificateCode}`}
-                        >
-                          <FiEdit2 size={16} />
-                        </button>
+                        <div className="relative group">
+                          <button
+                            type="button"
+                            onClick={() => onEdit(cert)}
+                            className="min-h-[44px] min-w-[44px] flex items-center justify-center hover:text-[var(--color-primary)] transition-colors"
+                            aria-label={`Editar certificado ${cert.certificateCode}`}
+                          >
+                            <FiEdit2 size={16} />
+                          </button>
+                          <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs text-white bg-gray-800 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                            Editar
+                          </span>
+                        </div>
 
                         {/* Revocar / Reactivar */}
-                        <button
-                          type="button"
-                          onClick={() => onToggleStatus?.(cert)}
-                          className="min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors"
-                          title={cert.status === 'active' ? 'Revocar certificado' : 'Reactivar certificado'}
-                          aria-label={cert.status === 'active' ? `Revocar certificado ${cert.certificateCode}` : `Reactivar certificado ${cert.certificateCode}`}
-                        >
-                          {cert.status === 'active' ? (
-                            <FiToggleRight size={18} className="text-green-600" />
-                          ) : (
-                            <FiToggleLeft size={18} className="text-gray-400" />
-                          )}
-                        </button>
+                        <div className="relative group">
+                          <button
+                            type="button"
+                            onClick={() => onToggleStatus?.(cert)}
+                            className="min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors"
+                            aria-label={cert.status === 'active' ? `Revocar certificado ${cert.certificateCode}` : `Reactivar certificado ${cert.certificateCode}`}
+                          >
+                            {cert.status === 'active' ? (
+                              <FiToggleRight size={18} className="text-green-600" />
+                            ) : (
+                              <FiToggleLeft size={18} className="text-gray-400" />
+                            )}
+                          </button>
+                          <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-1 px-2 py-1 rounded text-xs text-white bg-gray-800 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                            {cert.status === 'active' ? 'Revocar' : 'Reactivar'}
+                          </span>
+                        </div>
 
                         {/* Descargar QR — self-contained, sin callback del orquestador */}
                         <CertificateRowQRDownload certificateCode={cert.certificateCode} />
