@@ -101,7 +101,7 @@ export default function ConfirmModal({
         {/* Error inline */}
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm mb-4">
-            Error al actualizar el estado. Intentá de nuevo.
+            {error}
           </div>
         )}
 
