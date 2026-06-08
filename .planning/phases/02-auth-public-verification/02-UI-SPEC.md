@@ -72,7 +72,7 @@ Source: existing codebase pattern (`pt-36`, `py-20`, `px-4` in Hero.tsx); 8-poin
 | Body | 14px (text-sm) | 400 (regular) | 1.5 | Inter | Certificate field values, form helper text, footer copy |
 | Label | 16px (text-base) | 400 (regular) | 1.5 | Inter | Form labels, field labels on verification page |
 | Heading | 20px (text-xl) | 600 (semibold) | 1.3 | Inter | Section headings, card titles, login form title |
-| Display | 28px (text-3xl on mobile → text-4xl on desktop) | 600 (semibold) | 1.1 | Inter | Student name on verification page, page H1 |
+| Display | 32px (text-3xl) | 600 (semibold) | 1.1 | Inter | Student name on verification page, page H1 |
 
 Mono/code usage:
 - Certificate code (`AC-YYYY-NNN`): Fira Code Regular (fira-code-regular), 14px — same pattern as terminal in Hero.tsx
@@ -91,7 +91,7 @@ Source: existing typography pattern from `src/sections/Hero.tsx` and `src/style.
 | Secondary (30%) | `#F9FAFB` (gray-50) / `#191919` surfaces | Grid background (`.grid-bg`), metadata grid cells on verification page, admin container background |
 | Accent (10%) | `#4342FF` (`var(--color-primary)`) | See reserved list below |
 | Valid status | `#16A34A` (green-600) | VALID status badge background and text only |
-| Revoked/Destructive | `#FF6829` (`var(--color-warning)`) | REVOKED status badge background and text only |
+| Revoked/Destructive | `#b91c1c` (red-700 / `text-red-700`) | REVOKED status badge background and text only |
 | Not Found | `#6B7280` (gray-500) | "Certificado no encontrado" state illustration/icon |
 
 **Accent (`#4342FF`) reserved for:**
@@ -198,7 +198,7 @@ Components to CREATE in this phase:
 - Both badges span full width on mobile, max-width 480px centered on desktop
 
 **Student name (Display typography):**
-- Rendered as `<h1>`: Inter Semibold, 28px mobile / 36px desktop, `text-[#191919]`
+- Rendered as `<h1>`: Inter Semibold, 32px (text-3xl), `text-[#191919]`
 - All caps: `uppercase` (matches physical certificate visual)
 - Position: immediately below the status badge
 
