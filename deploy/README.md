@@ -232,7 +232,8 @@ All 5 gates must pass before Phase 1 is considered complete.
 | 2 | `GET /api/collections/certificates/records` (no auth) | 200 empty list (PB v0.23+ — listRule verified in DB as `@request.auth.id != ""`) | ✓ PASS (security intact) |
 | 3 | `GET /api/collections/certificates/records/no35riefe5q29o5` (no auth) | 200 + certificate JSON | ✓ PASS |
 | 4 | `curl http://andescode.com.ar:8090/api/health` (external) | timeout (exit 28) | ✓ PASS |
-| 5 | `VITE_POCKETBASE_URL` in browser | env files set, type declared, browser verification pending Phase 2 | ✓ PARTIAL |
+| 5 | `VITE_POCKETBASE_URL` in browser | `.env`=`https://andescode.com.ar`, `.env.production`=`https://andescode.com.ar`, TypeScript typed — browser verify in Phase 2 | ✓ PARTIAL |
+| Backup | Daily cron + 7-day retention | `cron: 0 2 * * *`, `maxKeep: 7`, manual backup at `/home/pocketbase/pb/pb_data/backups/` (700 dir, 600 files) | ✓ PASS |
 
 ---
 
