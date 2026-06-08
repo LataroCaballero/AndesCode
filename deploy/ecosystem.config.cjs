@@ -1,28 +1,23 @@
 // deploy/ecosystem.config.cjs
 // Source of truth for the PM2 config (D-04, D-05, D-06, D-07).
-// VPS username resolved via nginx -T audit (D-02): root
-// PocketBase working directory: /root/pocketbase/
-// (.cjs extension required: this project uses "type": "module" in package.json;
-//  PM2 accepts .cjs files identically to .js files)
+// VPS audit (2026-06-07): PocketBase binary at /home/pocketbase/pb/pocketbase v0.36.6
+// Data dir: /home/pocketbase/pb/pb_data  |  Migrations: /home/pocketbase/pb/pb_migrations
+// (.cjs extension required: project uses "type": "module" in package.json)
 
 module.exports = {
   apps: [
     {
       name: "pocketbase",
 
-      // D-05: PocketBase binary lives in root's home directory
-      script: "/root/pocketbase/pocketbase",
+      // Existing binary — installed 2026-03-10, managed by this config from 2026-06-07
+      script: "/home/pocketbase/pb/pocketbase",
 
       // REQUIRED: PocketBase is a compiled binary, not a Node.js script.
-      // Without interpreter: "none", PM2 would try to run it through Node and fail.
       interpreter: "none",
 
-      // D-06: Bind to localhost only — never expose port 8090 publicly.
-      // --dir:           PocketBase data directory (SQLite DB + uploads)
-      // --migrationsDir: Path to the repo's pb_migrations/ directory (RESEARCH Pitfall 5).
-      //                  PocketBase only scans pb_migrations/ relative to its cwd by default;
-      //                  the explicit flag ensures the versioned migration is always found.
-      args: "serve --http=127.0.0.1:8090 --dir=/root/pocketbase/pb_data --migrationsDir=/root/pocketbase/pb_migrations"
+      // D-06: Bind to localhost only — nginx proxies /api/ and /_/ externally.
+      // --origins omitted (default = allow all) — previous --origins=localhost:3005 removed.
+      args: "serve --http=127.0.0.1:8090 --dir=/home/pocketbase/pb/pb_data --migrationsDir=/home/pocketbase/pb/pb_migrations"
     }
   ]
 };
