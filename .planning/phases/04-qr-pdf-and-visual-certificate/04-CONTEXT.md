@@ -34,7 +34,7 @@ El layout de la página queda: `[Status badge + botones de acción (Descargar PD
 - **D-08:** El QR visible en la página se renderiza con **`qrcode.react`** (ya instalado). Aparece embebido dentro del certificado visual HTML/CSS, en la posición correspondiente al diseño de referencia. Error correction level H (30% redundancia).
 
 ### Open Graph Metadata
-- **D-09:** **Diferido a v2.** Client-side OG tags en una SPA no son leídos por la mayoría de crawlers (Twitter, LinkedIn). Ya está previsto en v2 SHARE-02 que requiere SSR/prerender. No implementar en v1.
+- **D-09** `[informational]`: **Diferido a v2.** Client-side OG tags en una SPA no son leídos por la mayoría de crawlers (Twitter, LinkedIn). Ya está previsto en v2 SHARE-02 que requiere SSR/prerender. No implementar en v1.
 
 ### Claude's Discretion
 - Orientación del PDF (landscape probablemente — ver `ref/assets/certificado.png`)
