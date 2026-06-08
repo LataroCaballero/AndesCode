@@ -299,14 +299,14 @@ The `status` field is NOT in the form. Status changes are made exclusively via t
 **All form inputs (text, date, number):**
 - Container: `flex flex-col gap-2`
 - Label: `text-sm font-medium text-[#191919]`
-- Input: `border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline focus:outline-2 focus:outline-[var(--color-primary)] transition min-h-[44px] w-full`
+- Input: `border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline focus:outline-2 focus:outline-[var(--color-primary)] transition min-h-[44px] w-full`
 - Error state (validation failed on submit): `border-red-400` + red helper text below input: `text-red-600 text-xs mt-1`
 
-**Required field indicator:** Red asterisk `*` after label text for required fields — `text-red-500 ml-0.5`
+**Required field indicator:** Red asterisk `*` after label text for required fields — `text-red-500 ml-1`
 
 **TagsInput component:**
 - Wrapper: `border border-gray-300 rounded-lg px-3 py-2 flex flex-wrap gap-2 focus-within:outline focus-within:outline-2 focus-within:outline-[var(--color-primary)] min-h-[44px]`
-- Tag chip: `bg-[#4342FF]/10 text-[#4342FF] text-sm fira-code-regular px-2 py-0.5 rounded-full flex items-center gap-1`
+- Tag chip: `bg-[#4342FF]/10 text-[#4342FF] text-sm fira-code-regular px-2 py-1 rounded-full flex items-center gap-1`
 - Remove button on chip: `×` character, `text-[#4342FF] hover:text-[#4342FF]/70`; `aria-label="Eliminar {tag}"`
 - Text input inside: `flex-1 min-w-[120px] outline-none text-sm bg-transparent`
 - Enter or comma key: adds current input as a tag (trim whitespace; skip duplicates; clear input)
@@ -314,7 +314,7 @@ The `status` field is NOT in the form. Status changes are made exclusively via t
 
 **Drawer footer:**
 - `border-t border-gray-200 px-6 py-4 flex justify-end gap-3`
-- Cancel button: "Cancelar" — `btn-secondary min-h-[44px] px-6 text-sm rounded-lg` — closes drawer without saving
+- Cancel button: "Cerrar sin guardar" — `btn-secondary min-h-[44px] px-6 text-sm rounded-lg` — closes drawer without saving
 - Save button: "Guardar certificado" — `btn-primary min-h-[44px] px-6 text-sm rounded-lg` — triggers client-side validation then PocketBase create/update
 - Loading state (saving): Save button disabled + spinner; label: "Guardando…"; opacity 0.7
 
@@ -340,21 +340,21 @@ Used for both revoke (D-07) and reactivate (D-10) actions.
 - Body: "Vas a revocar el certificado **{certificateCode}** de **{studentName}**. Esta acción se puede revertir." — Inter Regular 14px `text-gray-600`
 - Emphasis (`**...**`): `font-semibold text-[#191919]`
 - Button row (`justify-end gap-3`):
-  - "Cancelar" — `btn-secondary min-h-[44px] px-5 text-sm rounded-lg`
+  - "No revocar" — `btn-secondary min-h-[44px] px-5 text-sm rounded-lg`
   - "Revocar" — `min-h-[44px] px-5 text-sm rounded-lg bg-red-600 text-white border border-red-600 hover:bg-red-700`
 
 **Reactivate modal content:**
 - Heading: "¿Reactivar este certificado?" — same Inter Semibold 20px
 - Body: "Vas a reactivar el certificado **{certificateCode}** de **{studentName}**. Va a volver a aparecer como válido." — Inter Regular 14px `text-gray-600`
 - Button row:
-  - "Cancelar" — `btn-secondary min-h-[44px] px-5 text-sm rounded-lg`
+  - "No reactivar" — `btn-secondary min-h-[44px] px-5 text-sm rounded-lg`
   - "Reactivar" — `min-h-[44px] px-5 text-sm rounded-lg bg-green-600 text-white border border-green-600 hover:bg-green-700`
 
 **Both modals:**
 - Loading state (after confirm click): confirm button disabled + spinner; label changes to "Revocando…" or "Reactivando…"
 - Success: modal closes, list re-fetches (refreshKey increment)
 - Error: inline alert inside modal above button row: "Error al actualizar el estado. Intentá de nuevo." — same `bg-red-50` pattern
-- Pressing Escape key closes modal (same as clicking Cancelar)
+- Pressing Escape key closes modal (same as clicking the cancel button)
 
 ---
 
@@ -386,7 +386,7 @@ Triggered by `FiDownload` button in each table row action column.
 | Drawer title — edit mode | "Editar certificado" |
 | Drawer save button | "Guardar certificado" |
 | Drawer save loading | "Guardando…" |
-| Drawer cancel button | "Cancelar" |
+| Drawer cancel button | "Cerrar sin guardar" |
 | Table column — code | "Código" |
 | Table column — name | "Nombre del estudiante" |
 | Table column — issue date | "Fecha de emisión" |
@@ -416,7 +416,8 @@ Triggered by `FiDownload` button in each table row action column.
 | Reactivate modal body | "Vas a reactivar el certificado {certificateCode} de {studentName}. Va a volver a aparecer como válido." |
 | Reactivate confirm button | "Reactivar" |
 | Reactivate loading button | "Reactivando…" |
-| Modal cancel button | "Cancelar" |
+| Revoke modal cancel button | "No revocar" |
+| Reactivate modal cancel button | "No reactivar" |
 | Modal error | "Error al actualizar el estado. Intentá de nuevo." |
 | Form required field indicator | Asterisk `*` in label |
 | Form: studentName label | "Nombre completo del estudiante" |
