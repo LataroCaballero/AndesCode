@@ -218,6 +218,22 @@ curl --connect-timeout 5 http://andescode.com.ar:8090/api/health
 
 All 5 gates must pass before Phase 1 is considered complete.
 
+**Note — Gate 2 PocketBase v0.23+ behavior:** PocketBase v0.23+ returns `200 {"items":[],...}` (empty list) instead of `403` when `listRule` is an expression that doesn't match the current auth. Security is identical (no data exposed), but the HTTP status differs from older versions. If you see 200 with 0 items, verify via sqlite3 that `listRule = '@request.auth.id != ""'` — do NOT assume this is a bug.
+
+**Note — Gate 5:** `VITE_POCKETBASE_URL` is declared in `.env.production` and typed in `vite-env.d.ts`, but only appears in the compiled bundle when a component actually references `import.meta.env.VITE_POCKETBASE_URL`. Full browser verification happens in Phase 2 when the PocketBase SDK client is implemented.
+
+---
+
+## Phase 1 Gate Results (2026-06-07)
+
+| Gate | Check | Result | Status |
+|------|-------|--------|--------|
+| 1 | `GET /api/collections/certificates/records/nonexistent` | 404 | ✓ PASS |
+| 2 | `GET /api/collections/certificates/records` (no auth) | 200 empty list (PB v0.23+ — listRule verified in DB as `@request.auth.id != ""`) | ✓ PASS (security intact) |
+| 3 | `GET /api/collections/certificates/records/no35riefe5q29o5` (no auth) | 200 + certificate JSON | ✓ PASS |
+| 4 | `curl http://andescode.com.ar:8090/api/health` (external) | timeout (exit 28) | ✓ PASS |
+| 5 | `VITE_POCKETBASE_URL` in browser | env files set, type declared, browser verification pending Phase 2 | ✓ PARTIAL |
+
 ---
 
 ## Troubleshooting
