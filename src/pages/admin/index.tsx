@@ -98,6 +98,7 @@ export default function AdminPage() {
         {
           filter: filterParts.join(' && ') || undefined,
           sort: '-issueDate',
+          '$autoCancel': false,
         }
       );
 
