@@ -4,39 +4,39 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 3 UI-SPEC approved
-last_updated: "2026-06-08T12:09:00.812Z"
-last_activity: 2026-06-08 -- Phase 03 execution started
+last_updated: "2026-06-08T15:39:13.237Z"
+last_activity: 2026-06-08
 progress:
   total_phases: 4
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 8
-  completed_plans: 5
-  percent: 50
+  completed_plans: 8
+  percent: 75
 ---
 
 # Project State
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-06-06)
+See: .planning/PROJECT.md (updated 2026-06-08)
 
 **Core value:** Cualquier persona puede verificar la autenticidad de un certificado AndesCode en segundos, sin crear cuenta, sin fricciones.
-**Current focus:** Phase 03 — admin-crud
+**Current focus:** Phase 04 — qr, pdf, and visual certificate
 
 ## Current Position
 
-Phase: 03 (admin-crud) — EXECUTING
-Plan: 1 of 3
-Status: Executing Phase 03
-Last activity: 2026-06-08 -- Phase 03 execution started
+Phase: 4 (qr-pdf-and-visual-certificate)
+Plan: Not started
+Status: Ready to plan
+Last activity: 2026-06-08 — Phase 03 complete, 9/9 UAT passed
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███████░░░] 75% (3/4 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
 
-- Total plans completed: 2
+- Total plans completed: 5
 - Average duration: -
 - Total execution time: 0 hours
 
@@ -45,6 +45,7 @@ Progress: [░░░░░░░░░░] 0%
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 02 | 2 | - | - |
+| 03 | 3 | - | - |
 
 **Recent Trend:**
 
@@ -60,9 +61,10 @@ Progress: [░░░░░░░░░░] 0%
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- Init: PocketBase self-hosted on VPS with nginx same-domain reverse proxy (no CORS)
-- Init: PDF generated client-side with @react-pdf/renderer using self-hosted fonts
-- Init: QR generated client-side with qrcode.react; no backend involvement
+- Phase 03: `sort: '-issueDate'` — PocketBase server no indexa el campo `created` para sort
+- Phase 03: `$autoCancel: false` en getList — React 19 Strict Mode cancela la primera llamada del SDK
+- Phase 03: QR SVG descargado vía XMLSerializer + Blob (client-side, sin servidor)
+- Phase 03: status=active requerido en payload de create (campo required en PocketBase)
 
 ### Pending Todos
 
@@ -83,6 +85,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-06-08T11:48:33.998Z
-Stopped at: Phase 3 UI-SPEC approved
-Resume file: .planning/phases/03-admin-crud/03-01-PLAN.md
+Last session: 2026-06-08
+Stopped at: Phase 03 complete, ready to plan Phase 04
+Resume file: None

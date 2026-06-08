@@ -18,16 +18,16 @@ Cualquier persona debe poder verificar la autenticidad de un certificado AndesCo
 - ✓ Portfolio de proyectos en /trabajos — existente
 - ✓ Diseño visual responsivo con Tailwind CSS v4 y design tokens — existente
 - ✓ Modo claro/oscuro via ThemeContext — existente
+- ✓ Panel admin `/admin` protegido con email + contraseña — Phase 02/03
+- ✓ CRUD completo de certificados (crear, editar, revocar, reactivar, buscar, paginar) — Phase 03
+- ✓ Backend PocketBase auto-hospedado con colección `certificates` — Phase 02/03
+- ✓ Formato de ID: `AC-YYYY-NNN` auto-generado — Phase 03
+- ✓ QR generado client-side por certificado para descarga SVG — Phase 03
 
 ### Active
 
 - [ ] Página pública de verificación `/certificados/[id]` con estado válido/revocado
 - [ ] Página de búsqueda `/certificados` para ingresar un ID manualmente
-- [ ] QR code generado por certificado, linkea a su URL de verificación
-- [ ] Panel admin `/admin` protegido con email + contraseña
-- [ ] CRUD completo de certificados (crear, editar, revocar, buscar)
-- [ ] Backend PocketBase auto-hospedado en VPS con colección `certificates`
-- [ ] Formato de ID: `AC-YYYY-NNN` (ej: AC-2025-014)
 - [ ] Descarga del certificado en PDF (diseño visual consistente con el certificado de referencia)
 - [ ] Open Graph metadata para compartir el enlace de un certificado
 
@@ -65,12 +65,14 @@ Cualquier persona debe poder verificar la autenticidad de un certificado AndesCo
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| PocketBase como backend | Self-hosted, single binary, incluye auth + admin UI. Cero vendor lock-in | — Pending |
-| Auth: email + contraseña | Simplest viable, PocketBase lo soporta nativamente | — Pending |
-| QR generado client-side | No requiere backend; la librería `qrcode.react` genera SVG en el navegador | — Pending |
-| PDF generado client-side | jsPDF/react-pdf evita servidor de renderizado; suficiente para v1 | — Pending |
+| PocketBase como backend | Self-hosted, single binary, incluye auth + admin UI. Cero vendor lock-in | Funcionando en producción — Phase 02/03 |
+| Auth: email + contraseña | Simplest viable, PocketBase lo soporta nativamente | AdminGuard + PocketBaseContext implementados — Phase 02 |
+| QR generado client-side | No requiere backend; la librería `qrcode.react` genera SVG en el navegador | Implementado vía XMLSerializer + Blob download — Phase 03 |
+| `sort: '-issueDate'` en lugar de `'-created'` | PocketBase server no indexa el campo sistema `created` para sort | Forzado por comportamiento real del servidor — Phase 03 |
+| `$autoCancel: false` en PocketBase SDK | React 19 Strict Mode doble-invoca effects; el SDK cancela la primera llamada | Aplicado a todos los getList del admin — Phase 03 |
+| PDF generado client-side | jsPDF/react-pdf evita servidor de renderizado; suficiente para v1 | — Pending (Phase 04) |
 | FCEFN hardcodeado en v1 | Todos los PPS actuales son de la UNSJ; soporte multi-universidad es v2 | — Pending |
-| Badges diferidos a v2 | El sistema de verificación es el core value; las insignias son una mejora posterior | — Pending |
+| Badges diferidos a v2 | El sistema de verificación es el core value; las insignias son una mejora posterior | Confirmado fuera de v1 |
 
 ## Evolution
 
@@ -90,4 +92,4 @@ Este documento evoluciona en cada transición de fase.
 4. Actualizar Context con el estado actual
 
 ---
-*Last updated: 2026-06-06 after initialization*
+*Last updated: 2026-06-08 after Phase 03 (admin-crud)*
