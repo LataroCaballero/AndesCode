@@ -8,24 +8,11 @@ import { useParams, Link } from "react-router-dom";
 import { FiCheckCircle, FiXCircle, FiAlertCircle, FiCopy } from "react-icons/fi";
 import { pb } from "../services/pb.ts";
 import type { Certificate } from "../types/certificate.ts";
+import CertificadoVisual from "../components/CertificadoVisual.tsx";
 
 /* ─── Estados posibles ─── */
 
 type FetchState = "loading" | "found" | "notFound" | "error";
-
-/* ─── Helpers de formato ─── */
-
-function formatDate(dateStr: string): string {
-  if (!dateStr) return "—";
-  // PocketBase retorna fechas ISO; mostrar solo la parte de la fecha
-  const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return dateStr;
-  return d.toLocaleDateString("es-AR", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
 /* ─── CertificadoVerificacion ─── */
 
@@ -99,24 +86,21 @@ export default function CertificadoVerificacion() {
     });
   };
 
-  /* ─── Estado LOADING ─── */
+  /* ─── Estado LOADING — esqueleto del nuevo layout (VIS-01) ─── */
 
   if (state === "loading") {
     return (
       <section className="relative grid-bg pt-24 pb-20 px-4">
-        <div className="max-w-2xl mx-auto">
-          {/* El esqueleto del badge es el primer elemento — misma posición que el badge real */}
-          <div className="animate-pulse h-12 bg-gray-200 rounded-lg mb-6 max-w-[480px]" />
-          <div className="animate-pulse h-8 bg-gray-200 rounded mb-4 w-3/4" />
-          <div className="animate-pulse h-4 bg-gray-100 rounded mb-3 w-1/2" />
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-            {[...Array(6)].map((_, i) => (
-              <div key={i} className="animate-pulse">
-                <div className="h-3 bg-gray-200 rounded mb-2 w-2/3" />
-                <div className="h-4 bg-gray-100 rounded w-full" />
-              </div>
-            ))}
+        <div className="max-w-3xl mx-auto">
+          {/* Esqueleto del badge de estado — 48px, primer elemento visible */}
+          <div className="animate-pulse h-12 bg-gray-200 rounded-lg mb-4 w-full max-w-[480px]" />
+          {/* Esqueleto de la fila de botones */}
+          <div className="flex flex-col sm:flex-row gap-3 mb-8">
+            <div className="animate-pulse h-11 bg-gray-200 rounded-lg w-full sm:w-56" />
+            <div className="animate-pulse h-11 bg-gray-200 rounded-lg w-full sm:w-40" />
           </div>
+          {/* Esqueleto del certificado visual — bloque único redondeado */}
+          <div className="animate-pulse bg-gray-100 rounded-xl w-full" style={{ height: "420px" }} />
         </div>
       </section>
     );
@@ -158,11 +142,11 @@ export default function CertificadoVerificacion() {
 
   return (
     <section className="relative grid-bg pt-24 pb-20 px-4">
-      <div className="max-w-2xl mx-auto">
+      <div className="max-w-3xl mx-auto">
 
-        {/* STATUS BADGE — primer elemento de la página, visible sin scroll en mobile (VIS-05) */}
+        {/* ─── 1. STATUS BADGE — siempre visible sin scroll en mobile (VIS-05, D-04) ─── */}
         <div
-          className={`slide-up flex items-center gap-3 rounded-lg border px-4 py-3 mb-6 w-full max-w-[480px] font-semibold text-base ${
+          className={`slide-up flex items-center gap-3 rounded-lg border px-4 py-3 mb-4 w-full max-w-[480px] font-semibold text-base ${
             isActive
               ? "bg-green-100 border-green-200 text-green-700"
               : "bg-red-100 border-red-200 text-red-700"
@@ -181,122 +165,24 @@ export default function CertificadoVerificacion() {
           </span>
         </div>
 
-        {/* Nombre del estudiante */}
-        <h1 className="uppercase text-3xl font-semibold text-[#191919] mb-8 leading-tight">
-          {cert.studentName}
-        </h1>
+        {/* ─── 2. Fila de botones de acción (D-04) ─── */}
+        {/* Plan 02 agrega el botón "Descargar certificado PDF" aquí */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-8">
 
-        {/* Grilla de metadatos (fade-in) */}
-        <div className="fade-in grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
-
-          {/* ID del certificado */}
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-              ID del certificado
-            </p>
-            <p className="fira-code-regular text-sm text-[var(--color-primary)]">
-              {cert.certificateCode}
-            </p>
-          </div>
-
-          {/* Fecha de emisión */}
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-              Fecha de emisión
-            </p>
-            <p className="text-sm text-[#191919]">{formatDate(cert.issueDate)}</p>
-          </div>
-
-          {/* Período de la práctica */}
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-              Período de la práctica
-            </p>
-            <p className="text-sm text-[#191919]">
-              {formatDate(cert.startDate)} – {formatDate(cert.endDate)}
-            </p>
-          </div>
-
-          {/* Universidad */}
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-              Universidad
-            </p>
-            <p className="text-sm text-[#191919]">{cert.university}</p>
-          </div>
-
-          {/* Área de desempeño */}
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-              Área de desempeño
-            </p>
-            <p className="text-sm text-[#191919]">{cert.degree}</p>
-          </div>
-
-          {/* Calificación */}
-          {cert.score !== undefined && cert.score !== null && (
-            <div>
-              <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-                Calificación
-              </p>
-              <p className="text-sm text-[#191919]">{cert.score}</p>
-            </div>
-          )}
-
-          {/* Supervisor */}
-          <div>
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-1">
-              Supervisor
-            </p>
-            <p className="text-sm text-[#191919]">{cert.supervisorName}</p>
-          </div>
-
-          {/* DNI: NUNCA renderizado (privacidad — UI-SPEC § Copywriting Contract) */}
-
-        </div>
-
-        {/* Botón copiar enlace (VERIF-08) */}
-        <div className="mb-8">
+          {/* Copiar enlace (VERIF-08) */}
           <button
             onClick={handleCopyUrl}
             style={{ minHeight: "44px" }}
             className="btn-secondary flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium"
           >
             <FiCopy size={16} />
-            {copySuccess ? "Enlace copiado!" : "Copiar enlace de verificación"}
+            {copySuccess ? "Enlace copiado!" : "Copiar enlace"}
           </button>
+
         </div>
 
-        {/* Descripción de la práctica */}
-        {cert.description && (
-          <div className="fade-in mb-8">
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">
-              Descripción de la práctica
-            </p>
-            <p className="text-sm text-gray-700 max-w-[640px] leading-relaxed">
-              {cert.description}
-            </p>
-          </div>
-        )}
-
-        {/* Tecnologías utilizadas (VERIF-07) */}
-        {cert.technologies && cert.technologies.length > 0 && (
-          <div className="fade-in">
-            <p className="text-xs uppercase tracking-widest text-gray-500 mb-3">
-              Tecnologías utilizadas
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {cert.technologies.map((tech, idx) => (
-                <span
-                  key={idx}
-                  className="fira-code-regular bg-[#4342FF]/10 text-[#4342FF] text-sm px-3 py-1 rounded-full"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+        {/* ─── 3. Certificado visual HTML/CSS (VIS-01) ─── */}
+        <CertificadoVisual cert={cert} />
 
       </div>
     </section>
