@@ -1,7 +1,8 @@
 // src/pages/admin/index.tsx
 // Orquestador del panel de administración.
 // AdminGuard (aplicado en main.tsx) garantiza que solo usuarios autenticados lleguen aquí.
-// Contiene todo el estado de la lista (paginación, búsqueda, filtro) y el drawer (crear/editar).
+// Contiene todo el estado de la lista (paginación, búsqueda, filtro), el drawer (crear/editar)
+// y el modal de confirmación de revocar/reactivar (Plan 03).
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { pb } from '../../services/pb';
@@ -10,6 +11,7 @@ import type { Certificate } from '../../types/certificate';
 import AdminTopBar from '../../sections/admin/AdminTopBar';
 import AdminCertificateList from '../../sections/admin/AdminCertificateList';
 import AdminCertificateDrawer from '../../sections/admin/AdminCertificateDrawer';
+import ConfirmModal from '../../sections/admin/ConfirmModal';
 
 /* ─── Constante de paginación ─── */
 const ITEMS_PER_PAGE = 20;
@@ -36,6 +38,15 @@ export default function AdminPage() {
   const [drawerMode, setDrawerMode] = useState<'create' | 'edit'>('create');
   const [drawerRecord, setDrawerRecord] = useState<Certificate | null>(null);
   const [generatedCode, setGeneratedCode] = useState('');
+
+  /* ─── Estado del modal de confirmación revocar/reactivar (Plan 03) ─── */
+  const [confirmModal, setConfirmModal] = useState<{
+    open: boolean;
+    record: Certificate | null;
+    action: 'revoke' | 'reactivate';
+  }>({ open: false, record: null, action: 'revoke' });
+  const [statusUpdating, setStatusUpdating] = useState(false);
+  const [statusError, setStatusError] = useState<string | null>(null);
 
   /* ─── Logout ─── */
   const handleLogout = () => {
@@ -161,6 +172,47 @@ export default function AdminPage() {
     setRefreshKey(k => k + 1); // Dispara re-fetch (Pitfall 5)
   };
 
+  /* ─── Handlers del modal de confirmación (Plan 03) ─── */
+
+  // Abre el modal derivando la acción desde el estado actual del certificado
+  const openConfirm = (record: Certificate) => {
+    const action = record.status === 'active' ? 'revoke' : 'reactivate';
+    setConfirmModal({ open: true, record, action });
+    setStatusError(null);
+  };
+
+  // Cierra el modal sin cambiar el estado
+  const cancelConfirm = () => {
+    setConfirmModal(m => ({ ...m, open: false }));
+    setStatusError(null);
+  };
+
+  // Llama a PocketBase para actualizar el estado del certificado
+  const updateCertificateStatus = async (id: string, newStatus: 'active' | 'revoked') => {
+    await pb.collection('certificates').update(id, { status: newStatus });
+  };
+
+  // Confirma el cambio de estado: actualiza en PocketBase y refresca la lista
+  const confirmStatusChange = async () => {
+    if (!confirmModal.record) return;
+
+    setStatusUpdating(true);
+    setStatusError(null);
+
+    const newStatus: 'active' | 'revoked' = confirmModal.action === 'revoke' ? 'revoked' : 'active';
+
+    try {
+      await updateCertificateStatus(confirmModal.record.id, newStatus);
+      // Éxito: cerrar modal y refrescar la lista (Pitfall 5 — re-fetch via refreshKey)
+      setConfirmModal(m => ({ ...m, open: false }));
+      setRefreshKey(k => k + 1);
+    } catch {
+      setStatusError('Error al actualizar el estado. Intentá de nuevo.');
+    } finally {
+      setStatusUpdating(false);
+    }
+  };
+
   /* ─── Handlers de controles ─── */
   const handleSearchChange = (v: string) => {
     setSearch(v);
@@ -199,7 +251,7 @@ export default function AdminPage() {
           onRetry={handleRetry}
           onCreateNew={() => openDrawer('create')}
           onEdit={(cert) => openDrawer('edit', cert)}
-          // onToggleStatus y onDownloadQR se agregarán en Plan 03
+          onToggleStatus={(cert) => openConfirm(cert)}
         />
       </main>
 
@@ -211,6 +263,17 @@ export default function AdminPage() {
         initialCode={generatedCode}
         onClose={closeDrawer}
         onSaved={onSaved}
+      />
+
+      {/* Modal de confirmación de revocar/reactivar — renderiza sobre el drawer */}
+      <ConfirmModal
+        open={confirmModal.open}
+        record={confirmModal.record}
+        action={confirmModal.action}
+        loading={statusUpdating}
+        error={statusError}
+        onConfirm={confirmStatusChange}
+        onCancel={cancelConfirm}
       />
     </div>
   );
