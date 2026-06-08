@@ -146,7 +146,7 @@ export default function AdminCertificateForm({
       };
 
       if (mode === 'create') {
-        await pb.collection('certificates').create(data);
+        await pb.collection('certificates').create({ ...data, status: 'active' });
       } else {
         await pb.collection('certificates').update(record!.id, data);
       }
