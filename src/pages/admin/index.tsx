@@ -89,7 +89,7 @@ export default function AdminPage() {
       }
 
       if (filter !== 'all') {
-        filterParts.push(`status = "${filter}"`);
+        filterParts.push(pb.filter('status = {:status}', { status: filter }));
       }
 
       const result = await pb.collection('certificates').getList<Certificate>(
@@ -118,28 +118,33 @@ export default function AdminPage() {
 
   /* ─── Scroll lock cuando el drawer está abierto (Pitfall 4) ─── */
   useEffect(() => {
-    if (drawerOpen) {
-      document.body.style.overflow = 'hidden';
-      return () => { document.body.style.overflow = ''; };
-    }
+    document.body.style.overflow = drawerOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [drawerOpen]);
 
   /* ─── Auto-generación del código de certificado (D-05) ─── */
   const generateNextCertificateCode = async (): Promise<string> => {
     const year = new Date().getFullYear();
-    const yearStart = `${year}-01-01 00:00:00`;
-    const yearEnd = `${year}-12-31 23:59:59`;
+    const prefix = `AC-${year}-`;
 
+    // Busca el código más alto del año actual (sort descendente) e incrementa desde ahí.
+    // Esto evita la colisión por totalItems+1 cuando dos sesiones leen simultáneamente
+    // y también elimina el bug de timezone del filtro por `created` (Pitfall 3).
     const result = await pb.collection('certificates').getList(1, 1, {
-      filter: `created >= "${yearStart}" && created <= "${yearEnd}"`,
+      filter: pb.filter('certificateCode ~ {:prefix}', { prefix }),
       sort: '-certificateCode',
       fields: 'certificateCode',
+      '$autoCancel': false,
     });
 
-    // totalItems es la cantidad de certificados del año actual
-    // El UNIQUE index en PocketBase es el resguardo contra colisiones (Pitfall 3)
-    const next = String(result.totalItems + 1).padStart(3, '0');
-    return `AC-${year}-${next}`;
+    if (result.items.length === 0) {
+      return `${prefix}001`;
+    }
+
+    const lastCode = result.items[0].certificateCode; // e.g. "AC-2026-007"
+    const lastNum = parseInt(lastCode.split('-')[2] ?? '0', 10);
+    const next = String(lastNum + 1).padStart(3, '0');
+    return `${prefix}${next}`;
   };
 
   /* ─── Abrir drawer ─── */
@@ -165,6 +170,11 @@ export default function AdminPage() {
   /* ─── Cerrar drawer ─── */
   const closeDrawer = () => {
     setDrawerOpen(false);
+    // Resetea el record y el código generado después de que termine la animación de salida
+    setTimeout(() => {
+      setDrawerRecord(null);
+      setGeneratedCode('');
+    }, 250);
   };
 
   /* ─── Callback tras guardar: cerrar drawer + refrescar lista ─── */
