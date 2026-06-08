@@ -106,6 +106,8 @@ Identical tokens to Phase 2 (source: 02-UI-SPEC.md + `src/style.css`):
 
 Accent is NOT used for: table row text, metadata labels, status badges, table borders, pagination numbers, modal overlays.
 
+**Primary visual anchor:** The "Nuevo certificado" button (`btn-primary`, `#4342FF` fill) in the top-right of the controls row, paired with the certificate code column rendered in `fira-code-regular text-[var(--color-primary)]`, form the focal pair that draws the eye to the two core admin actions: creating certificates and identifying them by code.
+
 **Status badge color contract (table rows — must be visually distinct):**
 - ACTIVE: `bg-green-100 text-green-700 border border-green-200` — label: "Activo"
 - REVOKED: `bg-red-100 text-red-700 border border-red-200` — label: "Revocado"
@@ -295,7 +297,7 @@ Full-width (span 2 columns):
 The `status` field is NOT in the form. Status changes are made exclusively via the revoke/reactivate buttons in the list (D-07). Including status in the form would bypass the confirmation modal (D-08).
 
 **All form inputs (text, date, number):**
-- Container: `flex flex-col gap-1.5`
+- Container: `flex flex-col gap-2`
 - Label: `text-sm font-medium text-[#191919]`
 - Input: `border border-gray-300 rounded-lg px-4 py-2.5 text-sm focus:outline focus:outline-2 focus:outline-[var(--color-primary)] transition min-h-[44px] w-full`
 - Error state (validation failed on submit): `border-red-400` + red helper text below input: `text-red-600 text-xs mt-1`
@@ -303,7 +305,7 @@ The `status` field is NOT in the form. Status changes are made exclusively via t
 **Required field indicator:** Red asterisk `*` after label text for required fields — `text-red-500 ml-0.5`
 
 **TagsInput component:**
-- Wrapper: `border border-gray-300 rounded-lg px-3 py-2 flex flex-wrap gap-1.5 focus-within:outline focus-within:outline-2 focus-within:outline-[var(--color-primary)] min-h-[44px]`
+- Wrapper: `border border-gray-300 rounded-lg px-3 py-2 flex flex-wrap gap-2 focus-within:outline focus-within:outline-2 focus-within:outline-[var(--color-primary)] min-h-[44px]`
 - Tag chip: `bg-[#4342FF]/10 text-[#4342FF] text-sm fira-code-regular px-2 py-0.5 rounded-full flex items-center gap-1`
 - Remove button on chip: `×` character, `text-[#4342FF] hover:text-[#4342FF]/70`; `aria-label="Eliminar {tag}"`
 - Text input inside: `flex-1 min-w-[120px] outline-none text-sm bg-transparent`
