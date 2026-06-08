@@ -29,7 +29,7 @@ decisions:
 metrics:
   duration: "~25 minutes"
   completed: "2026-06-08"
-  tasks_completed: 3
+  tasks_completed: 4
   tasks_total: 4
   files_created: 5
   files_modified: 2
@@ -46,14 +46,23 @@ metrics:
 | 1 | Certificate type + ID normalization helper | 02441db | src/types/certificate.ts |
 | 2 | Search page (CertificadosSearch + page wrapper) | 899ea46 | src/sections/CertificadosSearch.tsx, src/pages/certificados.tsx |
 | 3 | Verification detail page + routes + titles | cf88a07 | src/sections/CertificadoVerificacion.tsx, src/pages/certificado.tsx, src/main.tsx, src/components/TitleManager.tsx |
+| 4 | Human verification checkpoint | approved | (no code changes — visual/functional review) |
 
 ## Task 4 (Checkpoint — Human Verify)
 
-**Status:** Awaiting human verification
+**Status:** APPROVED (2026-06-08)
 
-**What was built:** The complete public verification slice — /certificados search with ID normalization and gray not-found state, and /certificados/:certificateCode detail with prominent status badge, full field grid, technology tags, copy-URL button, and a clean not-found state — all with no auth.
+**What was verified:** The complete public verification slice — /certificados search with ID normalization and gray not-found state, and /certificados/:certificateCode detail with prominent status badge, full field grid, technology tags, copy-URL button, and a clean not-found state — all with no auth.
 
-**How to verify:** See PLAN.md Task 4 `<how-to-verify>` section — 7 steps on a mobile viewport (390px). Requires at least one test certificate in PocketBase.
+**Verification steps passed (all 7):**
+1. Green "Certificado válido emitido por AndesCode" badge visible above fold on mobile
+2. All certificate fields shown (no DNI), technologies rendered as tags
+3. "Copiar enlace de verificación" button works with success state ("Enlace copiado!")
+4. Red "Certificado revocado" badge works correctly for revoked certificates
+5. Unknown ID shows "Certificado no encontrado" with "Buscar otro certificado" link — not a crash, not a red badge
+6. Search normalizes partial input `ac2025001` → `AC-2025-001` and navigates correctly
+7. Bogus ID in search shows gray "No encontramos un certificado con ese ID..." message
+8. Entire flow requires NO authentication at any point
 
 ## What Was Built
 
@@ -129,15 +138,16 @@ None — no new trust boundary surface beyond what was planned.
 
 None — all data is wired from PocketBase. Certificate fields render real data or are conditionally omitted (score, description, technologies when undefined).
 
-## Self-Check
+## Self-Check: PASSED
 
-- [ ] src/types/certificate.ts — created
-- [ ] src/sections/CertificadosSearch.tsx — created
-- [ ] src/pages/certificados.tsx — created
-- [ ] src/sections/CertificadoVerificacion.tsx — created
-- [ ] src/pages/certificado.tsx — created
-- [ ] src/main.tsx — /certificados and /certificados/:certificateCode routes added
-- [ ] src/components/TitleManager.tsx — /certificados title mapped
-- [ ] Commit 02441db (Task 1) — feat: Certificate type
-- [ ] Commit 899ea46 (Task 2) — feat: CertificadosSearch
-- [ ] Commit cf88a07 (Task 3) — feat: verification detail page
+- [x] src/types/certificate.ts — created
+- [x] src/sections/CertificadosSearch.tsx — created
+- [x] src/pages/certificados.tsx — created
+- [x] src/sections/CertificadoVerificacion.tsx — created
+- [x] src/pages/certificado.tsx — created
+- [x] src/main.tsx — /certificados and /certificados/:certificateCode routes added
+- [x] src/components/TitleManager.tsx — /certificados title mapped
+- [x] Commit 02441db (Task 1) — feat: Certificate type
+- [x] Commit 899ea46 (Task 2) — feat: CertificadosSearch
+- [x] Commit cf88a07 (Task 3) — feat: verification detail page
+- [x] Task 4 checkpoint — human verification approved, all 7 steps passed (2026-06-08)
