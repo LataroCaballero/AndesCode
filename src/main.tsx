@@ -15,6 +15,8 @@ import PoliticaPrivacidad from './pages/politica-privacidad.tsx';
 import EliminacionDatos from './pages/eliminacion-datos.tsx';
 import AdminLoginPage from './pages/admin/login.tsx';
 import AdminPage from './pages/admin/index.tsx';
+import Certificados from './pages/certificados.tsx';
+import Certificado from './pages/certificado.tsx';
 
 import './style.css'
 
@@ -33,6 +35,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               <Route path="/trabajos" element={<Trabajos />} />
               <Route path="/politica-de-privacidad" element={<PoliticaPrivacidad />} />
               <Route path="/eliminacion-de-datos" element={<EliminacionDatos />} />
+
+              {/* Rutas públicas de verificación de certificados — Plan 02-02 */}
+              <Route path="/certificados" element={<Certificados />} />
+              <Route path="/certificados/:certificateCode" element={<Certificado />} />
 
               {/* Rutas de administración — Plan 02-01 */}
               <Route path="/admin/login" element={<AdminLoginPage />} />

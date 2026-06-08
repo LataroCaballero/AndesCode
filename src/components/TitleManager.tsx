@@ -11,6 +11,9 @@ const routeTitles: Record<string, string> = {
   "/eliminacion-de-datos": "Eliminación de Datos",
   "/admin/login": "Iniciar sesión · AndesCode Admin",
   "/admin": "Panel de administración · AndesCode",
+  // Nota: el título de /certificados/:code se establece de forma imperativa dentro
+  // de CertificadoVerificacion una vez que se carga el registro (nombre del estudiante).
+  "/certificados": "Verificar Certificado · AndesCode",
 };
 
 const DEFAULT_TITLE = "AndesCode";
