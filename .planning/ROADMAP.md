@@ -81,7 +81,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1**
 
-- [ ] 03-01-PLAN.md — Admin shell + read-only list: install qrcode.react, TagsInput, AdminTopBar, paginated/searchable/filterable AdminCertificateList, AdminPage orchestrator
+- [x] 03-01-PLAN.md — Admin shell + read-only list: install qrcode.react, TagsInput, AdminTopBar, paginated/searchable/filterable AdminCertificateList, AdminPage orchestrator
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -90,6 +90,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Wave 3** *(blocked on Wave 2 completion)*
 
 - [ ] 03-03-PLAN.md — Revoke/reactivate + QR slice: ConfirmModal, per-row status toggle, per-row QR SVG download, human verification checkpoint
+
 **UI hint**: yes
 
 ### Phase 4: QR, PDF, and Visual Certificate
@@ -117,5 +118,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
-| 3. Admin CRUD | 0/3 | Planned | - |
+| 3. Admin CRUD | 1/3 | In Progress|  |
 | 4. QR, PDF, and Visual Certificate | 0/? | Not started | - |
