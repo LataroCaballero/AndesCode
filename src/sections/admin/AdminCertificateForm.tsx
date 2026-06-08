@@ -127,6 +127,24 @@ export default function AdminCertificateForm({
       return; // NO llamar a PocketBase si falta algún campo
     }
 
+    // Validación del campo score: rango [0, 10] y no NaN (WR-03)
+    if (form.score !== '') {
+      const scoreValue = parseFloat(form.score);
+      if (isNaN(scoreValue) || scoreValue < 0 || scoreValue > 10) {
+        setFieldErrors(prev => ({ ...prev, score: 'Debe ser un número entre 0 y 10' }));
+        return;
+      }
+    }
+
+    // Validación de orden de fechas: endDate >= startDate (WR-04)
+    if (form.startDate && form.endDate && form.endDate < form.startDate) {
+      setFieldErrors(prev => ({
+        ...prev,
+        endDate: 'La fecha de fin debe ser posterior o igual a la de inicio',
+      }));
+      return;
+    }
+
     setSaving(true);
     try {
       const data = {
@@ -361,6 +379,9 @@ export default function AdminCertificateForm({
             placeholder="0 – 10"
             className={inputClass('score')}
           />
+          {fieldErrors.score && (
+            <span className="text-red-600 text-xs mt-1">{fieldErrors.score}</span>
+          )}
         </label>
 
         {/* description — ancho completo */}
