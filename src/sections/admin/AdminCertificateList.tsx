@@ -80,8 +80,12 @@ function CertificateRowQRDownload({ certificateCode }: CertificateRowQRDownloadP
     const a = document.createElement('a');
     a.href = url;
     a.download = `QR-${certificateCode}.svg`;
+    // Safari requiere que el anchor esté en el DOM para que .click() dispare la descarga
+    document.body.appendChild(a);
     a.click();
-    URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+    // Revocar después de un tick para que el browser pueda iniciar la descarga
+    setTimeout(() => URL.revokeObjectURL(url), 100);
   };
 
   return (
