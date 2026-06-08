@@ -85,7 +85,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 03-02-PLAN.md — Create/edit slice: AdminCertificateDrawer + AdminCertificateForm, auto-generated AC-YYYY-NNN code, client validation, create/update wiring
+- [x] 03-02-PLAN.md — Create/edit slice: AdminCertificateDrawer + AdminCertificateForm, auto-generated AC-YYYY-NNN code, client validation, create/update wiring
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
@@ -118,5 +118,5 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 |-------|----------------|--------|-----------|
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
-| 3. Admin CRUD | 1/3 | In Progress|  |
+| 3. Admin CRUD | 2/3 | In Progress|  |
 | 4. QR, PDF, and Visual Certificate | 0/? | Not started | - |
