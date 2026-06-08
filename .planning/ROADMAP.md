@@ -110,7 +110,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 1**
 
-- [ ] 04-01-PLAN.md — Visual certificate + embedded QR (level H): copy logos, create CertificadoVisual, refactor CertificadoVerificacion FOUND state (VIS-01, QRPDF-01, QRPDF-02)
+- [x] 04-01-PLAN.md — Visual certificate + embedded QR (level H): copy logos, create CertificadoVisual, refactor CertificadoVerificacion FOUND state (VIS-01, QRPDF-01, QRPDF-02)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -128,4 +128,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
 | 3. Admin CRUD | 3/3 | Complete    | 2026-06-08 |
-| 4. QR, PDF, and Visual Certificate | 0/2 | Planned     | - |
+| 4. QR, PDF, and Visual Certificate | 1/2 | In Progress|  |
