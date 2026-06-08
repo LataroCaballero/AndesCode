@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Infrastructure Foundation** - PocketBase on VPS, nginx reverse proxy, SSL, certificates collection schema, backups, and env config
 - [x] **Phase 2: Auth + Public Verification** - Admin login with session persistence and the complete public certificate verification flow (completed 2026-06-08)
 - [x] **Phase 3: Admin CRUD** - Certificate list, create/edit forms, revoke/reactivate actions, and QR download from admin (completed 2026-06-08)
-- [ ] **Phase 4: QR, PDF, and Visual Certificate** - QR on verification page, PDF download, and HTML/CSS certificate preview
+- [x] **Phase 4: QR, PDF, and Visual Certificate** - QR on verification page, PDF download, and HTML/CSS certificate preview (completed 2026-06-08)
 
 ## Phase Details
 
@@ -114,7 +114,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 04-02-PLAN.md — PDF download slice: package legitimacy gate + pinned installs, self-hosted Inter fonts, usePdfGenerator hook, wire Descargar PDF button (QRPDF-03, QRPDF-04, QRPDF-05)
+- [x] 04-02-PLAN.md — PDF download slice: package legitimacy gate + pinned installs, self-hosted Inter fonts, usePdfGenerator hook, wire Descargar PDF button (QRPDF-03, QRPDF-04, QRPDF-05)
 
 **UI hint**: yes
 
@@ -128,4 +128,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
 | 3. Admin CRUD | 3/3 | Complete    | 2026-06-08 |
-| 4. QR, PDF, and Visual Certificate | 1/2 | In Progress|  |
+| 4. QR, PDF, and Visual Certificate | 2/2 | Complete   | 2026-06-08 |
