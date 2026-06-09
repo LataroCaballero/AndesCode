@@ -14,6 +14,7 @@ import fcefnUrl from "../assets/logo/fcefn.png";
 
 type CertificadoVisualProps = {
   cert: Certificate;
+  verificationUrl: string;
 };
 
 /* ─── Helper de formato de fecha ─── */
@@ -31,7 +32,7 @@ function formatDate(dateStr: string): string {
 
 /* ─── CertificadoVisual ─── */
 
-export default function CertificadoVisual({ cert }: CertificadoVisualProps) {
+export default function CertificadoVisual({ cert, verificationUrl }: CertificadoVisualProps) {
   // DNI NUNCA se renderiza (privacidad — UI-SPEC § Copywriting Contract)
   const isRevoked = cert.status === "revoked";
 
@@ -215,7 +216,7 @@ export default function CertificadoVisual({ cert }: CertificadoVisualProps) {
         {/* Bloque QR */}
         <div className="flex flex-col items-center gap-1">
           <QRCodeSVG
-            value={window.location.href}
+            value={verificationUrl}
             size={100}
             level="H"
             bgColor="#FFFFFF"

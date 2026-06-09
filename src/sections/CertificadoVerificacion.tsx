@@ -230,7 +230,7 @@ export default function CertificadoVerificacion() {
         )}
 
         {/* ─── 3. Certificado visual HTML/CSS (VIS-01) ─── */}
-        <CertificadoVisual cert={cert} />
+        <CertificadoVisual cert={cert} verificationUrl={window.location.href} />
 
       </div>
     </section>
