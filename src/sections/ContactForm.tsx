@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { whatsappUrl, trackCta } from '../lib/cta';
 
 export default function ContactForm () {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
+    const referrer = typeof document !== 'undefined' ? document.referrer || 'direct' : 'unknown';
 
     useEffect(() => {
         if (success) {
@@ -35,6 +37,7 @@ export default function ContactForm () {
             if (response.ok) {
                 setSuccess(true);
                 form.reset();
+                trackCta('form_submit', { source: 'contacto' });
             } else {
                 setError(true);
             }
@@ -93,6 +96,9 @@ export default function ContactForm () {
                     onSubmit={handleSubmit}
                     className="flex flex-col gap-5 bg-white rounded-xl border border-gray-100 p-8 shadow-[0_4px_32px_rgba(67,66,255,0.08)]"
                 >
+                    <input type="hidden" name="_subject" value="Nuevo lead desde andescode.com.ar" />
+                    <input type="hidden" name="source_page" value="/contacto" />
+                    <input type="hidden" name="referrer" value={referrer} />
                     <label className="flex flex-col">
                         <span className="text-sm font-medium text-[#191919] mb-1.5">Nombre Completo</span>
                         <input
@@ -176,9 +182,10 @@ export default function ContactForm () {
                     <p className="text-sm font-semibold mb-4 text-[#191919]">¿Preferís hablar directamente?</p>
                     <div className="flex flex-col sm:flex-row gap-3 justify-center">
                         <a
-                            href="https://wa.me/5492644432919"
+                            href={whatsappUrl('contacto-page')}
                             target="_blank"
                             rel="noopener noreferrer"
+                            onClick={() => trackCta('cta_whatsapp', { source: 'contacto-page' })}
                             className="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition hover:-translate-y-0.5 shadow-sm"
                         >
                             📱 Escribinos por WhatsApp

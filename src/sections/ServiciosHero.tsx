@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useRef } from 'react';
+import { CAL_COM_URL, whatsappUrl, trackCta } from '../lib/cta';
 import desarrolloweb from '../assets/servicios/desarrolloweb.png';
 import soporte from '../assets/servicios/soporte.png';
 import automatizacion from '../assets/servicios/automatizacion.png';
@@ -135,12 +135,12 @@ const Servicios = () => {
     <main className="text-[#191919]">
       {/* Header section */}
       <section className="relative grid-bg text-center pt-36 pb-16 px-4 overflow-hidden">
-        <span className="inline-block text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-3">Lo que hacemos</span>
+        <span className="inline-block text-xs uppercase tracking-widest text-[#4342FF] font-semibold mb-3">Servicios</span>
         <h1 className="font-bold text-3xl md:text-4xl mb-4 text-[#191919]">
-          Soluciones que resuelven problemas reales
+          Software a medida desde USD 3.000
         </h1>
         <p className="max-w-2xl mx-auto text-lg text-gray-600">
-          No importa si necesitás una web, un sistema completo o automatizar procesos: te acompañamos desde la idea hasta que esté funcionando.
+          Web y mobile, sistemas internos, integraciones y automatizaciones. Una sola conversación nos alcanza para entender qué necesitás y mandarte un presupuesto.
         </p>
       </section>
 
@@ -205,13 +205,25 @@ const Servicios = () => {
                 <div className="text-sm text-gray-700 mb-6">
                   {servicio.descripcion}
                 </div>
-                <div className="mt-auto">
-                  <Link
-                    to="/contacto"
+                <div className="mt-auto flex flex-col sm:flex-row gap-3">
+                  <a
+                    href={CAL_COM_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackCta('cta_book_call', { source: `servicios-${servicio.id}` })}
                     className="inline-block btn-primary px-5 py-2.5 rounded-lg text-sm transition"
                   >
                     {servicio.cta}
-                  </Link>
+                  </a>
+                  <a
+                    href={whatsappUrl(`servicios-${servicio.id}`, `Hola, vengo de la página de servicios (${servicio.titulo}) y quiero más info.`)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => trackCta('cta_whatsapp', { source: `servicios-${servicio.id}` })}
+                    className="inline-block btn-secondary px-5 py-2.5 rounded-lg text-sm transition"
+                  >
+                    WhatsApp
+                  </a>
                 </div>
               </div>
             </div>
