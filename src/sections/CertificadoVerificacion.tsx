@@ -88,6 +88,10 @@ export default function CertificadoVerificacion() {
     navigator.clipboard.writeText(window.location.href).then(() => {
       setCopySuccess(true);
       setTimeout(() => setCopySuccess(false), 2000);
+    }).catch(() => {
+      // Clipboard API puede rechazar si la página no está enfocada o el
+      // navegador deniega el permiso (Firefox, Safari, iframes sin permisos).
+      // No hay feedback adicional por ahora; el botón simplemente no cambia.
     });
   };
 
