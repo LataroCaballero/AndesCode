@@ -2,11 +2,12 @@
 import { useLocation } from "react-router-dom";
 
 const routeTitles: Record<string, string> = {
-  "/": "AndesCode",
-  "/servicios": "Servicios",
-  "/nosotros": "Nosotros",
-  "/trabajos": "Trabajos",
-  "/contacto": "Contacto",
+  "/": "AndesCode — Software a medida y auditorías de seguridad",
+  "/servicios": "Servicios · Software a medida · AndesCode",
+  "/auditorias": "Auditorías de seguridad · AndesCode",
+  "/nosotros": "Nosotros · AndesCode",
+  "/trabajos": "Trabajos · AndesCode",
+  "/contacto": "Contacto · AndesCode",
   "/politica-de-privacidad": "Política de Privacidad",
   "/eliminacion-de-datos": "Eliminación de Datos",
   "/admin/login": "Iniciar sesión · AndesCode Admin",

@@ -17,6 +17,7 @@ import AdminLoginPage from './pages/admin/login.tsx';
 import AdminPage from './pages/admin/index.tsx';
 import Certificados from './pages/certificados.tsx';
 import Certificado from './pages/certificado.tsx';
+import Auditorias from './pages/auditorias.tsx';
 
 import './style.css'
 
@@ -30,6 +31,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               {/* Rutas públicas del sitio de marketing */}
               <Route path="/" element={<Home />} />
               <Route path="/servicios" element={<Servicios />} />
+              <Route path="/auditorias" element={<Auditorias />} />
               <Route path="/contacto" element={<Contacto />} />
               <Route path="/nosotros" element={<Nosotros />} />
               <Route path="/trabajos" element={<Trabajos />} />

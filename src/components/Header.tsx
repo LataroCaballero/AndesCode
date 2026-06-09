@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { CAL_COM_URL, trackCta } from '../lib/cta';
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -16,17 +17,21 @@ export default function Header() {
         } flex-col items-center gap-6 py-6 md:py-0 md:absolute md:left-1/2 md:-translate-x-1/2 md:bg-transparent md:flex md:flex-row md:gap-10 text-sm`}
       >
         <Link to="/servicios" className="nav-link" onClick={() => setOpen(false)}>Servicios</Link>
-        <Link to="/nosotros" className="nav-link" onClick={() => setOpen(false)}>Nosotros</Link>
+        <Link to="/auditorias" className="nav-link" onClick={() => setOpen(false)}>Auditorías</Link>
         <Link to="/trabajos" className="nav-link" onClick={() => setOpen(false)}>Trabajos</Link>
+        <Link to="/nosotros" className="nav-link" onClick={() => setOpen(false)}>Nosotros</Link>
         <Link to="/contacto" className="nav-link" onClick={() => setOpen(false)}>Contacto</Link>
       </nav>
       <div className="flex items-center gap-3">
-        <Link
-          to="/contacto"
+        <a
+          href={CAL_COM_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => trackCta('cta_book_call', { source: 'header' })}
           className="hidden md:inline-block btn-primary fira-code-medium px-5 py-2 rounded-lg text-sm transition"
         >
-          Agendá tu consulta gratuita
-        </Link>
+          Agendá una llamada
+        </a>
         <button className="md:hidden text-2xl text-[#191919] border-none" onClick={() => setOpen(!open)}>
           {open ? <FiX /> : <FiMenu />}
         </button>
