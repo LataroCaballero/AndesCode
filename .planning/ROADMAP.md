@@ -128,4 +128,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4
 | 1. Infrastructure Foundation | 3/3 | Complete ✓ | 2026-06-07 |
 | 2. Auth + Public Verification | 2/2 | Complete    | 2026-06-08 |
 | 3. Admin CRUD | 3/3 | Complete    | 2026-06-08 |
-| 4. QR, PDF, and Visual Certificate | 2/2 | Complete   | 2026-06-08 |
+| 4. QR, PDF, and Visual Certificate | 2/2 | Complete    | 2026-06-09 |

@@ -38,28 +38,28 @@
 
 ### Generación de QR y PDF
 
-- [ ] **QRPDF-01**: Se muestra un QR code en `/certificados/:certificateCode` que encoda la URL completa de verificación
-- [ ] **QRPDF-02**: El QR usa nivel de corrección de errores "H" (30% de redundancia para resistir daño físico)
-- [ ] **QRPDF-03**: El usuario puede descargar el certificado como PDF desde la página pública
-- [ ] **QRPDF-04**: El PDF reproduce el diseño del certificado de referencia (`ref/assets/certificado.png`): logo AndesCode, logo FCEFN/UNSJ, nombre del estudiante destacado, todos los campos relevantes, QR embebido
-- [ ] **QRPDF-05**: El PDF usa fuentes self-hosted (no Google Fonts CDN) para evitar CORS en producción
+- [x] **QRPDF-01**: Se muestra un QR code en `/certificados/:certificateCode` que encoda la URL completa de verificación
+- [x] **QRPDF-02**: El QR usa nivel de corrección de errores "H" (30% de redundancia para resistir daño físico)
+- [x] **QRPDF-03**: El usuario puede descargar el certificado como PDF desde la página pública
+- [x] **QRPDF-04**: El PDF reproduce el diseño del certificado de referencia (`ref/assets/certificado.png`): logo AndesCode, logo FCEFN/UNSJ, nombre del estudiante destacado, todos los campos relevantes, QR embebido
+- [x] **QRPDF-05**: El PDF usa fuentes self-hosted (no Google Fonts CDN) para evitar CORS en producción
 
 ### Panel Administrativo
 
-- [ ] **ADMIN-01**: El admin ve una lista de todos los certificados con columnas: ID, nombre del estudiante, fecha de emisión, estado
-- [ ] **ADMIN-02**: La lista tiene búsqueda por nombre, ID de certificado y filtro por estado (activo/revocado)
-- [ ] **ADMIN-03**: La lista está paginada
-- [ ] **ADMIN-04**: El admin puede crear un nuevo certificado con todos los campos del modelo de datos
-- [ ] **ADMIN-05**: Al crear un certificado, el `certificateCode` se auto-genera en formato `AC-YYYY-NNN` (el admin puede editarlo antes de guardar)
-- [ ] **ADMIN-06**: El formulario de creación valida todos los campos requeridos antes de enviar
-- [ ] **ADMIN-07**: El admin puede editar todos los campos de un certificado existente
-- [ ] **ADMIN-08**: El admin puede revocar un certificado (cambia `status` de `active` a `revoked`); la acción requiere confirmación
-- [ ] **ADMIN-09**: El admin puede descargar el QR de un certificado como SVG desde la vista de detalle/lista
-- [ ] **ADMIN-10**: La acción de revocar es reversible (el admin puede volver a activar si cometió un error)
+- [x] **ADMIN-01**: El admin ve una lista de todos los certificados con columnas: ID, nombre del estudiante, fecha de emisión, estado
+- [x] **ADMIN-02**: La lista tiene búsqueda por nombre, ID de certificado y filtro por estado (activo/revocado)
+- [x] **ADMIN-03**: La lista está paginada
+- [x] **ADMIN-04**: El admin puede crear un nuevo certificado con todos los campos del modelo de datos
+- [x] **ADMIN-05**: Al crear un certificado, el `certificateCode` se auto-genera en formato `AC-YYYY-NNN` (el admin puede editarlo antes de guardar)
+- [x] **ADMIN-06**: El formulario de creación valida todos los campos requeridos antes de enviar
+- [x] **ADMIN-07**: El admin puede editar todos los campos de un certificado existente
+- [x] **ADMIN-08**: El admin puede revocar un certificado (cambia `status` de `active` a `revoked`); la acción requiere confirmación
+- [x] **ADMIN-09**: El admin puede descargar el QR de un certificado como SVG desde la vista de detalle/lista
+- [x] **ADMIN-10**: La acción de revocar es reversible (el admin puede volver a activar si cometió un error)
 
 ### Diseño Visual
 
-- [ ] **VIS-01**: La página de verificación muestra una reproducción HTML/CSS del certificado físico (estilo del diseño de referencia)
+- [x] **VIS-01**: La página de verificación muestra una reproducción HTML/CSS del certificado físico (estilo del diseño de referencia)
 - [x] **VIS-02**: El badge "Verificado por AndesCode" aparece prominente y arriba del fold en la página de certificado válido
 - [x] **VIS-03**: La estética sigue la identidad AndesCode: paleta `#191919` / `#FFFFFF`, acento `#4342FF`, Inter, minimalista
 - [x] **VIS-04**: La página de verificación es mobile-first (los QRs se escanean desde el teléfono)
@@ -131,22 +131,22 @@ Actualizado durante la creación del roadmap (4-phase coarse structure).
 | VIS-03 | Phase 2 | Complete |
 | VIS-04 | Phase 2 | Complete |
 | VIS-05 | Phase 2 | Complete |
-| ADMIN-01 | Phase 3 | Pending |
-| ADMIN-02 | Phase 3 | Pending |
-| ADMIN-03 | Phase 3 | Pending |
-| ADMIN-04 | Phase 3 | Pending |
-| ADMIN-05 | Phase 3 | Pending |
-| ADMIN-06 | Phase 3 | Pending |
-| ADMIN-07 | Phase 3 | Pending |
-| ADMIN-08 | Phase 3 | Pending |
-| ADMIN-09 | Phase 3 | Pending |
-| ADMIN-10 | Phase 3 | Pending |
-| QRPDF-01 | Phase 4 | Pending |
-| QRPDF-02 | Phase 4 | Pending |
-| QRPDF-03 | Phase 4 | Pending |
-| QRPDF-04 | Phase 4 | Pending |
-| QRPDF-05 | Phase 4 | Pending |
-| VIS-01 | Phase 4 | Pending |
+| ADMIN-01 | Phase 3 | Complete |
+| ADMIN-02 | Phase 3 | Complete |
+| ADMIN-03 | Phase 3 | Complete |
+| ADMIN-04 | Phase 3 | Complete |
+| ADMIN-05 | Phase 3 | Complete |
+| ADMIN-06 | Phase 3 | Complete |
+| ADMIN-07 | Phase 3 | Complete |
+| ADMIN-08 | Phase 3 | Complete |
+| ADMIN-09 | Phase 3 | Complete |
+| ADMIN-10 | Phase 3 | Complete |
+| QRPDF-01 | Phase 4 | Complete |
+| QRPDF-02 | Phase 4 | Complete |
+| QRPDF-03 | Phase 4 | Complete |
+| QRPDF-04 | Phase 4 | Complete |
+| QRPDF-05 | Phase 4 | Complete |
+| VIS-01 | Phase 4 | Complete |
 
 **Coverage:**
 
