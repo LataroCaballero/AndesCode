@@ -36,6 +36,9 @@ export default function CertificadoVerificacion() {
       return;
     }
 
+    // Guardia contra respuestas obsoletas si certificateCode cambia rápidamente
+    let cancelled = false;
+
     setState("loading");
     setCert(null);
 
@@ -50,6 +53,7 @@ export default function CertificadoVerificacion() {
         pb.filter("certificateCode = {:code}", { code: certificateCode })
       )
       .then((record) => {
+        if (cancelled) return;
         setCert(record);
         setState("found");
         // Establecer el título de la página de forma imperativa (TitleManager no puede
@@ -59,6 +63,7 @@ export default function CertificadoVerificacion() {
           : "Certificado · AndesCode";
       })
       .catch((err: unknown) => {
+        if (cancelled) return;
         // 404 → not found; cualquier otro error (403, red, etc.) → estado not-found también
         // (no crashear; el usuario puede ir a /certificados y buscar de nuevo)
         const status =
@@ -76,8 +81,9 @@ export default function CertificadoVerificacion() {
         }
       });
 
-    // Restaurar título al desmontar (regresa al comportamiento de TitleManager)
+    // Restaurar título al desmontar y marcar respuestas en vuelo como obsoletas
     return () => {
+      cancelled = true;
       document.title = "AndesCode";
     };
   }, [certificateCode]);
