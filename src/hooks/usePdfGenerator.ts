@@ -312,9 +312,8 @@ export function usePdfGenerator(): UsePdfGeneratorResult {
         /* ─── Guardar y descargar ─── */
 
         doc.save(`certificado-${cert.certificateCode}.pdf`);
-      } catch (err) {
+      } catch (_err) {
         setError("No se pudo generar el PDF. Intentá de nuevo.");
-        console.error(err);
       } finally {
         setIsGenerating(false);
       }
