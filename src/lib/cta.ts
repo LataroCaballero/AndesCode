@@ -1,4 +1,4 @@
-export const CAL_COM_URL = "https://cal.com/andescode/consulta-gratuita";
+export const CAL_COM_URL = "https://cal.com/andes-code/consulta-gratuita";
 export const WHATSAPP_NUMBER = "5492644432919";
 
 export function whatsappUrl(source: string, message?: string): string {
