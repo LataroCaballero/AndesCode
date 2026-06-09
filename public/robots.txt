@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://andescode.com.ar/sitemap.xml
