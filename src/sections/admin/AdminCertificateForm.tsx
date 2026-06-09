@@ -130,8 +130,8 @@ export default function AdminCertificateForm({
     // Validación del campo score: rango [0, 10] y no NaN (WR-03)
     if (form.score !== '') {
       const scoreValue = parseFloat(form.score);
-      if (isNaN(scoreValue) || scoreValue < 0 || scoreValue > 10) {
-        setFieldErrors(prev => ({ ...prev, score: 'Debe ser un número entre 0 y 10' }));
+      if (isNaN(scoreValue) || scoreValue < 0 || scoreValue > 100) {
+        setFieldErrors(prev => ({ ...prev, score: 'Debe ser un número entre 0 y 100' }));
         return;
       }
     }
@@ -374,9 +374,9 @@ export default function AdminCertificateForm({
             value={form.score}
             onChange={e => setField('score', e.target.value)}
             min={0}
-            max={10}
-            step={0.1}
-            placeholder="0 – 10"
+            max={100}
+            step={1}
+            placeholder="0 – 100"
             className={inputClass('score')}
           />
           {fieldErrors.score && (

@@ -98,12 +98,40 @@ export function usePdfGenerator(): UsePdfGeneratorResult {
           fetchToBase64(fcefnLogoUrl),
         ]);
 
-        /* ─── Inicializar jsPDF — A4 apaisado ─── */
+        /* ─── Pre-calcular altura del contenido para ajustar la hoja ─── */
 
-        const doc = new jsPDF({ orientation: "l", unit: "mm", format: "a4" });
-        const pageW = doc.internal.pageSize.getWidth();   // 297mm
-        const pageH = doc.internal.pageSize.getHeight();  // 210mm
+        const pageW = 297; // A4 apaisado, ancho fijo
         const margin = 15;
+        const mColW = (pageW - margin * 2) / 4;
+
+        const measureDoc = new jsPDF({ unit: "mm", format: [pageW, 210] });
+        measureDoc.addFileToVFS("Inter-Regular.ttf", base64Regular);
+        measureDoc.addFont("Inter-Regular.ttf", "Inter", "normal");
+        measureDoc.addFileToVFS("Inter-Bold.ttf", base64Bold);
+        measureDoc.addFont("Inter-Bold.ttf", "Inter", "bold");
+
+        // logos(16) + divider+espacio(10) + CERTIFICADO(7) + subtítulo(5) + se-certifica(7) + nombre(8)
+        let mY = margin + 16 + 10 + 7 + 5 + 7 + 8;
+        if (cert.description) {
+          measureDoc.setFontSize(8);
+          mY += measureDoc.splitTextToSize(cert.description, pageW - margin * 2).length * 4.5;
+        }
+        mY += 2 + 5 + 4.5; // padding + divider + etiquetas cols
+        measureDoc.setFontSize(9);
+        const mPL = measureDoc.splitTextToSize(
+          `${formatDate(cert.startDate)} – ${formatDate(cert.endDate)}`, mColW - 3
+        );
+        const mAL = measureDoc.splitTextToSize(cert.degree || "—", mColW - 3);
+        const mTL = measureDoc.splitTextToSize(
+          cert.technologies?.length ? cert.technologies.join(", ") : "—", mColW - 3
+        );
+        mY += Math.max(mPL.length, mAL.length, mTL.length, 1) * 4.5 + 3 + 5;
+        // +38 offset de footerY desde bottomRowY, +5 margen inferior
+        const pageH = Math.ceil(mY + 43);
+
+        /* ─── Inicializar jsPDF con altura calculada ─── */
+
+        const doc = new jsPDF({ orientation: "l", unit: "mm", format: [pageW, pageH] });
 
         /* ─── Registrar fuentes Inter auto-alojadas ─── */
 
@@ -130,7 +158,7 @@ export function usePdfGenerator(): UsePdfGeneratorResult {
         doc.setDrawColor(25, 25, 25);
         doc.setLineWidth(0.3);
         doc.line(margin, y, pageW - margin, y);
-        y += 6;
+        y += 10;
 
         /* ─── 3. Bloque de título ─── */
 
