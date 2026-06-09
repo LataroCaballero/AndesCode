@@ -44,6 +44,9 @@ function arrayBufferToBase64(buf: ArrayBuffer): string {
 
 async function fetchToBase64(url: string): Promise<string> {
   const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`Asset fetch failed: ${res.status} ${res.statusText} — ${url}`);
+  }
   const buf = await res.arrayBuffer();
   return arrayBufferToBase64(buf);
 }
