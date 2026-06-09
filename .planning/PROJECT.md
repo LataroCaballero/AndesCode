@@ -23,13 +23,16 @@ Cualquier persona debe poder verificar la autenticidad de un certificado AndesCo
 - ✓ Backend PocketBase auto-hospedado con colección `certificates` — Phase 02/03
 - ✓ Formato de ID: `AC-YYYY-NNN` auto-generado — Phase 03
 - ✓ QR generado client-side por certificado para descarga SVG — Phase 03
+- ✓ Página pública de verificación `/certificados/[id]` con estado válido/revocado — v1.0 (Phase 02)
+- ✓ Página de búsqueda `/certificados` por ID manual (normalizado, case-insensitive) — v1.0 (Phase 02)
+- ✓ Reproducción visual HTML/CSS del certificado con QR nivel H embebido — v1.0 (Phase 04)
+- ✓ Descarga del certificado en PDF (jsPDF, fuentes self-hosted, watermark REVOCADO) — v1.0 (Phase 04)
 
 ### Active
 
-- [ ] Página pública de verificación `/certificados/[id]` con estado válido/revocado
-- [ ] Página de búsqueda `/certificados` para ingresar un ID manualmente
-- [ ] Descarga del certificado en PDF (diseño visual consistente con el certificado de referencia)
-- [ ] Open Graph metadata para compartir el enlace de un certificado
+<!-- v1.0 enviado. El alcance del próximo milestone se define vía /gsd-new-milestone. -->
+
+- [ ] Open Graph metadata para compartir el enlace de un certificado (no construido en v1.0 — candidato a próximo milestone)
 
 ### Out of Scope
 
@@ -70,9 +73,20 @@ Cualquier persona debe poder verificar la autenticidad de un certificado AndesCo
 | QR generado client-side | No requiere backend; la librería `qrcode.react` genera SVG en el navegador | Implementado vía XMLSerializer + Blob download — Phase 03 |
 | `sort: '-issueDate'` en lugar de `'-created'` | PocketBase server no indexa el campo sistema `created` para sort | Forzado por comportamiento real del servidor — Phase 03 |
 | `$autoCancel: false` en PocketBase SDK | React 19 Strict Mode doble-invoca effects; el SDK cancela la primera llamada | Aplicado a todos los getList del admin — Phase 03 |
-| PDF generado client-side | jsPDF/react-pdf evita servidor de renderizado; suficiente para v1 | — Pending (Phase 04) |
-| FCEFN hardcodeado en v1 | Todos los PPS actuales son de la UNSJ; soporte multi-universidad es v2 | — Pending |
+| PDF generado client-side con jsPDF | Evita servidor de renderizado; fuentes Inter self-hosted para no romper por CORS | ✓ Good — implementado en Phase 04 |
+| QR nivel H embebido en el visual | 30% de redundancia resiste daño físico del certificado impreso | ✓ Good — `level="H"` en visual y PDF (Phase 04) |
+| FCEFN hardcodeado en v1 | Todos los PPS actuales son de la UNSJ; soporte multi-universidad es v2 | — Pending (revisar en próximo milestone) |
 | Badges diferidos a v2 | El sistema de verificación es el core value; las insignias son una mejora posterior | Confirmado fuera de v1 |
+
+## Current State
+
+**Enviado: v1.0 — Sistema de Certificados Verificables** (2026-06-09)
+
+El sistema de certificados verificables está completo y en producción. 4 fases, 10 planes, 42 requisitos cumplidos (~4.833 LOC TS/TSX). El flujo end-to-end funciona: el admin emite/edita/revoca certificados desde `/admin`, cualquier persona verifica un certificado en `/certificados/:id` (sin cuenta), escanea el QR nivel H, y descarga un PDF con el diseño de referencia.
+
+**Verificación humana pendiente (diferida en el cierre):** confirmar en dispositivo real el escaneo del QR, la fidelidad visual del PDF, el watermark REVOCADO y los estados de carga/error del botón de descarga (ver STATE.md → Deferred Items).
+
+**Próximo milestone:** se define vía `/gsd-new-milestone`. Candidatos abiertos: Open Graph metadata para compartir, badges/insignias digitales (v2), soporte multi-universidad, estadísticas de certificados.
 
 ## Evolution
 
@@ -92,4 +106,4 @@ Este documento evoluciona en cada transición de fase.
 4. Actualizar Context con el estado actual
 
 ---
-*Last updated: 2026-06-08 after Phase 03 (admin-crud)*
+*Last updated: 2026-06-09 after v1.0 milestone*

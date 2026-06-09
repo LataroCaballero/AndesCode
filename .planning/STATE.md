@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
+status: Awaiting next milestone
 stopped_at: Phase 4 UI-SPEC approved
-last_updated: "2026-06-09T00:55:57.985Z"
-last_activity: 2026-06-09
+last_updated: "2026-06-09T02:30:46.060Z"
+last_activity: 2026-06-09 — Milestone v1.0 completed and archived
 progress:
   total_phases: 4
   completed_phases: 4
@@ -18,19 +18,17 @@ progress:
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-06-08)
+See: .planning/PROJECT.md (updated 2026-06-09)
 
 **Core value:** Cualquier persona puede verificar la autenticidad de un certificado AndesCode en segundos, sin crear cuenta, sin fricciones.
-**Current focus:** Phase 04 — qr-pdf-and-visual-certificate
+**Current focus:** Planning next milestone (v1.0 shipped)
 
 ## Current Position
 
-Phase: 04
-Plan: Not started
-Status: Executing Phase 04
-Last activity: 2026-06-09
-
-Progress: [███████░░░] 75% (3/4 phases complete)
+Phase: Milestone v1.0 complete
+Plan: —
+Status: Awaiting next milestone
+Last activity: 2026-06-09 — Milestone v1.0 completed and archived
 
 ## Performance Metrics
 
@@ -78,14 +76,23 @@ None yet.
 
 ## Deferred Items
 
-Items acknowledged and carried forward from previous milestone close:
+Items acknowledged and deferred at the v1.0 milestone close on 2026-06-09:
 
 | Category | Item | Status | Deferred At |
 |----------|------|--------|-------------|
-| *(none)* | | | |
+| verification | Phase 04 — scan QR on a real phone, confirm it resolves to /certificados/:certificateCode | human_needed | 2026-06-09 |
+| verification | Phase 04 — confirm downloaded PDF visual fidelity vs ref/assets/certificado.png (logos, fields, QR) | human_needed | 2026-06-09 |
+| verification | Phase 04 — confirm diagonal REVOCADO watermark renders on screen and in the PDF for revoked certs | human_needed | 2026-06-09 |
+| verification | Phase 04 — confirm PDF button loading spinner + inline Spanish error state on failure | human_needed | 2026-06-09 |
+
+Source: `.planning/phases/04-qr-pdf-and-visual-certificate/04-VERIFICATION.md` (status human_needed; 9/9 code truths VERIFIED, only real-device/browser observation pending).
 
 ## Session Continuity
 
 Last session: 2026-06-08T16:08:06.471Z
 Stopped at: Phase 4 UI-SPEC approved
 Resume file: .planning/phases/04-qr-pdf-and-visual-certificate/04-UI-SPEC.md
+
+## Operator Next Steps
+
+- Start the next milestone with /gsd-new-milestone
