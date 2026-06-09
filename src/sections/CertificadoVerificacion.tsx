@@ -13,7 +13,7 @@ import CertificadoVisual from "../components/CertificadoVisual.tsx";
 
 /* ─── Estados posibles ─── */
 
-type FetchState = "loading" | "found" | "notFound" | "error";
+type FetchState = "loading" | "found" | "notFound";
 
 /* ─── CertificadoVerificacion ─── */
 
@@ -123,7 +123,7 @@ export default function CertificadoVerificacion() {
 
   /* ─── Estado NOT FOUND ─── */
 
-  if (state === "notFound" || state === "error") {
+  if (state === "notFound") {
     return (
       <section className="relative grid-bg pt-24 pb-20 px-4">
         <div className="max-w-xl mx-auto text-center fade-in">
