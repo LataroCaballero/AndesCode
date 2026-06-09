@@ -240,7 +240,8 @@ export function usePdfGenerator(): UsePdfGeneratorResult {
 
         /* ─── 9. Fila inferior: supervisor + sello + QR ─── */
 
-        const bottomRowY = pageH - margin - 30;
+        // Fluye desde y dinámico (no anclado al fondo) para evitar gap vacío
+        const bottomRowY = y;
         const qrX = pageW - margin - 30;
         const qrY = bottomRowY;
 
@@ -276,7 +277,8 @@ export function usePdfGenerator(): UsePdfGeneratorResult {
 
         /* ─── 10. Línea de pie de página ─── */
 
-        const footerY = pageH - margin + 2;
+        // footerY fluye desde la fila inferior (QR 30mm + label + margen)
+        const footerY = bottomRowY + 38;
         doc.setFont("Inter", "normal");
         doc.setFontSize(8);
         doc.setTextColor(25, 25, 25);
