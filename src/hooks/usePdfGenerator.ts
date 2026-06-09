@@ -270,7 +270,7 @@ export function usePdfGenerator(): UsePdfGeneratorResult {
         doc.setFont("Inter", "normal");
         doc.setFontSize(7);
         doc.setTextColor(120, 120, 120);
-        doc.text("VERIFICÁ LA AUTENTICIDAD", qrX + 15, qrY + 33, {
+        doc.text("VERIFICÁ LA AUTENTICIDAD", qrX + 15, qrY + 28, {
           align: "center",
         });
 
