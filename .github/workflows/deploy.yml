@@ -90,10 +90,30 @@ jobs:
           echo "VPS_SSH_KEY parsed OK as OpenSSH private key."
 
       - name: Backup current release on VPS
+        env:
+          VPS_USER: ${{ secrets.VPS_USER }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}
         run: |
-          ssh -i ~/.ssh/id_ed25519 \
-            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
-            'sudo -n /usr/local/bin/andescode-backup.sh'
+          # Backup lives in deploy's home so we don't need sudo (AND-17 did
+          # not provision the sudoers entry for andescode-backup.sh). Keep
+          # the last 7 timestamped copies and prune older ones.
+          ssh -i ~/.ssh/id_ed25519 "$VPS_USER@$VPS_HOST" bash -s <<'REMOTE'
+            set -euo pipefail
+            STAMP="$(date -u +%Y%m%d-%H%M%S)"
+            BACKUP_ROOT="$HOME/andescode-backups"
+            mkdir -p "$BACKUP_ROOT"
+            if [ -d /var/www/andescode ]; then
+              cp -a /var/www/andescode "$BACKUP_ROOT/$STAMP"
+              echo "backup: $BACKUP_ROOT/$STAMP"
+            else
+              echo "backup: /var/www/andescode missing, skipping (first deploy?)"
+            fi
+            # prune: keep the 7 newest
+            ls -1t "$BACKUP_ROOT" 2>/dev/null | tail -n +8 | while read -r old; do
+              rm -rf "$BACKUP_ROOT/${old:?}"
+              echo "pruned: $old"
+            done
+          REMOTE
 
       - name: Rsync dist to VPS
         run: |
