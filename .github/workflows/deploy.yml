@@ -41,12 +41,24 @@ jobs:
           path: dist
 
       - name: Setup SSH
+        env:
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 700 ~/.ssh
+          # Strip CR (Windows line endings) and ensure trailing newline so
+          # openssl/libcrypto can parse the OpenSSH PEM block cleanly.
+          printf '%s\n' "$VPS_SSH_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo "${{ secrets.VPS_KNOWN_HOSTS }}" > ~/.ssh/known_hosts
+          printf '%s\n' "$VPS_KNOWN_HOSTS" | tr -d '\r' > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
+          # Fail fast with a clear message if the key is malformed.
+          if ! ssh-keygen -y -f ~/.ssh/id_ed25519 > /dev/null 2>&1; then
+            echo "::error::VPS_SSH_KEY secret is not a valid OpenSSH private key."
+            echo "Expected -----BEGIN OPENSSH PRIVATE KEY----- block. Re-upload from 'cat id_ed25519' output."
+            exit 1
+          fi
 
       - name: Backup current release on VPS
         run: |
